@@ -54,7 +54,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
-# slim install
+# install Slim
 gem 'slim-rails'
 gem 'html2slim'
+
+# install Devise
+gem 'devise'
 

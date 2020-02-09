@@ -10,6 +10,7 @@ module Solopacker
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
+    config.generators.template_engine = :slim  
 
     config.generators do |g|
       g.stylesheets false

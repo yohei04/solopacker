@@ -1,0 +1,66 @@
+// 初期化
+* {
+  // padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+// ナビバー
+a.home-btn {
+  color: black
+}
+
+// sign_up, sign_in
+.sign-wrapper {
+  padding: 1rem 0 100%;
+  background-color: rgba(236, 236, 236, 0.671);
+}
+
+.sign-container {
+  width: 40%;
+  margin: 0 auto;
+  padding: 3rem 0;
+  background-color: white;
+  text-align: center;
+  h2 {
+    margin-bottom: 2rem;
+  }
+  .field {
+    margin-bottom: 1.5rem;
+    input {
+      width: 400px;
+      padding-left: .4rem;
+    }
+  }
+}
+
+.actions {
+  position: relative;
+  .btn {
+    border-radius: 50px;
+  }
+  a {
+    position: absolute;
+    top: 1rem;
+    left: 60%;
+  }
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    padding-left: 7rem;
+
+  }
+  li {
+    text-align: left;
+  }
+}
+
+#user_remember_me {
+  width: 20px;
+}
+
+.forgot {
+  margin-top: 1.5rem;
+}

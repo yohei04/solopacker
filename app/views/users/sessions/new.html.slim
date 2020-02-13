@@ -2,7 +2,7 @@
   .sign-container
     h2
       | Sign in
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    = form_with model: @user, url: user_session_path, id: "new_user", class: "new_user", local: true do |f|
       .field
         = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Email"
       .field
@@ -14,3 +14,4 @@
       .actions
         = f.submit "Sign in", class: "btn btn-primary"
         = render "users/shared/links"
+

@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 describe 'サインイン・サインアップ周り', type: :system do
   describe 'サインアップ機能' do
     before do
       # ユーザーAを作成しておく
-      user_a = FactoryBot.create(:user, name: 'ユーザーA', user_name: 'ユーザーネームA', email: 'a@example.com')
+      FactoryBot.create(:user, name: 'ユーザーA', user_name: 'ユーザーネームA', email: 'a@example.com')
     end
     context 'ユーザーAでサインアップしたとき' do
       before do
@@ -16,7 +18,7 @@ describe 'サインイン・サインアップ周り', type: :system do
         fill_in 'Confirm Password', with: 'password'
         click_button 'Sign up'
       end
-      it 'バリデーションが働く' do  # 3
+      it 'バリデーションが働く' do
         expect(page).to have_content 'error'
       end
     end

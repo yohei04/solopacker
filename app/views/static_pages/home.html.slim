@@ -1,9 +1,13 @@
-h1 StaticPages#home
-p Find me in app/views/static_pages/home.html.slim
+section#main_vew
+  .main_view-wrapper
+    .main_view-image
+      = image_pack_tag 'hero.jpg'
+    .main_view-container
+      h1 Solopacker
+      p Travelling alone is sometimes boring. 
+      p Solopacker makes your travel fun, cool and sexy.
+      = link_to "Let's Get Started!", "#", class: "btn btn-primary"
+
+Section#how_to
 
 
-<div class="p-3 mb-2 bg-primary text-white">.bg-primary</div>
-<div class="p-3 mb-2 bg-secondary text-white">.bg-secondary</div>
-<div class="p-3 mb-2 bg-success text-white">.bg-success</div>
-<div class="p-3 mb-2 bg-danger text-white">.bg-danger</div>
-<div class="p-3 mb-2 bg-warning text-dark">.bg-warning</div>

@@ -1,0 +1,32 @@
+.main_view-wrapper {
+  position: relative;
+  .main_view-image {
+    img {
+      background-size: cover;
+      width: 100%;
+      max-width: 1500px;
+    }
+  }
+  .main_view-container {
+    position: absolute;
+    text-align: center;
+    color: white;
+    text-shadow: 0.1rem 0.1rem 0.8rem #000;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%,-50%);
+    -webkit-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+  }
+  h1 {
+    font-size: 5rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  .btn 
+  {
+    font-size: 1.6rem;
+    margin-top: 1rem;
+  }
+}

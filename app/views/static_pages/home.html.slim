@@ -9,5 +9,33 @@ section#main_vew
       = link_to "Let's Get Started!", "#", class: "btn btn-primary"
 
 Section#how_to
+  .how_to-wrapper
+    .how_to-container
+      h2.how_to-title
+        | How to use
+      .how_to-items
+        .how_to-item.left
+          .how_to-image
+            = image_pack_tag 'logo.png'
+          .text
+            h3.how_to-sub_title
+              | Post
+            p Post your plan
+            p and
+            p Wait till someone contacts you.
+        h3.how_to-or or
+        .how_to-item.right
+          .how_to-image
+            = image_pack_tag 'logo.png'
+          .text
+            h3.how_to-sub_title
+              | Find
+            p Find posts you want to join
+            p and
+            p contact them.
+
+
+
+
 
 

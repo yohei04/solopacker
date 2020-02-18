@@ -1,3 +1,4 @@
+// Main viewセクション
 .main_view-wrapper {
   position: relative;
   .main_view-image {
@@ -5,6 +6,7 @@
       background-size: cover;
       width: 100%;
       max-width: 1500px;
+      vertical-align: bottom;
     }
   }
   .main_view-container {
@@ -28,5 +30,34 @@
   {
     font-size: 1.6rem;
     margin-top: 1rem;
+  }
+}
+
+// How toセクション
+.how_to-wrapper {
+  background-color: rgba(128, 185, 231, 0.05);
+  padding: 3rem 0;
+}
+.how_to-container {
+  text-align: center;
+}
+.how_to-title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+.how_to-items {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 0 10rem;
+  .how_to-sub_title {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.6rem;
+  }
+  .how_to-or {
+    text-align: center;
+    font-size: 2.5rem;
   }
 }

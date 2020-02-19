@@ -33,6 +33,24 @@
   }
 }
 
+// Aboutセクション
+.about-wrapper {
+  padding: 3rem 0;
+}
+.about-container {
+  text-align: center;
+}
+.about-title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+}
+.about-text {
+  font-size: 1.6rem;
+  p {
+    line-height: 2rem;
+  }
+}
+
 // How toセクション
 .how_to-wrapper {
   background-color: rgba(128, 185, 231, 0.05);

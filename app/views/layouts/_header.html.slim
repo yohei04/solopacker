@@ -1,13 +1,13 @@
 header.fixed-top
   .navbar
     .container
-      = link_to static_pages_home_url, class: "logo"
+      = link_to root_path, class: "logo"
         = image_pack_tag 'logo.png'
         p Solopacker
       ul.nav.navbar-right
         li
-          = link_to "Home", "#", id: "home"
-        - if not user_signed_in?
+          = link_to "Home", root_path, id: "home"
+        - if user_signed_in?
           li
             = link_to "Find", "#", id: "find"
           li
@@ -27,7 +27,7 @@ header.fixed-top
               li
                 = link_to "Sign out", "#", id: "sign_out"
         - else
-          = link_to "sign in", "#", id: "sign_in"
+          = link_to "Sign in", new_user_session_path, id: "sign_in"
 
 
 

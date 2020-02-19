@@ -1,0 +1,38 @@
+.navbar {
+  a {
+    color: white;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    img {
+      width: 30px;
+      height: 30px;
+    }
+    p {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+  }
+  .navbar-right {
+    font-size: 1.4rem;
+    li {
+      a {
+        margin-right: 1rem;
+      }
+    }
+    .dropdown-menu {
+      background-color: rgba(255, 255, 255, 0.315);
+      li {
+        margin: 0 0 .5rem 1rem;
+        &:last-child {
+          margin-bottom: 0;
+        }
+        a {
+          color: black;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+.flash {
+  font-size: .8rem;
+  position: fixed;
+  z-index: 1;
+  left: 50%;
+  top: 2rem;
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  padding: .3rem 1.4rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  &__alert{
+    color: #a94442;
+    background-color: #f2dede;
+  }
+  &__notice {
+    color: #3c763d;
+    background-color: honeydew;
+  }
+}

@@ -54,4 +54,18 @@ describe 'ユーザー登録・認証周り', type: :system do
       end
     end
   end
+  describe 'サインアウト機能' do
+    context 'ユーザーがサインアウトしたとき' do
+      before do
+        login_as @userA
+        visit root_path
+        find('.dropdown-toggle').click
+        click_on 'Sign out'
+      end
+      it 'サインインページに遷移する' do
+        expect(page).to have_link 'Sign in', href: new_user_session_path
+        expect(page).to have_selector '.flash__notice', text: 'Signed out successfully.'
+      end
+    end
+  end
 end

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe 'サインイン・サインアップ周り', type: :system do
+describe 'ユーザー登録・認証周り', type: :system do
+  before do
+    # ユーザーAを作成しておく
+    @userA = FactoryBot.create(:user, name: 'ユーザーA', user_name: 'ユーザーネームA', email: 'a@example.com')
+  end
   describe 'サインアップ機能' do
-    before do
-      # ユーザーAを作成しておく
-      FactoryBot.create(:user, name: 'ユーザーA', user_name: 'ユーザーネームA', email: 'a@example.com')
-    end
     context 'ユーザーAでサインアップしたとき' do
       before do
         visit new_user_registration_path
@@ -16,7 +16,7 @@ describe 'サインイン・サインアップ周り', type: :system do
         fill_in 'Confirm Password', with: 'password'
         click_button 'Sign up'
       end
-      it 'バリデーションが働く' do
+      it '失敗してバリデーションが働く' do
         expect(page).to have_content 'error'
       end
     end
@@ -30,8 +30,27 @@ describe 'サインイン・サインアップ周り', type: :system do
         fill_in 'Confirm Password', with: 'password'
         click_button 'Sign up'
       end
-      it 'ホームに遷移する' do
-        expect(page).to have_content 'StaticPages#home'
+      it '成功してホームに遷移する' do
+        expect(page).to have_link href: root_path, count: 2
+        expect(page).to have_link 'Let\'s Get Started', href: new_user_registration_path
+        expect(page).to have_selector '.flash__notice', text: 'signed up successfully.'
+        expect(page).to_not have_link 'Sign in', href: new_user_session_path
+      end
+    end
+  end
+  describe 'サインイン機能' do
+    context 'ユーザーAでサインインしたとき' do
+      before do
+        visit new_user_session_path
+        fill_in 'Email', with: 'a@example.com'
+        fill_in 'Password', with: 'password'
+        click_button 'Sign in'
+      end
+      it '成功してホームに遷移する' do
+        expect(page).to have_link href: root_path, count: 2
+        expect(page).to have_link 'Let\'s Get Started', href: new_user_registration_path
+        expect(page).to have_selector '.flash__notice', text: 'Signed in successfully.'
+        expect(page).to_not have_link 'Sign in', href: new_user_session_path
       end
     end
   end

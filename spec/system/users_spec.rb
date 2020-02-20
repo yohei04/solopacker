@@ -1,35 +1,26 @@
 require 'rails_helper'
 
 describe 'ユーザー登録・認証周り', type: :system do
-  before do
-    # ユーザーAを作成しておく
-    @userA = FactoryBot.create(:user, name: 'ユーザーA', user_name: 'ユーザーネームA', email: 'a@example.com')
-  end
+  let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', user_name: 'ユーザーネームA', email: 'a@example.com') }
+  let(:user_b) { FactoryBot.build(:user, name: 'ユーザーB', user_name: 'ユーザーネームB', email: 'b@example.com') }
   describe 'サインアップ機能' do
+    before do
+      visit new_user_registration_path
+      fill_in 'Name', with: signup_user.name
+      fill_in 'User name', with: signup_user.user_name
+      fill_in 'Email', with: signup_user.email
+      fill_in 'Password', with: signup_user.password
+      fill_in 'Confirm Password', with: signup_user.password
+      click_button 'Sign up'
+    end
     context 'ユーザーAでサインアップしたとき' do
-      before do
-        visit new_user_registration_path
-        fill_in 'Name', with: 'ユーザーA'
-        fill_in 'User name', with: 'ユーザーネームA'
-        fill_in 'Email', with: 'a@example.com'
-        fill_in 'Password', with: 'password'
-        fill_in 'Confirm Password', with: 'password'
-        click_button 'Sign up'
-      end
+      let(:signup_user) { user_a }
       it '失敗してバリデーションが働く' do
-        expect(page).to have_content 'error'
+        expect(page).to have_content 'errors prohibited'
       end
     end
     context 'ユーザーBでサインアップしたとき' do
-      before do
-        visit new_user_registration_path
-        fill_in 'Name', with: 'ユーザーB'
-        fill_in 'User name', with: 'ユーザーネームB'
-        fill_in 'Email', with: 'b@example.com'
-        fill_in 'Password', with: 'password'
-        fill_in 'Confirm Password', with: 'password'
-        click_button 'Sign up'
-      end
+      let(:signup_user) { user_b }
       it '成功してホームに遷移する' do
         expect(page).to have_link href: root_path, count: 2
         expect(page).to have_link 'Let\'s Get Started', href: new_user_registration_path
@@ -39,13 +30,14 @@ describe 'ユーザー登録・認証周り', type: :system do
     end
   end
   describe 'サインイン機能' do
+    before do
+      visit new_user_session_path
+      fill_in 'Email', with: signin_user.email
+      fill_in 'Password', with: signin_user.password
+      click_button 'Sign in'
+    end
     context 'ユーザーAでサインインしたとき' do
-      before do
-        visit new_user_session_path
-        fill_in 'Email', with: 'a@example.com'
-        fill_in 'Password', with: 'password'
-        click_button 'Sign in'
-      end
+      let(:signin_user) { user_a }
       it '成功してホームに遷移する' do
         expect(page).to have_link href: root_path, count: 2
         expect(page).to have_link 'Let\'s Get Started', href: new_user_registration_path
@@ -55,13 +47,13 @@ describe 'ユーザー登録・認証周り', type: :system do
     end
   end
   describe 'サインアウト機能' do
+    before do
+      login_as user_a
+      visit root_path
+      find('.dropdown-toggle').click
+      click_on 'Sign out'
+    end
     context 'ユーザーがサインアウトしたとき' do
-      before do
-        login_as @userA
-        visit root_path
-        find('.dropdown-toggle').click
-        click_on 'Sign out'
-      end
       it 'サインインページに遷移する' do
         expect(page).to have_link 'Sign in', href: new_user_session_path
         expect(page).to have_selector '.flash__notice', text: 'Signed out successfully.'

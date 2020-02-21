@@ -25,7 +25,7 @@ header.fixed-top
                 = link_to "About", "#", id: "about"
               li.divider
               li
-                = link_to "Sign out", "#", id: "sign_out"
+                = link_to "Sign out", destroy_user_session_path, method: "delete", id: "sign_out"
         - else
           = link_to "Sign in", new_user_session_path, id: "sign_in"
 

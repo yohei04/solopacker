@@ -15,7 +15,7 @@ describe 'ユーザー登録・認証周り', type: :system do
     end
     context 'ユーザーAでサインアップしたとき' do
       let(:signup_user) { user_a }
-      it '失敗してバリデーションが働く' do
+      it 'カラムの一意性に失敗してバリデーションが働く' do
         expect(page).to have_content 'has already been taken'
       end
     end
@@ -30,17 +30,30 @@ describe 'ユーザー登録・認証周り', type: :system do
     end
   end
   describe 'サインイン機能' do
+    before do
+      visit new_user_session_path
+      fill_in 'Email', with: signin_user.email
+      fill_in 'Password', with: signin_user.password
+      click_button 'Sign in'
+    end
     context 'ユーザーAでサインインしたとき' do
       let(:signin_user) { user_a }
       it '成功してホームに遷移する' do
-        visit new_user_session_path
-        fill_in 'Email', with: signin_user.email
-        fill_in 'Password', with: signin_user.password
-        click_button 'Sign in'
         expect(page).to have_link href: root_path, count: 2
         expect(page).to have_link 'Let\'s Get Started', href: new_user_registration_path
         expect(page).to have_selector '.flash__notice', text: 'Signed in successfully.'
         expect(page).to_not have_link 'Sign in', href: new_user_session_path
+      end
+      it 'プロフィールページに遷移する →  Saveしたらホームに遷移する' do
+        find('.dropdown-toggle').click
+        click_on 'Profile'
+        expect(page).to have_content 'Date Of Birth'
+        expect(page).to have_content 'Language①'
+        select signin_user.origin, from: 'Hometown:'
+        click_button 'Save'
+        expect(current_path).to eq(root_path)
+        expect(page).to have_selector '.flash__notice', text: 'Save profile successfully.'
+        expect(signin_user.origin).to eq 'Japan'
       end
     end
   end

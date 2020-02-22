@@ -34,7 +34,7 @@
             = f.select :gender, ['male', 'female', 'other'], {include_blank: 'select'}
           .field
             = f.label :origin, 'Hometown:'
-            = f.country_select :origin
+            = f.country_select :origin, {include_blank: 'select'}
           .field
             = f.label :current_city, 'Current City:'
             = f.text_field :current_city
@@ -53,7 +53,5 @@
           .field
             = f.label :image, 'Up load Profile Phote'
             = f.file_field :image
-
-
-        .actions
-          = f.submit "Save", class: "btn btn-primary"
+          .actions
+            = f.submit "Save", class: "btn btn-primary"

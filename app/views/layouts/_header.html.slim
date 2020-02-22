@@ -20,7 +20,7 @@ header.fixed-top
               b.caret
             ul.dropdown-menu
               li
-                = link_to "Profile", "#", id: "profile"
+                = link_to "Profile", edit_profile_path(current_user), id: "profile"
               li
                 = link_to "About", "#", id: "about"
               li.divider

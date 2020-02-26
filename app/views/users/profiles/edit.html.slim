@@ -1,0 +1,72 @@
+.profile-wrapper
+  .profile-container
+    = form_with model: @user, url: users_profile_path, id: "new_user", class: "new_user", local: true do |f|
+      = render "devise/shared/error_messages", resource: @user
+      h2.profile-title
+        | Profile
+      .profile-top
+        h4.profile-subtitle
+          | Account Information
+        .profile-top-items
+          .field.name
+            = f.label :name, 'Name:'
+            = f.text_field :name, autofocus: true, autocomplete: "name"
+          .field.user_name
+            = f.label :user_name, 'User Name:'
+            = f.text_field :user_name, autocomplete: "user_name"
+          .field.email
+            = f.label :email, 'Email:'
+            = f.email_field :email, autocomplete: "email"
+          / .field
+          /   = f.label :password, 'Password:'
+          /   = f.password_field :password, autocomplete: "new-password"
+          / .field
+          /   = f.label :password_confirmation, 'Password Confirmation:'
+          /   = f.password_field :password_confirmation, autocomplete: "new-password"
+      .profile-bottom
+        h4.profile-subtitle
+          | Personal Information
+        .profile-buttom-items
+          .field.date_of_birth
+            = f.label :date_of_birth, 'Date Of Birth:'
+            = f.date_field :date_of_birth
+          .field.gender
+            = f.label :gender, 'Gender:' 
+            = f.select :gender, ['male', 'female', 'other'], {include_blank: 'select'}
+          .field.origin
+            = f.label :origin, 'Hometown:'
+            = f.country_select :origin, {include_blank: 'select'}, class: 'select-origin'
+          .field.current_country
+            = f.label :current_country, 'Current Country:'
+            = f.text_field :current_country
+          .field.current_city
+            = f.label :current_city, 'Current City:'
+            = f.text_field :current_city
+          .field.language_1
+            = f.label :language_1, 'Language①:'
+            = f.text_field :language_1
+          .field.language_2
+            = f.label :language_2, 'Language②:'
+            = f.text_field :language_2
+          .field.language_3
+            = f.label :language_3, 'Language③:'
+            = f.text_field :language_3
+          .field.introduce
+            = f.label :introduce, 'Introduce:'
+            = f.text_area :introduce
+          .field.image
+            - if @user.image.attached?
+              = image_tag @user.image.variant(resize_to_fill: [100, 100])
+            - else 
+              = image_pack_tag 'default_user.jpg', :size =>'100x100'
+            .profile-image-form
+              = f.label :image, 'Up load Profile Phote:'
+              = f.file_field :image
+        .profile-btns
+          .actions
+            = f.submit "Save", class: "btn btn-primary"
+          .profile-password-delete
+            p
+              = link_to 'Change password', edit_user_registration_path(current_user)
+            p  
+              = link_to "Delete account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete

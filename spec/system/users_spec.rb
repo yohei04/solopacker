@@ -44,17 +44,6 @@ describe 'ユーザー登録・認証周り', type: :system do
         expect(page).to have_selector '.flash__notice', text: 'Signed in successfully.'
         expect(page).to_not have_link 'Sign in', href: new_user_session_path
       end
-      it 'プロフィールページに遷移する →  Saveしたらホームに遷移する' do
-        find('.dropdown-toggle').click
-        click_on 'Profile'
-        expect(page).to have_content 'Date Of Birth'
-        expect(page).to have_content 'Language①'
-        select signin_user.origin, from: 'Hometown:'
-        click_button 'Save'
-        expect(current_path).to eq(root_path)
-        expect(page).to have_selector '.flash__notice', text: 'Save profile successfully.'
-        expect(signin_user.origin).to eq 'Japan'
-      end
     end
   end
   describe 'サインアウト機能' do
@@ -66,6 +55,37 @@ describe 'ユーザー登録・認証周り', type: :system do
         click_on 'Sign out'
         expect(page).to have_link 'Sign in', href: new_user_session_path
         expect(page).to have_selector '.flash__notice', text: 'Signed out successfully.'
+      end
+    end
+  end
+  describe 'プロフィール登録' do
+    before do
+      login_as user_a
+      visit root_path
+      find('.dropdown-toggle').click
+      click_on 'Profile'
+    end
+    context 'ユーザーがプロフィールを更新したとき' do
+      it 'Saveするとデータが更新されてホームに遷移する' do
+        expect(page).to have_content 'Date Of Birth'
+        expect(page).to have_content 'Language①'
+        select 'China', from: 'Hometown:'
+        fill_in 'Name:', with: 'foobar'
+        fill_in 'Language①', with: 'Chinese'
+        click_button 'Save'
+        user_a.reload
+        expect(current_path).to eq(root_path)
+        expect(page).to have_selector '.flash__notice', text: 'Save profile successfully.'
+        expect(user_a.origin).to eq 'CN'
+        expect(user_a.name).to eq 'foobar'
+        expect(user_a.language_1).to eq 'Chinese'
+      end
+      it 'サインアップ時と同じようにバリデーションが働く' do
+        fill_in 'Name:', with: ''
+        fill_in 'User Name:', with: 'a' * 16
+        click_button 'Save'
+        expect(page).to have_content 'can\'t be blank'
+        expect(page).to have_content 'too long'
       end
     end
   end

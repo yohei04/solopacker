@@ -10,7 +10,7 @@ FactoryBot.define do
     current_city { 'Tokyo' }
     language_1 { 'Japanese' }
     introduce { '' }
-    image { '' }
+    # image { '' }
     admin { false }
   end
 end

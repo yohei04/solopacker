@@ -1,6 +1,6 @@
 .profile-wrapper
   .profile-container
-    = form_with model: @user, url: users_profile_path, id: "new_user", class: "new_user", local: true do |f|
+    = form_with model: @user, url: users_profile_path, id: "edit_user", class: "edit_user", local: true do |f|
       = render "devise/shared/error_messages", resource: @user
       h2.profile-title
         | Profile

@@ -70,8 +70,8 @@ describe 'ユーザー登録・認証周り', type: :system do
         expect(page).to have_content 'Date Of Birth'
         expect(page).to have_content 'Language①'
         select 'China', from: 'Hometown:'
-        fill_in 'Name:', with: 'foobar'
-        fill_in 'Language①', with: 'Chinese'
+        fill_in 'user_name', with: 'foobar'
+        fill_in 'user_language_1', with: 'Chinese'
         click_button 'Save'
         user_a.reload
         expect(current_path).to eq(root_path)

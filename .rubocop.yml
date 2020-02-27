@@ -33,7 +33,16 @@ ClassAndModuleChildren:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+# private/protectedは一段深くインデントする
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
 # 文字数制限を変更
 LineLength:
-  Max: 100
-
+  Max: 120
+  Exclude:
+    - 'app/controllers/users/profiles_controller.rb'
+  
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'

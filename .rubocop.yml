@@ -33,6 +33,10 @@ ClassAndModuleChildren:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+# private/protectedは一段深くインデントする
+Layout/IndentationConsistency:
+  EnforcedStyle: indented_internal_methods
+
 # 文字数制限を変更
 LineLength:
   Max: 120

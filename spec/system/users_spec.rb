@@ -70,14 +70,14 @@ describe 'ユーザー登録・認証周り', type: :system do
         expect(page).to have_content 'Date Of Birth'
         expect(page).to have_content 'Language①'
         select 'China', from: 'Hometown:'
-        fill_in 'user_name', with: 'foobar'
+        fill_in 'user_name', with: 'hogehoge'
         fill_in 'user_language_1', with: 'Chinese'
         click_button 'Save'
         user_a.reload
         expect(current_path).to eq(root_path)
         expect(page).to have_selector '.flash__notice', text: 'Save profile successfully.'
         expect(user_a.origin).to eq 'CN'
-        expect(user_a.name).to eq 'foobar'
+        expect(user_a.name).to eq 'hogehoge'
         expect(user_a.language_1).to eq 'Chinese'
       end
       it 'サインアップ時と同じようにバリデーションが働く' do

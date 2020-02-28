@@ -4,8 +4,8 @@ FactoryBot.define do
     user_name { 'テストユーザーネーム' }
     email { 'test@example.com' }
     password { 'password' }
-    date_of_birth { DateTime.now }
-    gender { 'male' }
+    date_of_birth { Time.zone.today }
+    gender { '♂' }
     origin { 'Japan' }
     current_city { 'Tokyo' }
     language_1 { 'Japanese' }

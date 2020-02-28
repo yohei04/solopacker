@@ -40,8 +40,6 @@ Layout/IndentationConsistency:
 # 文字数制限を変更
 LineLength:
   Max: 120
-  Exclude:
-    - 'app/controllers/users/profiles_controller.rb'
   
 Metrics/BlockLength:
   Exclude:

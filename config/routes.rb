@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   
   root 'static_pages#home'
   namespace :users do
-    resources :profiles, only: [:edit, :update]
+    resources :profiles, only: [:index, :edit, :update]
   end
 end

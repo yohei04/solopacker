@@ -32,13 +32,13 @@
             = f.date_field :date_of_birth
           .field.gender
             = f.label :gender, 'Gender:' 
-            = f.select :gender, ['male', 'female', 'other'], {include_blank: 'select'}
+            = f.select :gender, ['♂', '♀', 'other'], {include_blank: 'select'}
           .field.origin
             = f.label :origin, 'Hometown:'
             = f.country_select :origin, {include_blank: 'select'}, class: 'select-origin'
           .field.current_country
             = f.label :current_country, 'Current Country:'
-            = f.text_field :current_country
+            = f.country_select :current_country, {include_blank: 'select'}, class: 'current_country'
           .field.current_city
             = f.label :current_city, 'Current City:'
             = f.text_field :current_city
@@ -57,8 +57,12 @@
           .field.image
             - if @user.image.attached?
               = image_tag @user.image.variant(resize_to_fill: [100, 100])
-            - else 
-              = image_pack_tag 'default_user.jpg', :size =>'100x100'
+            - elsif @user.gender == '♂'
+              = image_pack_tag 'default_male.png', :size =>'100x100'
+            - elsif @user.gender == '♀'
+              = image_pack_tag 'default_female.png', :size =>'100x100'
+            - else
+              = image_pack_tag 'default_other.png', :size =>'100x100'
             .profile-image-form
               = f.label :image, 'Up load Profile Phote:'
               = f.file_field :image

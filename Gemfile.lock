@@ -104,6 +104,8 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     ffi (1.12.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -304,6 +306,7 @@ DEPENDENCIES
   country_select
   devise
   factory_bot_rails
+  faker
   html2slim
   image_processing (~> 1.2)
   jbuilder (~> 2.7)

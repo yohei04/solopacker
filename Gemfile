@@ -62,5 +62,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem 'country_select'
 gem 'devise'
+gem 'faker'
 gem 'html2slim'
 gem 'slim-rails'

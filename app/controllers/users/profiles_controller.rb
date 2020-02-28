@@ -1,6 +1,8 @@
 class Users::ProfilesController < ApplicationController
   def index
     @users = User.all
+    @q = @users.ransack(params[:q])
+    @paginated_users = @q.result(distinct: true).page(params[:page])
   end
 
   def edit

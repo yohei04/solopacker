@@ -1,8 +1,11 @@
 class Users::ProfilesController < ApplicationController
   def index
-    @users = User.all
-    @q = @users.ransack(params[:q])
-    @paginated_users = @q.result(distinct: true).page(params[:page]).per(5)
+    @q = User.all.ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page]).per(5)
+  end
+
+  def show
+    @user = User.find(params[:id])
   end
 
   def edit

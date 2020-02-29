@@ -4,10 +4,10 @@
       | Members
     .members_index-inner
       .members_index-pagination
-        = paginate @paginated_users
-        = page_entries_info @paginated_users
-      - @paginated_users.each do |user|
-        .members_index-items
+        = paginate @users
+        = page_entries_info @users
+      - @users.each do |user|
+        = link_to users_profile_path(user), class: 'members_index-items'
           .members_index-image
             - if user.image.attached?
               = image_tag user.image
@@ -18,14 +18,17 @@
             - else
               = image_pack_tag 'default_other.png'
           .members_index-text
-            span.user_name = "#{user.user_name}" 
-            span.age = "(#{age(user)})"
-            span.gender = "#{user.gender}"
-            p.origin_country
-              | from 
-              = country_name(user.origin)
-            p.current_country
-              | now in 
-              = country_name(user.current_country)
+            .user_name_age_gender
+              span.user_name = user.user_name 
+              span.age = "(#{age(user)})"
+              span.gender = user.gender
+            .origin_country
+              span.from from 
+              span.country_name = country_name(user.origin)
+              span.country_flag = country_flag(user.origin)
+            .current_country
+              span.now_in now in 
+              span.country_name = country_name(user.current_country)
+              span.country_flag = country_flag(user.current_country)
         hr
 

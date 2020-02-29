@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe 'ユーザー登録・認証周り', type: :system do
-  let(:user_a) { FactoryBot.create(:user, name: 'ユーザーA', user_name: 'ユーザーネームA', email: 'a@example.com') }
-  let(:user_b) { FactoryBot.build(:user, name: 'ユーザーB', user_name: 'ユーザーネームB', email: 'b@example.com') }
+  let!(:user_a) { FactoryBot.create(:user, name: 'userA', user_name: 'user_nameA', email: 'a@example.com') }
+  let(:user_b) { FactoryBot.build(:user, name: 'userB', user_name: 'user_nameB', email: 'b@example.com') }
   describe 'サインアップ機能' do
     before do
       visit new_user_registration_path
@@ -11,15 +11,15 @@ describe 'ユーザー登録・認証周り', type: :system do
       fill_in 'Email', with: signup_user.email
       fill_in 'Password', with: signup_user.password
       fill_in 'Confirm Password', with: signup_user.password
-      click_button 'Sign up'
+      click_on 'Sign up'
     end
-    context 'ユーザーAでサインアップしたとき' do
+    context 'userAでサインアップしたとき' do
       let(:signup_user) { user_a }
       it 'カラムの一意性に失敗してバリデーションが働く' do
         expect(page).to have_content 'has already been taken'
       end
     end
-    context 'ユーザーBでサインアップしたとき' do
+    context 'userBでサインアップしたとき' do
       let(:signup_user) { user_b }
       it '成功してホームに遷移する' do
         expect(page).to have_link href: root_path, count: 2
@@ -36,7 +36,7 @@ describe 'ユーザー登録・認証周り', type: :system do
       fill_in 'Password', with: signin_user.password
       click_button 'Sign in'
     end
-    context 'ユーザーAでサインインしたとき' do
+    context 'userAでサインインしたとき' do
       let(:signin_user) { user_a }
       it '成功してホームに遷移する' do
         expect(page).to have_link href: root_path, count: 2
@@ -72,7 +72,7 @@ describe 'ユーザー登録・認証周り', type: :system do
         select 'China', from: 'Hometown:'
         fill_in 'user_name', with: 'hogehoge'
         fill_in 'user_language_1', with: 'Chinese'
-        click_button 'Save'
+        click_on 'Save'
         user_a.reload
         expect(current_path).to eq(root_path)
         expect(page).to have_selector '.flash__notice', text: 'Save profile successfully.'
@@ -83,9 +83,34 @@ describe 'ユーザー登録・認証周り', type: :system do
       it 'サインアップ時と同じようにバリデーションが働く' do
         fill_in 'Name:', with: ''
         fill_in 'User Name:', with: 'a' * 16
-        click_button 'Save'
+        click_on 'Save'
         expect(page).to have_content 'can\'t be blank'
         expect(page).to have_content 'too long'
+      end
+    end
+  end
+  describe 'Members page' do
+    let!(:users) { FactoryBot.create_list(:user, 10) }
+    before do
+      login_as user_a
+      visit users_profiles_path
+    end
+    context 'when visit Members page' do
+      it 'has user\'s list' do
+        expect(page).to have_content 'Members'
+        expect(page).to have_selector 'img'
+        expect(page).to have_selector '.user_name', text: user_a.user_name
+        expect(page).to have_selector '.user_name', text: users[1].user_name
+        expect(page).to have_css '.age'
+        expect(page).to have_css '.gender'
+        expect(page).to have_css '.origin_country'
+        expect(page).to have_css '.current_country'
+      end
+      it 'has pagination' do
+        expect(page).to have_selector '.pagination'
+        expect(page).to have_selector('.user_name', count: 5)
+        click_on '2'
+        expect(page).to have_selector '.user_name', text: users[6].user_name
       end
     end
   end

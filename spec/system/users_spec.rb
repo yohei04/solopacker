@@ -89,28 +89,36 @@ describe 'ユーザー登録・認証周り', type: :system do
       end
     end
   end
-  describe 'Members page' do
+  describe 'User/Profile' do
     let!(:users) { FactoryBot.create_list(:user, 10) }
     before do
       login_as user_a
-      visit users_profiles_path
     end
-    context 'when visit Members page' do
-      it 'has user\'s list' do
+    context 'when visit User/Profile#index page' do
+      it 'has user list and pagination' do
+        visit users_profiles_path
         expect(page).to have_content 'Members'
         expect(page).to have_selector 'img'
         expect(page).to have_selector '.user_name', text: user_a.user_name
         expect(page).to have_selector '.user_name', text: users[1].user_name
-        expect(page).to have_css '.age'
-        expect(page).to have_css '.gender'
-        expect(page).to have_css '.origin_country'
-        expect(page).to have_css '.current_country'
-      end
-      it 'has pagination' do
+        expect(page).to have_selector '.age'
+        expect(page).to have_selector '.gender'
+        expect(page).to have_selector '.origin_country'
+        expect(page).to have_selector '.current_country'
         expect(page).to have_selector '.pagination'
         expect(page).to have_selector('.user_name', count: 5)
         click_on '2'
         expect(page).to have_selector '.user_name', text: users[6].user_name
+      end
+    end
+    context 'when visit User/Profile#show page' do
+      it 'has user detail' do
+        visit users_profile_path(user_a)
+        expect(page).to have_selector 'img'
+        expect(page).to have_selector '.user_name', text: user_a.user_name
+        expect(page).to have_selector('.country_flag', count: 2)
+        expect(page).to have_selector '.language_1', text: user_a.language_1
+        expect(page).to have_selector '.introduce', text: user_a.introduce
       end
     end
   end

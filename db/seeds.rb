@@ -30,6 +30,6 @@ User.create!(name: 'foobar',
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: Faker::Movie.quote,
-               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
+              #  image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
               )
 end

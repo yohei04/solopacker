@@ -15,7 +15,7 @@ User.create!(name: 'foobar',
             #  image: 
              )
 
-20.times do
+20.times do |n|
   User.create!(name: Faker::DragonBall.character,
                user_name: Faker::Name.first_name,
                email: Faker::Internet.email,
@@ -30,6 +30,6 @@ User.create!(name: 'foobar',
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: Faker::Movie.quote,
-              #  image: Faker::Avatar.image
+               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
               )
 end

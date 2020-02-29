@@ -3,17 +3,20 @@
     h2.members_index-title
       | Members
     .members_index-inner
-      - @users.each do |user|
+      .members_index-pagination
+        = paginate @paginated_users
+        = page_entries_info @paginated_users
+      - @paginated_users.each do |user|
         .members_index-items
           .members_index-image
             - if user.image.attached?
-              = image_tag user.image.variant(resize_to_fill: [100, 100])
+              = image_tag user.image
             - elsif user.gender == '♂'
-              = image_pack_tag 'default_male.png', :size =>'100x100'
+              = image_pack_tag 'default_male.png'
             - elsif user.gender == '♀'
-              = image_pack_tag 'default_female.png', :size =>'100x100'
+              = image_pack_tag 'default_female.png'
             - else
-              = image_pack_tag 'default_other.png', :size =>'100x100'
+              = image_pack_tag 'default_other.png'
           .members_index-text
             span.user_name = "#{user.user_name}" 
             span.age = "(#{age(user)})"

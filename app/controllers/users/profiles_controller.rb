@@ -2,7 +2,7 @@ class Users::ProfilesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @q = User.all.ransack(params[:q])
+    @q = User.ransack(params[:q])
     @users = @q.result(distinct: true).page(params[:page]).per(5)
   end
 

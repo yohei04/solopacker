@@ -55,14 +55,7 @@
             = f.label :introduce, 'Introduce:'
             = f.text_area :introduce
           .field.image
-            - if @user.image.attached?
-              = image_tag @user.image.variant(resize_to_fill: [100, 100])
-            - elsif @user.gender == '♂'
-              = image_pack_tag 'default_male.png', :size =>'100x100'
-            - elsif @user.gender == '♀'
-              = image_pack_tag 'default_female.png', :size =>'100x100'
-            - else
-              = image_pack_tag 'default_other.png', :size =>'100x100'
+            = render partial: 'image', locals: { user: @user }
             .profile-image-form
               = f.label :image, 'Up load Profile Phote:'
               = f.file_field :image

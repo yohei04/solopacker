@@ -91,11 +91,9 @@ describe 'ユーザー登録・認証周り', type: :system do
   end
   describe 'User/Profile' do
     let!(:users) { FactoryBot.create_list(:user, 10) }
-    before do
-      login_as user_a
-    end
     context 'when visit User/Profile#index page' do
       it 'has user list and pagination' do
+        login_as user_a
         visit users_profiles_path
         expect(page).to have_content 'Members'
         expect(page).to have_selector 'img'
@@ -113,12 +111,21 @@ describe 'ユーザー登録・認証周り', type: :system do
     end
     context 'when visit User/Profile#show page' do
       it 'has user detail' do
+        login_as user_a
         visit users_profile_path(user_a)
         expect(page).to have_selector 'img'
         expect(page).to have_selector '.user_name', text: user_a.user_name
         expect(page).to have_selector('.country_flag', count: 2)
         expect(page).to have_selector '.language_1', text: user_a.language_1
         expect(page).to have_selector '.introduce', text: user_a.introduce
+      end
+    end
+    context 'when visit User/Profile#index & #show page without sign in' do
+      it 'is returned to Sign in page' do
+        visit users_profiles_path
+        expect(page).to have_link 'Sign in', href: new_user_session_path
+        visit users_profile_path(user_a)
+        expect(page).to have_link 'Sign in', href: new_user_session_path
       end
     end
   end

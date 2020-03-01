@@ -7,9 +7,9 @@
         .members_show-text
           = render partial: 'simpleInfo', locals: { user: @user }
           .languages 
-            span.speak speak
+            span.speak speak 
             span.language_1 = "#{@user.language_1} / "
-            span.language_2 = @user.language_2
+            span.language_2 = "#{@user.language_2} / "
             span.language_3 = @user.language_3
           .introduce
             p.about_mw About me

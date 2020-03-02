@@ -1,0 +1,16 @@
+.members_index-wrapper
+  .members_index-container
+    h2.members_index-title
+      | Members
+    .members_index-inner
+      .members_index-pagination
+        = paginate @users
+        = page_entries_info @users
+      - @users.each do |user|
+        = link_to users_profile_path(user), class: 'members_index-items'
+          .members_index-image
+            = render partial: 'image', locals: { user: user }
+          .members_index-text
+            = render partial: 'simpleInfo', locals: { user: user }
+        hr
+

@@ -1,0 +1,60 @@
+// Members#index
+
+.members_index-wrapper {
+  background-color: $bgc-sign;
+}
+
+.members_index-container {
+  width: 50%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+.members_index-inner {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.members_index-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 2rem;
+  }
+}
+
+
+
+
+
+// Members#show
+
+.members_show-wrapper {
+  background-color: $bgc-sign;
+  padding: 3rem 0;
+}
+
+.members_show-container {
+  width: 50%;
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: white;
+}
+
+.members_show-inner-top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 2rem;
+  }
+}

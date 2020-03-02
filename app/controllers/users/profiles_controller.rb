@@ -1,4 +1,15 @@
 class Users::ProfilesController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).page(params[:page]).per(5)
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
+
   def edit
     @user = current_user
   end
@@ -15,6 +26,10 @@ class Users::ProfilesController < ApplicationController
   private
 
     def user_params
-      params.require(:user).permit(:name, :user_name, :email, :date_of_birth, :gender, :origin, :current_country, :current_city, :language_1, :language_2, :language_3, :introduce, :image)
+      params.require(:user).permit(:name, :user_name, :email,
+                                   :date_of_birth, :gender, :origin,
+                                   :current_country, :current_city,
+                                   :language_1, :language_2, :language_3,
+                                   :introduce, :image)
     end
 end

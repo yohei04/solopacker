@@ -1,0 +1,20 @@
+.members_show-wrapper
+  .members_show-container
+    .members_show-inner
+      .members_show-inner-top
+        .members_show-image
+          = render partial: 'image', locals: { user: @user }
+        .members_show-text
+          = render partial: 'simpleInfo', locals: { user: @user }
+          .languages 
+            span.speak speak 
+            span.language_1 = "#{@user.language_1} / "
+            span.language_2 = "#{@user.language_2} / "
+            span.language_3 = @user.language_3
+          .introduce
+            p.about_mw About me
+            p.introduce = @user.introduce
+
+      .members_show-inner-bottom
+
+

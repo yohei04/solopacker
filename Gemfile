@@ -60,7 +60,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
+gem 'countries', require: 'countries/global'
 gem 'country_select'
 gem 'devise'
+gem 'faker'
 gem 'html2slim'
+gem 'kaminari'
+gem 'ransack'
 gem 'slim-rails'

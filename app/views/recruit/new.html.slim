@@ -1,2 +1,25 @@
-h1 Recruit#new
-p Find me in app/views/recruit/new.html.slim
+.recruit_new-wrapper
+  .recruit_new-container
+    h2.recruit_new-title Recruit someone who wants to join you.
+    .recruit_new-inner
+      = form_with model: @recruit, url: recruit_index_path, id: "new_recruit", class: "new_recruit", local: true do |f|
+        .recruit_new-time
+          p When:
+          = f.date_field :date, value: Time.now.strftime("%Y-%m-%d")
+          = f.time_select :time, minute_step: 15, default: {hour: 10, minute: 00}
+        .field.recruit_new-hours
+          p hours(h)
+          = f.select :hours, [0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6], {selected: 2}
+        .recruit_new-where
+          .field.meet_country
+            p Meeting Country:
+            = f.country_select :meet_country, selected: current_user.current_country, class: 'meet_country'
+          .field.meet_country
+            p Meeting City:
+            = f.text_field :meet_country, value: current_user.current_city
+        .field.recruit_new-content
+          p Write your plan:
+          = f.text_area :content
+        .field.recruit_new-btn
+          .actions
+            = f.submit "Save", class: "btn btn-primary"

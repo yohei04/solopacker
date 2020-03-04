@@ -1,11 +1,11 @@
 class CreateRecruits < ActiveRecord::Migration[6.0]
   def change
     create_table :recruits do |t|
-      t.time :date, null: false
-      t.time :time, null: false
-      t.float :hours, null: false
-      t.string :meet_country, null: false
-      t.string :meet_city, null: false
+      t.datetime :date_time, null: false
+      t.float :hour, null: false
+      t.string :country, null: false
+      t.string :city, null: false
+      t.string :title, null: false
       t.text :content, null: false
       t.references :user, null: false, foreign_key: true
 

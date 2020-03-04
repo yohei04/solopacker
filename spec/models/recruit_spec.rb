@@ -18,17 +18,23 @@ describe Recruit, type: :model do
     context 'when recruit is not full information' do
       let!(:recruit) do
         FactoryBot.build(:recruit,
-                         date: nil, time: nil, hours: nil,
-                         meet_country: nil, meet_city: nil,
-                         content: nil)
+                         date_time: nil, hour: nil,
+                         country: nil, city: nil,
+                         title: nil, content: nil)
       end
       it 'is invalid' do
         expect(recruit).to be_invalid
       end
     end
-    context 'when hours has more than 24' do
+    context 'when hour has more than 24' do
       it 'is invalid' do
-        recruit.hours = 25
+        recruit.hour = 25
+        expect(recruit).to be_invalid
+      end
+    end
+    context 'when title has more than 50 characters' do
+      it 'is invalid' do
+        recruit.title = 'a' * 51
         expect(recruit).to be_invalid
       end
     end

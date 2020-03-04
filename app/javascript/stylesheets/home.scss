@@ -80,3 +80,38 @@
     font-size: 2.5rem;
   }
 }
+
+
+// recruit#indexセクション
+.recruit_index-wrapper {
+  padding: 3rem;
+  background-color: rgba(22, 224, 22, 0.233);
+}
+
+.recruit_index-container {
+  margin: 0 auto;
+  background-color: white;
+}
+
+.recruit_index-inner {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-around;
+}
+.recruit_index-item {
+  width: 30%;
+  background-color: rgba(153, 99, 99, 0.288);
+  margin: 1rem;
+  padding: 0.6rem;
+  img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 2rem;
+  }
+}
+.recruit_index-item-middle {
+  display: flex;
+}
+

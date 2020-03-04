@@ -1,3 +1,5 @@
 class StaticPagesController < ApplicationController
-  def home; end
+  def home
+    @recruits = Recruit.all.recent
+  end
 end

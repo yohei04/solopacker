@@ -56,7 +56,8 @@ section#recruit
         | Recruit Post 
       .recruit_index-btns
         = link_to 'Create New Recruit', new_recruit_path
-        .serch-boxs
+        = render partial: 'recruits/serch'
+        = render partial: 'layouts/paginate', locals: { object: @recruits }
       .recruit_index-inner
         - @recruits.each do |recruit|
           .recruit_index-item

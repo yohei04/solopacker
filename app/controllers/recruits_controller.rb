@@ -1,4 +1,4 @@
-class RecruitController < ApplicationController
+class RecruitsController < ApplicationController
   def show
     @recruit = Recruit.find(params[:id])
   end
@@ -24,7 +24,6 @@ class RecruitController < ApplicationController
   def update
     @recruit = Recruit.find(params[:id])
     if @recruit.update!(recruit_params)
-      # flash[:notice] = 'Recruit updated!'
       redirect_to root_path, notice: 'Recruit updated!'
     else
       render edit_recruit_path

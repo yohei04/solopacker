@@ -69,7 +69,7 @@ section#recruit
                   | post by
                   = link_to recruit.user.user_name, users_profile_path(recruit.user)
               .recruit_index-item-texts
-                = render partial: './recruit/simpleRecruitInfo', locals: { recruit: recruit }
+                = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
             .recruit_index-item-bottom
               -if current_user == recruit.user
                 = link_to 'edit', edit_recruit_path(recruit)

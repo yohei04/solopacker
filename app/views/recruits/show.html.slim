@@ -11,7 +11,7 @@
           .recruit_show-inner-text
             = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
         .recruit_show-inner-recruitInfo
-          = render partial: './recruit/simpleRecruitInfo', locals: { recruit: @recruit }
+          = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
           .recruit_show-inner-plan
             p My plan:
             p = @recruit.content

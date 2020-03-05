@@ -1,7 +1,7 @@
 class RecruitController < ApplicationController
-  def index; end
-
-  def show; end
+  def show
+    @recruit = Recruit.find(params[:id])
+  end
 
   def new
     @recruit = Recruit.new
@@ -17,11 +17,25 @@ class RecruitController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @recruit = Recruit.find(params[:id])
+  end
 
-  def update; end
+  def update
+    @recruit = Recruit.find(params[:id])
+    if @recruit.update!(recruit_params)
+      # flash[:notice] = 'Recruit updated!'
+      redirect_to root_path, notice: 'Recruit updated!'
+    else
+      render edit_recruit_path
+    end
+  end
 
-  def destroy; end
+  def destroy
+    recruit = Recruit.find(params[:id])
+    recruit.destroy
+    redirect_to root_path, notice: 'Recruit deleted!'
+  end
 
   private
 

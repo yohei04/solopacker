@@ -1,10 +1,17 @@
 class RecruitsController < ApplicationController
+  before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update, :destory]
+  
   def show
     @recruit = Recruit.find(params[:id])
   end
 
   def new
-    @recruit = Recruit.new
+    if current_user.gender.blank? || current_user.origin.blank? || current_user.current_country.blank? || current_user.language_1.blank? || current_user.introduce.blank?
+      flash[:alert] = 'Please fill out your profile'
+      redirect_to edit_users_profile_path(current_user)
+    else
+      @recruit = Recruit.new
+    end
   end
 
   def create
@@ -24,7 +31,8 @@ class RecruitsController < ApplicationController
   def update
     @recruit = Recruit.find(params[:id])
     if @recruit.update!(recruit_params)
-      redirect_to root_path, notice: 'Recruit updated!'
+      flash[:notice] = 'Recruit updated!'
+      redirect_to root_path
     else
       render edit_recruit_path
     end
@@ -33,7 +41,8 @@ class RecruitsController < ApplicationController
   def destroy
     recruit = Recruit.find(params[:id])
     recruit.destroy
-    redirect_to root_path, notice: 'Recruit deleted!'
+    flash[:notice] = 'Recruit deleted!'
+    redirect_to root_path
   end
 
   private

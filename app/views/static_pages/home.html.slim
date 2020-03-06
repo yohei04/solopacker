@@ -1,85 +1,88 @@
-section#main_vew
-  .main_view-wrapper
-    .main_view-image
-      = image_pack_tag 'hero.jpg'
-    .main_view-container
-      h1 Solopacker
-      p Travelling alone is sometimes boring. 
-      p Solopacker makes your travel fun, cool and sexy.
-      = link_to "Let's Get Started!", new_user_registration_path, class: "btn btn-primary"
+- if user_signed_in?
+
+  section#recruit
+    .recruit_index-wrapper
+      .recruit_index-container
+        h2.recruit_index-title
+          | Post Recruit
+        .recruit_index-btns
+          = link_to 'Create New Recruit', new_recruit_path
+          = render partial: 'recruits/serch'
+          = render partial: 'layouts/paginate', locals: { object: @recruits }
+        .recruit_index-inner
+          - @recruits.each do |recruit|
+            .recruit_index-item
+              .recruit_index-item-title
+                h5 = recruit.title
+              .recruit_index-item-middle
+                .image
+                  = render partial: './users/profiles/image', locals: { user: recruit.user }
+                  p 
+                    | post by
+                    = link_to recruit.user.user_name, users_profile_path(recruit.user)
+                .recruit_index-item-texts
+                  = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
+              .recruit_index-item-bottom
+                -if current_user == recruit.user
+                  = link_to 'edit', edit_recruit_path(recruit)
+                  = link_to 'delete', recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{recruit.title}?" }
+                span Comments
+              = link_to 'showへ', recruit_path(recruit)
+
+- else
+
+  section#main_vew
+    .main_view-wrapper
+      .main_view-image
+        = image_pack_tag 'hero.jpg'
+      .main_view-container
+        h1 Solopacker
+        p Travelling alone is sometimes boring. 
+        p Solopacker makes your travel fun, cool and sexy.
+        = link_to "Let's Get Started!", new_user_registration_path, class: "btn btn-primary"
 
 
-Section#about
-  .about-wrapper
-    .about-container
-      h2.about-title
-        | About
-      .about-text
-        p When you travel alone,
-        p you sometimes get bored or want to share your experience with someone.
-        p Solopacker can help you to find other travelers to share the journey with you.
-        p Find people
-        p who are in the same situation with you and explore cities with them!
+  Section#about
+    .about-wrapper
+      .about-container
+        h2.about-title
+          | About
+        .about-text
+          p When you travel alone,
+          p you sometimes get bored or want to share your experience with someone.
+          p Solopacker can help you to find other travelers to share the journey with you.
+          p Find people
+          p who are in the same situation with you and explore cities with them!
 
 
-Section#how_to
-  .how_to-wrapper
-    .how_to-container
-      h2.how_to-title
-        | How to use
-      .how_to-items
-        .how_to-item.left
-          .how_to-logo
-            i.fas.fa-map-marked-alt.fa-5x
-          .text
-            h3.how_to-sub_title
-              | Post
-            p Post your plan
-            p and
-            p Wait till someone contacts you.
-        h3.how_to-or or
-        .how_to-item.right
-          .how_to-logo
-            i.fas.fa-search-location.fa-5x
-          .text
-            h3.how_to-sub_title
-              | Find
-            p Find posts you want to join
-            p and
-            p contact them.
+  Section#how_to
+    .how_to-wrapper
+      .how_to-container
+        h2.how_to-title
+          | How to use
+        .how_to-items
+          .how_to-item.left
+            .how_to-logo
+              i.fas.fa-map-marked-alt.fa-5x
+            .text
+              h3.how_to-sub_title
+                | Post
+              p Post your plan
+              p and
+              p Wait till someone contacts you.
+          h3.how_to-or or
+          .how_to-item.right
+            .how_to-logo
+              i.fas.fa-search-location.fa-5x
+            .text
+              h3.how_to-sub_title
+                | Find
+              p Find posts you want to join
+              p and
+              p contact them.
 
 
-section#recruit
-  .recruit_index-wrapper
-    .recruit_index-container
-      h2.recruit_index-title
-        | Recruit Post 
-      .recruit_index-btns
-        = link_to 'Create New Recruit', new_recruit_path
-        = render partial: 'recruits/serch'
-        = render partial: 'layouts/paginate', locals: { object: @recruits }
-      .recruit_index-inner
-        - @recruits.each do |recruit|
-          .recruit_index-item
-            .recruit_index-item-title
-              h5 = recruit.title
-            .recruit_index-item-middle
-              .image
-                = render partial: './users/profiles/image', locals: { user: recruit.user }
-                p 
-                  | post by
-                  = link_to recruit.user.user_name, users_profile_path(recruit.user)
-              .recruit_index-item-texts
-                = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
-            .recruit_index-item-bottom
-              -if current_user == recruit.user
-                = link_to 'edit', edit_recruit_path(recruit)
-                = link_to 'delete', recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{recruit.title}?" }
-              span Comments
-            = link_to 'showへ', recruit_path(recruit)
-
-
-
+  
 
 
 

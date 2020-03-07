@@ -8,6 +8,7 @@ class Users::ProfilesController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @recruits = @user.recruits
   end
 
   def edit
@@ -19,7 +20,7 @@ class Users::ProfilesController < ApplicationController
     if @user.update(user_params)
       redirect_to root_path, notice: 'Save profile successfully.'
     else
-      render 'edit'
+      render :edit
     end
   end
 

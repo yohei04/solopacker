@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
+  before_action :authenticate_user!, except: [:home]
+
   def home
-    # @recruits = Recruit.all.recent
     @q = Recruit.ransack(params[:q])
     @recruits = @q.result(distinct: true).page(params[:page]).per(24).recent
   end

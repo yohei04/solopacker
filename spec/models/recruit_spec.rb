@@ -48,7 +48,6 @@ describe Recruit, type: :model do
       let!(:recruit_order_2) { FactoryBot.create(:recruit, created_at: 2.years.ago) }
       let!(:recruit_order_3) { FactoryBot.create(:recruit, created_at: 10.minutes.ago) }
       it 'is most recent first' do
-        # binding.pry
         expect(recruit).to eq(Recruit.recent.first)
       end
     end
@@ -56,7 +55,7 @@ describe Recruit, type: :model do
       let!(:user) { FactoryBot.create(:user) }
       let!(:recruit) { FactoryBot.create(:recruit, user: user) }
       it 'is deleted too' do
-        expect{ user.destroy }.to change{ Recruit.count }.by(-1)
+        expect { user.destroy }.to change { Recruit.count }.by(-1)
       end
     end
   end

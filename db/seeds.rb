@@ -15,7 +15,7 @@ User.create!(name: 'foobar',
             #  image: 
              )
 
-20.times do |n|
+10.times do |n|
   User.create!(name: Faker::DragonBall.character,
                user_name: Faker::Name.first_name,
                email: Faker::Internet.email,
@@ -30,16 +30,16 @@ User.create!(name: 'foobar',
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-              #  image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
+               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
               )
 end
 
 
-users = User.recent.take(6)
-10.times do
+users = User.order(:created_at).take(10)
+5.times do
   users.each { |user| user.recruits.create!(
-    date_time: Faker::Time.between(DateTime.now, DateTime.now + 10),
-    hour: [*1..24].sample,
+    date_time: Faker::Time.between(Time.current, Time.current + 10),
+    hour: ((0.5..24).step(0.5).map(&:itself)).sample,
     country: Faker::Address.country_code,
     city: Faker::Address.city,
     title: Faker::Book.title,

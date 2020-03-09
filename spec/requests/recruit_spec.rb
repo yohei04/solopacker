@@ -5,15 +5,10 @@ describe 'Recruit pages', type: :request do
   let!(:recruit) { FactoryBot.create(:recruit) }
   describe 'Get #new' do
     context 'when user signed in' do
-      before do
-        login_as user
-      end
       it 'returns http success' do
+        login_as user
         get new_recruit_path
         expect(response).to have_http_status '200'
-      end
-      it "shows header 'create'" do
-        get new_recruit_path
         expect(response.body).to include 'Create'
       end
     end
@@ -108,13 +103,15 @@ describe 'Recruit pages', type: :request do
     end
     context 'with correct parameters' do
       it 'is successfully updated' do
-        put recruit_path(recruit), params: { recruit: { id: recruit.id } }
+        patch recruit_path(recruit), params: { recruit: { id: recruit.id } }
         expect(response.status).to eq 302
         recruit.title = 'test'
-        expect(response).to redirect_to Recruit.last
+        expect(response).to redirect_to Recruit.find_by(title: 'test')
       end
-      it 'is show error page' do
-        put recruit_path(recruit), params: { recruit: { title: '' } }
+    end
+    context 'with incorrect parameters' do
+      it 'shows error page' do
+        patch recruit_path(recruit), params: { recruit: { title: '' } }
         expect(response.body).to include 'error'
       end
     end
@@ -142,23 +139,13 @@ describe 'Recruit pages', type: :request do
   end
   describe 'Get #show' do
     context 'when user signed in' do
-      before do
+      it 'returns http success' do
         login_as user
         get recruit_path(recruit)
-      end
-      it 'returns http success' do
         expect(response).to have_http_status '200'
-      end
-      it 'shows "when"' do
         expect(response.body).to include 'when'
-      end
-      it 'shows title' do
         expect(response.body).to include recruit.title
-      end
-      it 'shows hour' do
         expect(response.body).to include recruit.hour.to_s
-      end
-      it 'shows recruiting user info' do
         expect(response.body).to include recruit.user.user_name
       end
     end

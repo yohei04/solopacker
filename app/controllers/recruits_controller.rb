@@ -1,6 +1,4 @@
 class RecruitsController < ApplicationController
-  # before_action :profile_blank_check, only: %i[new create]
-
   def show
     @recruit = Recruit.find(params[:id])
   end
@@ -54,7 +52,6 @@ class RecruitsController < ApplicationController
       params.require(:recruit).permit(:date_time, :hour, :country, :city, :title, :content)
     end
 
-    # beforeフィルター
     def profile_blank_check?
       [current_user.gender, current_user.origin, current_user.current_country,
        current_user.language_1, current_user.introduce].any?(&:blank?)

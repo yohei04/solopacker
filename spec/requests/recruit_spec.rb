@@ -67,16 +67,19 @@ describe 'Recruit pages', type: :request do
   describe 'Get #create' do
     before do
       login_as user
-      post recruits_path, params: { recruit: FactoryBot.attributes_for(:recruit) }
     end
-    it 'returns http success' do
-      expect(response.status).to eq 302
+    context 'with correct parameters' do
+      it 'is successfully created' do
+        post recruits_path, params: { recruit: FactoryBot.attributes_for(:recruit) }
+        expect(response.status).to eq 302
+        expect(response).to redirect_to Recruit.last
+      end
     end
-    it 'Recruit successfully create' do
-      expect { FactoryBot.create(:recruit) }.to change { Recruit.count }.by(1)
-    end
-    it 'redirects to the root page' do
-      expect(response).to redirect_to root_path
+    context 'with not correct parameters' do
+      it 'shows error page' do
+        post recruits_path, params: { recruit: FactoryBot.attributes_for(:recruit, title: nil) }
+        expect(response.body).to include 'error'
+      end
     end
   end
   describe 'Get #edit' do
@@ -99,14 +102,23 @@ describe 'Recruit pages', type: :request do
       end
     end
   end
-  # describe 'Get #update' do
-  #   it do
-  #     put :update, params: { recruit: FactoryBot.attributes_for(:test) }
-  #     recruit.reload
-  #     expect(recruit.title).to eq test[:title]
-  #     expect(recruit.body).to eq test[:body]
-  #   end
-  # end
+  describe 'Get #update' do
+    before do
+      login_as user
+    end
+    context 'with correct parameters' do
+      it 'is successfully updated' do
+        put recruit_path(recruit), params: { recruit: { id: recruit.id } }
+        expect(response.status).to eq 302
+        recruit.title = 'test'
+        expect(response).to redirect_to Recruit.last
+      end
+      it 'is show error page' do
+        put recruit_path(recruit), params: { recruit: { title: '' } }
+        expect(response.body).to include 'error'
+      end
+    end
+  end
   describe 'Get #index' do
     context 'when user signed in' do
       before do

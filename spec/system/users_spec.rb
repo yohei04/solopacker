@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'ユーザー登録・認証周り', type: :system do
+describe 'sign, profile page', type: :system do
   let!(:user_a) { FactoryBot.create(:user, name: 'userA', user_name: 'user_nameA', email: 'a@example.com') }
   let(:user_b) { FactoryBot.build(:user, name: 'userB', user_name: 'user_nameB', email: 'b@example.com') }
   describe 'サインアップ機能' do
@@ -23,9 +23,7 @@ describe 'ユーザー登録・認証周り', type: :system do
       let(:signup_user) { user_b }
       it '成功してホームに遷移する' do
         expect(page).to have_link href: root_path, count: 2
-        expect(page).to have_link 'Let\'s Get Started', href: new_user_registration_path
         expect(page).to have_selector '.flash__notice', text: 'signed up successfully.'
-        expect(page).to_not have_link 'Sign in', href: new_user_session_path
       end
     end
   end
@@ -40,9 +38,7 @@ describe 'ユーザー登録・認証周り', type: :system do
       let(:signin_user) { user_a }
       it '成功してホームに遷移する' do
         expect(page).to have_link href: root_path, count: 2
-        expect(page).to have_link 'Let\'s Get Started', href: new_user_registration_path
         expect(page).to have_selector '.flash__notice', text: 'Signed in successfully.'
-        expect(page).to_not have_link 'Sign in', href: new_user_session_path
       end
     end
   end
@@ -126,6 +122,65 @@ describe 'ユーザー登録・認証周り', type: :system do
         expect(page).to have_link 'Sign in', href: new_user_session_path
         visit users_profile_path(user_a)
         expect(page).to have_link 'Sign in', href: new_user_session_path
+      end
+    end
+  end
+end
+
+describe 'Recruit page' do
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:recruit) { FactoryBot.create(:recruit) }
+  include ProfilesHelper
+  before do
+    login_as user
+  end
+  describe '#new page' do
+    before do
+      visit new_recruit_path
+    end
+    context 'visit new page' do
+      it 'shows default date' do
+        expect(page).to have_select('Meeting Country:', selected: country_name(user.current_country))
+        expect(page).to have_field 'Meeting City:', with: user.current_city
+      end
+    end
+    context 'with not full information' do
+      it 'shows error messages' do
+        fill_in 'Meeting City', with: 'China'
+        click_on 'Save'
+        expect(page).to have_content 'errors'
+      end
+    end
+    context 'with full information' do
+      it 'shows success flash' do
+        fill_in 'Title:', with: 'title'
+        fill_in 'Write your plan:', with: 'Write your plan'
+        click_on 'Save'
+        expect(page).to have_content 'Recruit created!'
+      end
+    end
+    describe '#edit page' do
+      before do
+        visit edit_recruit_path(recruit)
+      end
+      context 'visit eddit page' do
+        it 'shows filled in date' do
+          expect(page).to have_select('Meeting Country:', selected: country_name(recruit.country))
+          expect(page).to have_field 'Meeting City:', with: recruit.city
+        end
+      end
+      context 'with not full information' do
+        it 'shows error messages' do
+          fill_in 'Meeting City', with: nil
+          click_on 'Save'
+          expect(page).to have_content 'error'
+        end
+      end
+      context 'with full information' do
+        it 'shows success flash' do
+          click_on 'Save'
+          expect(page).to have_content 'Recruit updated!'
+        end
       end
     end
   end

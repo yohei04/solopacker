@@ -32,3 +32,6 @@ yarn-debug.log*
 
 # Ignore sumple images
 db/fixtures/images
+
+# Ignore vscode settings
+.vscode/settings.json

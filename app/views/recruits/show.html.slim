@@ -1,0 +1,19 @@
+.recruit_show-wrapper
+  .recruit_show-container
+    h2.recruit_show-title
+      = @recruit.title
+    .recruit_show-inner
+      .recruit_show-inner-post
+        .recruit_show-inner-profileInfo
+          .recruit_show-inner-image
+            = link_to users_profile_path(@recruit.user)
+              = render partial: './users/profiles/image', locals: { user: @recruit.user }
+          .recruit_show-inner-text
+            = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
+        .recruit_show-inner-recruitInfo
+          = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
+          .recruit_show-inner-plan
+            p My plan:
+            p = @recruit.content
+    .recruit_show-inner-replay
+

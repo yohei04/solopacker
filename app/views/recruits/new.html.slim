@@ -1,0 +1,8 @@
+.recruit_form-wrapper
+  .recruit_form-container
+    h2.recruit_form-title Create Recruit
+    .recruit_form-inner
+      = render "devise/shared/error_messages", resource: @recruit
+      = render partial: 'form', locals: { recruit: @recruit, 
+                                          country: current_user.current_country,
+                                          city: current_user.current_city }

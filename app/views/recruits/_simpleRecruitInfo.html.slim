@@ -1,0 +1,13 @@
+.when
+  span When:
+  span.date_time
+    = recruit.date_time.strftime('%Y/%-m/%-d(%a)')
+  span.date_time
+    = recruit.date_time.strftime('%-H:%M')
+.howlong
+  span How long:
+  span = "#{recruit.hour}h"
+.where
+  span Where: 
+  span = recruit.city
+  span = recruit.country

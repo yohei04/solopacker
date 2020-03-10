@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   namespace :users do
     resources :profiles, only: [:index, :show, :edit, :update]
   end
+  resources :recruits, only: [:show, :new, :create, :edit, :update, :destroy]
 end

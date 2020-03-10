@@ -1,5 +1,6 @@
 class Recruit < ApplicationRecord
   belongs_to :user
+  has_many :comments
   scope :recent, -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :date_time, presence: true

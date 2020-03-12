@@ -15,5 +15,27 @@
           .recruit_show-inner-plan
             p My plan:
             p = @recruit.content
-    .recruit_show-inner-replay
 
+.comment-wrapper
+  .comment-container
+    .comment_index-inner
+      p = @comments.count
+      - @comments.each do |comment|
+        .comment_index-item
+          .comment_index-image
+            = render partial: './users/profiles/image', locals: { user: comment.user }
+            p = comment.user.user_name
+          .comment_index-comment
+            p
+              = comment.content
+
+    .comment_new
+      = form_with url: recruit_comments_path(@recruit), local: true do |f|
+        = render "devise/shared/error_messages", resource: @comment
+        .comment_new-inner
+          .field.comment_new_content
+            / = f.label :content, 'Write your plan:'
+            = f.text_area :content, placeholder: "Write your reply Write your reply Write your reply"
+          .field.recruit_new-btn
+            .actions
+              = f.submit "Reply", class: "btn btn-primary"

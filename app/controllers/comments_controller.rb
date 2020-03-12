@@ -1,15 +1,15 @@
 class CommentsController < ApplicationController
   def create
+    @comment = current_user.comments.build(comment_params)
+    if !@comment.save
+      flash[:alert] = "Comment coudn'\t create!"
+    end
+    redirect_back(fallback_location: root_path)
   end
 
-  def update
-  end
+  private
 
-  def destroy
-  end
-
-  privete
     def comment_params
-      params.require(:comment).permit(:content)
+      params.permit(:content, :recruit_id)
     end
 end

@@ -22,12 +22,21 @@
       p = @comments.count
       - @comments.each do |comment|
         .comment_index-item
-          .comment_index-image
-            = render partial: './users/profiles/image', locals: { user: comment.user }
-            p = comment.user.user_name
+          - if current_user != @recruit.user
+            .comment_index-image
+              = render partial: './users/profiles/image', locals: { user: comment.user }
+              p = comment.user.user_name
           .comment_index-comment
             p
               = comment.content
+          - if current_user == @recruit.user
+            .comment_index-image
+              = render partial: './users/profiles/image', locals: { user: comment.user }
+              p = comment.user.user_name
+          .comment_index-btns
+            - if current_user == comment.user
+              = link_to 'delete', recruit_comment_path(recruit_id: @recruit, id: comment), method: :delete, data: { confirm: "Are you sure you want to delete this commnet?" }
+
 
     .comment_new
       = form_with url: recruit_comments_path(@recruit), local: true do |f|

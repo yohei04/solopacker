@@ -3,16 +3,19 @@ require 'rails_helper'
 describe 'Comment', type: :request do
   let!(:user_a) { FactoryBot.create(:user) }
   let!(:recruit_a) { FactoryBot.create(:recruit) }
-  let!(:comment_a) { FactoryBot.build(:comment, user: user_a, recruit: recruit_a) }
+  let!(:comment_a) { FactoryBot.create(:comment, user: user_a, recruit: recruit_a) }
   before do
     login_as user_a
   end
-  describe 'Get #create' do
+  describe 'POST #create' do
     context 'with correct parameters' do
       it 'is successfully created' do
         get recruit_path(recruit_a)
         expect(response.body).to include Comment.count.to_s
-        post recruit_comments_path(recruit_a), params: { content: "test", user_id: user_a.id, recruit_id: recruit_a.id }
+        expect do
+          post recruit_comments_path(recruit_a), params: FactoryBot.attributes_for(:comment, content: 'test')
+        end.to change(Comment, :count).by(1)
+        expect(response.status).to eq 302
         follow_redirect!
         expect(response.body).to include 'test'
       end
@@ -23,6 +26,18 @@ describe 'Comment', type: :request do
         post recruit_comments_path(recruit_a), params: { content: nil }
         follow_redirect!
         expect(response.body).to include 'flash__alert'
+      end
+    end
+  end
+  describe 'DELETE #destroy' do
+    context 'delete a comment' do
+      it 'is successfully deleted' do
+        expect do
+          delete recruit_comment_path(recruit_id: recruit_a, id: comment_a)
+        end.to change(Comment, :count).by(-1)
+        expect(response.status).to eq 302
+        follow_redirect!
+        expect(response.body).to include 'flash__notice'
       end
     end
   end

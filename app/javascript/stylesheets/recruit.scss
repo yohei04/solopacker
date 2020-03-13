@@ -64,6 +64,7 @@
 
 // comment#show
 .comment-wrapper {
+  padding: 1rem 0;
   background-color: rgba(141, 65, 65, 0.384);
 }
 
@@ -96,6 +97,10 @@
 }
 .comment_index-comment {
   background-color: white;
+  width: 400px;
+  p {
+    overflow-wrap: break-word;
+  }
 }
 
 

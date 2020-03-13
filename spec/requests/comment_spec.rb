@@ -11,7 +11,7 @@ describe 'Comment', type: :request do
     context 'with correct parameters' do
       it 'is successfully created' do
         get recruit_path(recruit_a)
-        expect(response.body).to include Comment.count.to_s
+        expect(response.body).to include "comments(#{recruit_a.comments.count.to_s})"
         expect do
           post recruit_comments_path(recruit_a), params: FactoryBot.attributes_for(:comment, content: 'test')
         end.to change(Comment, :count).by(1)

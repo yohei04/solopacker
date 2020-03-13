@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-    if !@comment.save
-      flash[:alert] = "Comment coudn'\t create!"
-    end
+    flash[:alert] = "Comment coudn'\t create!" unless @comment.save
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
     comment = Comment.find(params[:id])
     comment.destroy!
-    flash[:notice] = "Comment deleted!"
+    flash[:notice] = 'Comment deleted!'
     redirect_back(fallback_location: root_path)
   end
 

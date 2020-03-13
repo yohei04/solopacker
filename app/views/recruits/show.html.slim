@@ -19,19 +19,21 @@
 .comment-wrapper
   .comment-container
     .comment_index-inner
-      p = @comments.count
+      p 
+        = "comments(#{@comments.count})"
       - @comments.each do |comment|
         .comment_index-item
-          - if current_user != @recruit.user
+          - if comment.user != @recruit.user
             .comment_index-image
-              = render partial: './users/profiles/image', locals: { user: comment.user }
+              = link_to users_profile_path(comment.user)
+                = render partial: './users/profiles/image', locals: { user: comment.user }
               p = comment.user.user_name
           .comment_index-comment
-            p
-              = comment.content
-          - if current_user == @recruit.user
+            = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
+          - if comment.user == @recruit.user
             .comment_index-image
-              = render partial: './users/profiles/image', locals: { user: comment.user }
+              = link_to users_profile_path(comment.user)
+                = render partial: './users/profiles/image', locals: { user: comment.user }
               p = comment.user.user_name
           .comment_index-btns
             - if current_user == comment.user
@@ -39,8 +41,8 @@
 
 
     .comment_new
+      = render "devise/shared/error_messages", resource: @comment
       = form_with url: recruit_comments_path(@recruit), local: true do |f|
-        = render "devise/shared/error_messages", resource: @comment
         .comment_new-inner
           .field.comment_new_content
             / = f.label :content, 'Write your plan:'

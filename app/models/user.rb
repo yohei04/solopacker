@@ -17,7 +17,11 @@ class User < ApplicationRecord
     (Time.zone.today.strftime('%Y%m%d').to_i - date_of_birth&.strftime('%Y%m%d').to_i) / 10_000
   end
 
+  def already_commented?(recruit)
+    comments.exists?(recruit_id: recruit.id)
+  end
+
   def already_joined?(recruit)
-    self.joins.exists?(recruit_id: recruit.id)
-  end 
+    joins.exists?(recruit_id: recruit.id)
+  end
 end

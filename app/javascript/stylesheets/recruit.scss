@@ -77,6 +77,26 @@
   display: flex;
   margin-bottom: 1rem;
 }
+
+.comment_index_btns {
+  position: relative;
+  &:hover {
+    .joined_users {
+      display: block;
+      background-color: rgba(73, 121, 211, 0.911);
+    }
+  }
+  .joined_users {
+    position: absolute;
+    width: 300px;
+    height: 30px;
+    top: -30px;
+    left: 70px;
+    border-radius: 10px 10px 10px 10px;
+    display: none;
+  }
+}
+
 .comment_index-image {
   img {
     position:relative;

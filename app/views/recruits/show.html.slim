@@ -19,16 +19,18 @@
 .comment-wrapper
   .comment-container
     .comment_index-inner
-      p 
-        = "comments(#{@recruit.comments.count})"
-        = link_to "joins(#{@recruit.joins.count})", recruit_joins_path(@recruit)
-        - if current_user.already_joined?(@recruit)
-          = button_to 'delete Join', recruit_join_path(@recruit), method: :delete
-        - else
-          = button_to 'Join', recruit_joins_path(@recruit)
-      p
-        - @recruit.joined_users.each do |joined_user|
-          = joined_user.name
+      .comment_index_btns
+        p 
+          = "comments(#{@recruit.comments.count})"
+          = "joins(#{@recruit.joins.count})"
+          .joined_users
+            - @recruit.joined_users.each do |joined_user|
+              span = "#{joined_user.user_name} / "
+          - if current_user.id == @recruit.user_id
+          - elsif current_user.already_joined?(@recruit)
+            = button_to 'delete Join', recruit_join_path(@recruit), method: :delete
+          - else
+            = button_to 'Join', recruit_joins_path(@recruit)
       - @recruit.comments.each do |comment|
         .comment_index-item
           - if comment.user != @recruit.user

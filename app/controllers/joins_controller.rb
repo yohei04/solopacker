@@ -1,6 +1,15 @@
 class JoinsController < ApplicationController
   def create
-    @join = current_user.joins.create(join_params)
+    @join = current_user.joins.build(join_params)
+    @recruit = Recruit.find_by(id: params[:recruit_id])
+    if current_user.id == @recruit.user_id
+      return
+    elsif current_user.already_commented?(@recruit) && current_user.id != @recruit.user_id
+      @join.save
+      flash[:notice] = 'You join this recruit!'
+    else
+      flash[:alert] = 'Please comment first'
+    end
     redirect_back(fallback_location: root_path)
   end
 
@@ -11,9 +20,8 @@ class JoinsController < ApplicationController
   end
 
   private
+
     def join_params
       params.permit(:recruit_id)
     end
-
-    
 end

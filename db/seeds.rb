@@ -53,3 +53,9 @@ recruits = Recruit.order(created_at: :desc).take(5)
     user_id: [User.first.id, User.second.id, User.third.id, User.fourth.id, User.fifth.id, recruit.user_id, recruit.user_id, recruit.user_id].sample
   ) }
 end
+
+recruits.each do |recruit|
+  5.times do
+     Join.create(user_id: [*1..10].sample, recruit_id: recruit.id)
+  end
+end 

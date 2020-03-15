@@ -18,3 +18,4 @@
         span Comments
       = link_to 'detail', recruit_path(recruit)
       = link_to "comments(#{recruit.comments.count})", recruit_path(recruit)
+      = "joins(#{recruit.joins.count})"

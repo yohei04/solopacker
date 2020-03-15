@@ -3,6 +3,7 @@ class User < ApplicationRecord
   has_many :recruits, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :joins, dependent: :destroy
+  has_many :joined_recruits, through: :joins, source: :recruit
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,4 +16,8 @@ class User < ApplicationRecord
 
     (Time.zone.today.strftime('%Y%m%d').to_i - date_of_birth&.strftime('%Y%m%d').to_i) / 10_000
   end
+
+  def already_joined?(recruit)
+    self.joins.exists?(recruit_id: recruit.id)
+  end 
 end

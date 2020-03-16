@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 describe Recruit, type: :model do
-  let!(:user) { FactoryBot.create(:user) }
   let!(:recruit) { FactoryBot.create(:recruit) }
   describe 'Recruit Model' do
     context 'when recruit is full information' do

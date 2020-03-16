@@ -16,4 +16,5 @@
           = link_to 'edit', edit_recruit_path(recruit)
           = link_to 'delete', recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{recruit.title}?" }
         span Comments
-      = link_to 'showへ', recruit_path(recruit)
+      = link_to 'detail', recruit_path(recruit)
+      = link_to "comments(#{recruit.comments.count})", recruit_path(recruit)

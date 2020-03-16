@@ -15,5 +15,38 @@
           .recruit_show-inner-plan
             p My plan:
             p = @recruit.content
-    .recruit_show-inner-replay
 
+.comment-wrapper
+  .comment-container
+    .comment_index-inner
+      p 
+        = "comments(#{@recruit.comments.count})"
+      - @recruit.comments.each do |comment|
+        .comment_index-item
+          - if comment.user != @recruit.user
+            .comment_index-image
+              = link_to users_profile_path(comment.user)
+                = render partial: './users/profiles/image', locals: { user: comment.user }
+              p = comment.user.user_name
+          .comment_index-comment
+            = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
+          - if comment.user == @recruit.user
+            .comment_index-image
+              = link_to users_profile_path(comment.user)
+                = render partial: './users/profiles/image', locals: { user: comment.user }
+              p = comment.user.user_name
+          .comment_index-btns
+            - if current_user == comment.user
+              = link_to 'delete', recruit_comment_path(recruit_id: @recruit, id: comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }
+
+
+    .comment_new
+      = render "devise/shared/error_messages", resource: @comment
+      = form_with url: recruit_comments_path(@recruit), local: true do |f|
+        .comment_new-inner
+          .field.comment_new_content
+            / = f.label :content, 'Write your plan:'
+            = f.text_area :content, placeholder: "Write your reply Write your reply Write your reply"
+          .field.recruit_new-btn
+            .actions
+              = f.submit "Reply", class: "btn btn-primary"

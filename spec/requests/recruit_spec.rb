@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Recruit pages', type: :request do
   let!(:user) { FactoryBot.create(:user) }
   let!(:recruit) { FactoryBot.create(:recruit) }
-  describe 'Get #new' do
+  describe 'GET #new' do
     context 'when user signed in' do
       it 'returns http success' do
         login_as user
@@ -59,7 +59,7 @@ describe 'Recruit pages', type: :request do
       end
     end
   end
-  describe 'Get #create' do
+  describe 'POST #create' do
     before do
       login_as user
     end
@@ -97,7 +97,7 @@ describe 'Recruit pages', type: :request do
       end
     end
   end
-  describe 'Get #update' do
+  describe 'PATCH #update' do
     before do
       login_as user
     end
@@ -116,7 +116,7 @@ describe 'Recruit pages', type: :request do
       end
     end
   end
-  describe 'Get #index' do
+  describe 'GET #index' do
     context 'when user signed in' do
       before do
         login_as user
@@ -137,7 +137,7 @@ describe 'Recruit pages', type: :request do
       end
     end
   end
-  describe 'Get #show' do
+  describe 'GET #show' do
     context 'when user signed in' do
       it 'returns http success' do
         login_as user
@@ -147,6 +147,19 @@ describe 'Recruit pages', type: :request do
         expect(response.body).to include recruit.title
         expect(response.body).to include recruit.hour.to_s
         expect(response.body).to include recruit.user.user_name
+      end
+    end
+  end
+  describe 'DELETE #destroy' do
+    context 'delete a recruit' do
+      it 'is successfully deleted' do
+        login_as user
+        expect do
+          delete recruit_path(recruit)
+        end.to change(Recruit, :count).by(-1)
+        expect(response.status).to eq 302
+        follow_redirect!
+        expect(response.body).to include 'flash__notice'
       end
     end
   end

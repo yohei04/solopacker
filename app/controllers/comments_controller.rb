@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-    flash[:alert] = "Comment coudn'\t create!" unless @comment.save
+    flash[:alert] = "Comment can't be empty" unless @comment.save
     redirect_back(fallback_location: root_path)
   end
 

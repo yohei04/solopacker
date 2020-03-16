@@ -10,19 +10,17 @@ describe 'Comment', type: :request do
   describe 'POST #create' do
     context 'with correct parameters' do
       it 'is successfully created' do
-        get recruit_path(recruit_a)
-        expect(response.body).to include "comments(#{recruit_a.comments.count.to_s})"
         expect do
           post recruit_comments_path(recruit_a), params: FactoryBot.attributes_for(:comment, content: 'test')
         end.to change(Comment, :count).by(1)
         expect(response.status).to eq 302
-        follow_redirect!
+        get recruit_path(recruit_a)
         expect(response.body).to include 'test'
+        expect(response.body).to include "comments(#{recruit_a.comments.count})"
       end
     end
     context 'with incorrect parameters' do
       it 'shows error page' do
-        get recruit_path(recruit_a)
         post recruit_comments_path(recruit_a), params: { content: nil }
         follow_redirect!
         expect(response.body).to include 'flash__alert'

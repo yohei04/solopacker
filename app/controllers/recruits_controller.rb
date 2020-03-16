@@ -2,7 +2,6 @@ class RecruitsController < ApplicationController
   def show
     @recruit = Recruit.find(params[:id])
     @comment = Comment.new
-    @comments = @recruit.comments
   end
 
   def new

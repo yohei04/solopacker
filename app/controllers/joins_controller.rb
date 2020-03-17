@@ -6,10 +6,11 @@ class JoinsController < ApplicationController
       return
     elsif current_user.already_commented?(@recruit) && current_user.id != @recruit.user_id
       @join.save
-      flash[:notice] = 'You join this recruit!'
+      flash[:notice] = 'You joined this recruit!'
     else
       flash[:alert] = 'Please comment first'
     end
+
     redirect_back(fallback_location: root_path)
   end
 

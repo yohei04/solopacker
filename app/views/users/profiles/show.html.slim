@@ -17,4 +17,11 @@
 
       .members_show-inner-bottom
 
-= render partial: 'recruits/index'
+.recruis
+  .host_recruits
+    h2 Host recruits
+    = render partial: 'recruits/index', locals: { recruits: @recruits }
+  .join_recruits
+    h2 Join recruits
+    = render partial: 'recruits/index', locals: { recruits: @user.joined_recruits }
+

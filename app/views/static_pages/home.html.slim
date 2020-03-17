@@ -8,7 +8,7 @@
           = link_to 'Create New Recruit', new_recruit_path
           = render partial: 'recruits/serch'
           = render partial: 'layouts/paginate', locals: { object: @recruits }
-        = render partial: 'recruits/index'
+        = render partial: 'recruits/index', locals: { recruits: @recruits }
 - else
   section#main_vew
     .main_view-wrapper

@@ -3,20 +3,19 @@ class JoinsController < ApplicationController
     @join = current_user.joins.build(join_params)
     @recruit = Recruit.find_by(id: params[:recruit_id])
     if current_user.id == @recruit.user_id
-      return
+      flash[:alart] = 'You are owner'
     elsif current_user.already_commented?(@recruit) && current_user.id != @recruit.user_id
       @join.save
       flash[:notice] = 'You joined this recruit!'
     else
       flash[:alert] = 'Please comment first'
     end
-
     redirect_back(fallback_location: root_path)
   end
 
   def destroy
     @join = current_user.joins.find_by(recruit_id: params[:recruit_id])
-    @join.destroy!
+    @join&.destroy!
     redirect_back(fallback_location: root_path)
   end
 

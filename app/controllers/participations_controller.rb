@@ -1,14 +1,14 @@
 class ParticipationsController < ApplicationController
+  include ParticipationsHelper
+
   def create
     @participation = current_user.participations.build(participation_params)
     @recruit = Recruit.find_by(id: params[:recruit_id])
-    if current_user.id == @recruit.user_id
-      flash[:alart] = 'You are owner'
-    elsif current_user.already_commented?(@recruit) && current_user.id != @recruit.user_id
+    if permit_participate?
       @participation.save
       flash[:notice] = 'You joined this recruit!'
     else
-      flash[:alert] = 'Please comment first'
+      flash[:alert] = current_user.id == @recruit.user_id ? 'You are owner' : 'Please comment first'
     end
     redirect_back(fallback_location: root_path)
   end
@@ -23,5 +23,9 @@ class ParticipationsController < ApplicationController
 
     def participation_params
       params.permit(:recruit_id)
+    end
+
+    def permit_participate?
+      current_user.commented?(@recruit) && current_user.id != @recruit.user_id
     end
 end

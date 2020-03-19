@@ -27,7 +27,7 @@
             - @recruit.participated_users.each do |participated_user|
               span = "#{participated_user.user_name} / "
           - if current_user.id == @recruit.user_id
-          - elsif current_user.already_participated?(@recruit)
+          - elsif current_user.participated?(@recruit)
             = button_to 'delete Join', recruit_participation_path(@recruit), method: :delete
           - else
             = button_to 'Join', recruit_participations_path(@recruit)

@@ -4,7 +4,7 @@ describe 'Participation', type: :request do
   let!(:user_a) { FactoryBot.create(:user) }
   let!(:recruit_a) { FactoryBot.create(:recruit) }
   let!(:comment_a) { FactoryBot.create(:comment, user: user_a, recruit: recruit_a) }
-  
+
   describe 'POST #create' do
     context "when user didn't join yet" do
       it 'is successfully created' do
@@ -15,6 +15,8 @@ describe 'Participation', type: :request do
           post recruit_participations_path(recruit_a), params: FactoryBot.attributes_for(:participation)
         end.to change(Participation, :count).by(1)
         expect(response.status).to eq 302
+        follow_redirect!
+        expect(response.body).to include 'You joined this recruit!'
       end
     end
     context 'when user joined already' do

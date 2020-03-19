@@ -46,14 +46,14 @@ ActiveRecord::Schema.define(version: 2020_03_14_012813) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "joins", force: :cascade do |t|
+  create_table "participations", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "recruit_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["recruit_id"], name: "index_joins_on_recruit_id"
-    t.index ["user_id", "recruit_id"], name: "index_joins_on_user_id_and_recruit_id", unique: true
-    t.index ["user_id"], name: "index_joins_on_user_id"
+    t.index ["recruit_id"], name: "index_participations_on_recruit_id"
+    t.index ["user_id", "recruit_id"], name: "index_participations_on_user_id_and_recruit_id", unique: true
+    t.index ["user_id"], name: "index_participations_on_user_id"
   end
 
   create_table "recruits", force: :cascade do |t|
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2020_03_14_012813) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "comments", "recruits"
   add_foreign_key "comments", "users"
-  add_foreign_key "joins", "recruits"
-  add_foreign_key "joins", "users"
+  add_foreign_key "participations", "recruits"
+  add_foreign_key "participations", "users"
   add_foreign_key "recruits", "users"
 end

@@ -1,11 +1,11 @@
-class JoinsController < ApplicationController
+class ParticipationsController < ApplicationController
   def create
-    @join = current_user.joins.build(join_params)
+    @participation = current_user.participations.build(participation_params)
     @recruit = Recruit.find_by(id: params[:recruit_id])
     if current_user.id == @recruit.user_id
       flash[:alart] = 'You are owner'
     elsif current_user.already_commented?(@recruit) && current_user.id != @recruit.user_id
-      @join.save
+      @participation.save
       flash[:notice] = 'You joined this recruit!'
     else
       flash[:alert] = 'Please comment first'
@@ -14,14 +14,14 @@ class JoinsController < ApplicationController
   end
 
   def destroy
-    @join = current_user.joins.find_by(recruit_id: params[:recruit_id])
-    @join&.destroy!
+    @participation = current_user.participations.find_by(recruit_id: params[:recruit_id])
+    @participation&.destroy!
     redirect_back(fallback_location: root_path)
   end
 
   private
 
-    def join_params
+    def participation_params
       params.permit(:recruit_id)
     end
 end

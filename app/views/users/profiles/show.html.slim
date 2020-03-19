@@ -23,5 +23,5 @@
     = render partial: 'recruits/index', locals: { recruits: @recruits }
   .join_recruits
     h2 Join recruits
-    = render partial: 'recruits/index', locals: { recruits: @user.joined_recruits }
+    = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits }
 

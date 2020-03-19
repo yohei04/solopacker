@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :join do
+  factory :participation do
     user
     recruit
   end

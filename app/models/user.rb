@@ -2,8 +2,8 @@ class User < ApplicationRecord
   has_one_attached :image
   has_many :recruits, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :joins, dependent: :destroy
-  has_many :joined_recruits, through: :joins, source: :recruit
+  has_many :participations, dependent: :destroy
+  has_many :participated_recruits, through: :participations, source: :recruit
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -21,7 +21,7 @@ class User < ApplicationRecord
     comments.exists?(recruit_id: recruit.id)
   end
 
-  def already_joined?(recruit)
-    joins.exists?(recruit_id: recruit.id)
+  def already_participated?(recruit)
+    participations.exists?(recruit_id: recruit.id)
   end
 end

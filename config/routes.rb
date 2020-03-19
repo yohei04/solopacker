@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   end
   resources :recruits, except: :index do
     resources :comments, only: [:create, :update, :destroy]
-    resources :joins, only: [:index, :create, :destroy]
+    resources :participations, only: [:index, :create, :destroy]
   end
 end

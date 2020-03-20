@@ -30,7 +30,7 @@ User.create!(name: 'foobar',
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-              #  image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
+               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
               )
 end
 
@@ -58,6 +58,6 @@ recruits.each do |recruit|
   joinable_user_ids = recruit.comments.map(&:user_id)
   joinable_user_ids.delete(recruit.user_id)
   5.times do
-     recruit.joins.create(user_id: joinable_user_ids.sample)
+     recruit.participations.create(user_id: joinable_user_ids.sample)
   end
 end 

@@ -50,6 +50,14 @@ recruits = Recruit.order(created_at: :desc).take(5)
 5.times do
   recruits.each { |recruit| recruit.comments.create!(
     content: [Faker::Movie.quote].sample,
-    user_id: [User.first.id, User.second.id, User.third.id, User.fourth.id, User.fifth.id, recruit.user_id, recruit.user_id, recruit.user_id].sample
+    user_id: User.all.sample(8).map(&:id).push(recruit.user_id, recruit.user_id, recruit.user_id).sample
   ) }
 end
+
+recruits.each do |recruit|
+  joinable_user_ids = recruit.comments.map(&:user_id)
+  joinable_user_ids.delete(recruit.user_id)
+  5.times do
+     recruit.joins.create(user_id: joinable_user_ids.sample)
+  end
+end 

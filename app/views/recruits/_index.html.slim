@@ -1,5 +1,5 @@
 .recruit_index-inner
-  - @recruits.each do |recruit|
+  - recruits.each do |recruit|
     .recruit_index-item
       .recruit_index-item-title
         h5 = recruit.title
@@ -18,3 +18,4 @@
         span Comments
       = link_to 'detail', recruit_path(recruit)
       = link_to "comments(#{recruit.comments.count})", recruit_path(recruit)
+      = "joins(#{recruit.participations.count})"

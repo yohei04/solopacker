@@ -93,22 +93,67 @@
   background-color: white;
 }
 
+.recruit_index-test {
+  position: relative;
+  .cork_board {
+    width: 100%;
+  }
+}
+
 .recruit_index-inner {
+  position: absolute;
+  padding: 2rem;
+  top: 0;
+  left: 0;
   display: flex;
   flex-wrap:wrap;
-  justify-content: space-around;
+  justify-content: center;
+  z-index: 2;
 }
 .recruit_index-item {
+  position: relative;
   width: 30%;
-  background-color: rgba(153, 99, 99, 0.288);
+  background-color: white;
   margin: 1rem;
-  padding: 0.6rem;
+  padding: .6rem;
+  &::before, &::after {
+    content:"";
+    position: absolute;
+    z-index: -1;/*影を下の層に持っていく*/
+    bottom: 10px;
+    display: block;
+    width: 50%;
+    height: 50%;
+    box-shadow: 0 15px 10px #960;
+  }
+  &::before {
+    left: 5px;
+    transform:rotate(-5deg);
+  }
+  &::after {
+    right: 5px;
+    transform:rotate(5deg);
+  }
   img {
     width: 100px;
     height: 100px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 2rem;
+    margin-right: 1rem;
+  }
+}
+.recruit_index-item-title {
+  &::before {
+    content: "";/* 中身は空でいい */
+    background: url(http://hibana.xii.jp/icon/pin/006/17.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    width: 30px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
+    height: 30px;
+    position: relative;
+    display: inline-block;
+    top: -15px;
+    left: 50%;
+    background-size: contain;
+    vertical-align: middle;
   }
 }
 .recruit_index-item-middle {

@@ -1,6 +1,6 @@
 .search-boxs
   = search_form_for(@q, url: root_path, method: :get, class: '') do |f|
-    = f.search_field :country_cont, class: 'form-control', placeholder: "Country, State, City"
+    = f.search_field :country_cont, class: 'form-control', placeholder: "Country, State, City", value: current_user.current_country
     = button_tag type: 'submit', class: 'btn' do
         i.fas.fa-search
 

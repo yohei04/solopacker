@@ -4,10 +4,10 @@
       .recruit_index-container
         = image_pack_tag 'cork_board.jpg', class: "cork_board"
         h2.recruit_index-title
-          | Post Recruit
+          = recruits_title
         .recruit_index-btns
           = link_to 'New Recruit', new_recruit_path, class: "recruit_create"
-          = render partial: 'recruits/serch'
+          = render partial: 'recruits/search'
         = render partial: 'recruits/index', locals: { recruits: @recruits }
         = render partial: 'layouts/paginate', locals: { object: @recruits }
 - else

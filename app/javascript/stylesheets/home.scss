@@ -118,7 +118,7 @@
   transform: translate(-50%,-50%);
   z-index: 2;
 }
-.create_recruit {
+.recruit_create {
   position: absolute;
   display: inline-block;
   font-size: 2rem;
@@ -131,12 +131,22 @@
   left: 20%;
   transform: translate(-50%,-50%);
 }
-.serch_recruit {
+.recruit_search {
   position: absolute;
-  top: 150px;
-  left: 20%;
+  display: flex;
+  border-radius: 0px;
+  top: 170px;
+  left: 80%;
   transform: translate(-50%,-50%);
+  .form-control {
+    width: 200px;
+    border-radius: 0px;
+  }
+  .btn {
+    background-color: brown;
+  }
 }
+
 
 .recruit_index-inner {
   position: absolute;
@@ -196,5 +206,27 @@
 }
 .recruit_index-item-middle {
   display: flex;
+}
+
+.pagination {
+  position: absolute;
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  font-size: .01rem;
+  .page-item.disabled {
+    display: none;
+  }
+  > li, > a {
+    border: none;     /*枠線をなくす*/
+    color: brown;   /*文字の色を変える*/
+  }
+  > .active, > a {     
+    background: brown;     /*背景の色を変える*/
+    border-radius: 50px;     /*角を丸くする*/
+  }
+  > li, > a:hover {        
+    border-radius: 50px;    /*角を丸くする*/
+  }
 }
 

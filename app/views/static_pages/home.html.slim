@@ -6,8 +6,8 @@
         h2.recruit_index-title
           | Post Recruit
         .recruit_index-btns
-          = link_to 'New Recruit', new_recruit_path, class: "create_recruit"
-          = render partial: 'recruits/serch', class: "serch_recruit"
+          = link_to 'New Recruit', new_recruit_path, class: "recruit_create"
+          = render partial: 'recruits/serch'
         = render partial: 'recruits/index', locals: { recruits: @recruits }
         = render partial: 'layouts/paginate', locals: { object: @recruits }
 - else

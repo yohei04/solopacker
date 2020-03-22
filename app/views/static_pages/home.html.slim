@@ -2,13 +2,14 @@
   section#recruit
     .recruit_index-wrapper
       .recruit_index-container
+        = image_pack_tag 'cork_board.jpg', class: "cork_board"
         h2.recruit_index-title
           | Post Recruit
         .recruit_index-btns
-          = link_to 'Create New Recruit', new_recruit_path
-          = render partial: 'recruits/serch'
-          = render partial: 'layouts/paginate', locals: { object: @recruits }
+          = link_to 'New Recruit', new_recruit_path, class: "create_recruit"
+          = render partial: 'recruits/serch', class: "serch_recruit"
         = render partial: 'recruits/index', locals: { recruits: @recruits }
+        = render partial: 'layouts/paginate', locals: { object: @recruits }
 - else
   section#main_vew
     .main_view-wrapper

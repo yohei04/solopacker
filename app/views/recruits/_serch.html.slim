@@ -1,13 +1,14 @@
 .search-boxs
-  = search_form_for(@q, url: root_path, method: :get, class: 'mb-5') do |f|
+  = search_form_for(@q, url: root_path, method: :get, class: '') do |f|
     .form-group.row
-      = f.label :country_cont, 'Where', class: 'col-sm-2 col-form-label'
+      / = f.label :country_cont, 'Where', class: 'col-sm-2 col-form-label'
       .col-m-10
-        = f.search_field :country_cont, class: 'form-control'
-    .form-group.row
-      = f.label :date_time_cont, 'When', class: 'col-sm-2 col-form-label'
-      .col-m-10
-        = f.search_field :date_time_gteq, class: 'form-control'
+        = f.search_field :country_cont, class: 'form-control', placeholder: "Country, State, City, National Parks, Trails"
+    / .form-group.row
+    /   = f.label :date_time_cont, 'When', class: 'col-sm-2 col-form-label'
+    /   .col-m-10
+    /     = f.search_field :date_time_gteq, class: 'form-control'
     .form-group
-      = f.submit class: 'btn btn-outline-primary'
+      = button_tag type: 'submit', class: 'btn btn-primary' do
+        i.fas.fa-search
     

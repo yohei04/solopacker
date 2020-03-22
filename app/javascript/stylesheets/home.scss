@@ -82,28 +82,66 @@
 }
 
 
+
+
+
+
 // recruit#indexセクション
 .recruit_index-wrapper {
   padding: 3rem;
-  background-color: rgba(22, 224, 22, 0.233);
+  background-color: rgba(160, 143, 143, 0.233);
 }
 
 .recruit_index-container {
   margin: 0 auto;
   background-color: white;
-}
-
-.recruit_index-test {
   position: relative;
   .cork_board {
     width: 100%;
   }
 }
 
+.board_inner {
+  // position: absolute;
+  // top: 0;
+  // left: 0;
+}
+
+.recruit_index-title {
+  position: absolute;
+  font-size: 5rem;
+  padding: 0 1rem;
+  text-align: center;
+  // background-color: rgb(104, 236, 52);
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  z-index: 2;
+}
+.create_recruit {
+  position: absolute;
+  display: inline-block;
+  font-size: 2rem;
+  background-color: brown;
+  border-radius: 50px;
+  padding: 1rem;
+  color: white;
+  text-shadow: .1rem .1rem .3rem #000;
+  top: 170px;
+  left: 20%;
+  transform: translate(-50%,-50%);
+}
+.serch_recruit {
+  position: absolute;
+  top: 150px;
+  left: 20%;
+  transform: translate(-50%,-50%);
+}
+
 .recruit_index-inner {
   position: absolute;
   padding: 2rem;
-  top: 0;
+  top: 170px;
   left: 0;
   display: flex;
   flex-wrap:wrap;
@@ -145,7 +183,7 @@
 .recruit_index-item-title {
   &::before {
     content: "";/* 中身は空でいい */
-    background: url(http://hibana.xii.jp/icon/pin/006/17.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
     width: 30px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
     height: 30px;
     position: relative;

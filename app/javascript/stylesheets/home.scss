@@ -226,4 +226,16 @@
   //   border-radius: 50px;    /*角を丸くする*/
   // }
 }
+.recruit_index-item-bottom {
+  text-align: right;
+  font-size: 1.2rem;
+  a {
+    margin-right: 0.4rem;
+  }
+}
+
+.fa-user-friends {
+  color: rgb(87, 84, 84);
+  text-shadow: 2px 2px 3px #000;
+}
 

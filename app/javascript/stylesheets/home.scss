@@ -150,6 +150,7 @@
 
 .recruit_index-inner {
   position: absolute;
+  width: 100%;
   padding: 2rem;
   top: 170px;
   left: 0;
@@ -208,25 +209,27 @@
   display: flex;
 }
 
-.pagination {
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  font-size: .01rem;
-  .page-item.disabled {
-    display: none;
+.home-paginate {
+  .pagination {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    font-size: .01rem;
+    .page-item.disabled {
+      display: none;
+    }
   }
-  > li, > a {
-    border: none;     /*枠線をなくす*/
-    color: brown;   /*文字の色を変える*/
-  }
-  > .active, > a {     
-    background: brown;     /*背景の色を変える*/
-    border-radius: 50px;     /*角を丸くする*/
-  }
-  > li, > a:hover {        
-    border-radius: 50px;    /*角を丸くする*/
-  }
+  // > li, > a {
+  //   border: none;     /*枠線をなくす*/
+  //   color: brown;   /*文字の色を変える*/
+  // }
+  // > .active, > a {     
+  //   background: brown;     /*背景の色を変える*/
+  //   border-radius: 50px;     /*角を丸くする*/
+  // }
+  // > li, > a:hover {        
+  //   border-radius: 50px;    /*角を丸くする*/
+  // }
 }
 

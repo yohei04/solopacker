@@ -15,10 +15,15 @@
   margin: 0 auto;
 }
 
-.members_index-items {
+.members_index-item {
+  position: relative;
   display: flex;
-  justify-content: center;
+  margin-left: 2rem;
+  // justify-content: center;
   align-items: center;
+  &:hover {
+    opacity: .7;
+  }
   img {
     width: 100px;
     height: 100px;
@@ -26,10 +31,23 @@
     border-radius: 50%;
     margin-right: 2rem;
   }
+  .orgin_country_flag {
+    position: absolute;
+    top: 65%;
+    left: 0%;
+    font-size: 2.6rem;
+  }
+  .members_index-text {
+    font-size: 1rem;
+    color: black;
+    a {
+      text-decoration: none;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
-
-
-
 
 
 // Members#show
@@ -47,6 +65,7 @@
 }
 
 .members_show-inner-top {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,4 +76,11 @@
     border-radius: 50%;
     margin-right: 2rem;
   }
+  .orgin_country_flag {
+    position: absolute;
+    top: 65%;
+    left: 0%;
+    font-size: 2.6rem;
+  }
 }
+

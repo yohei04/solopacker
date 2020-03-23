@@ -1,10 +1,10 @@
 .user_name_age_gender
   span.user_name = user.user_name 
-- if user.age.present?
-  span.age = "(#{user.age})"
-- if user.gender.present?
-  span.gender = user.gender
-- if user.origin.present?
+  - if user.age.present?
+    span.age = "(#{user.age})"
+  - if user.gender.present?
+    span.gender = user.gender
+  - if user.origin.present?
 .origin_country
   span.from from 
   span.country_name = country_name(user.origin)
@@ -15,3 +15,7 @@
   span.city_name = "#{user.current_city} _ "
   span.country_name = country_name(user.current_country)
   span.country_flag = country_flag(user.current_country)
+
+
+
+

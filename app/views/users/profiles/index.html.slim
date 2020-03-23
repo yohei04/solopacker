@@ -5,7 +5,7 @@
     .members_index-inner
       = render partial: 'layouts/paginate', locals: { object: @users }
       - @users.each do |user|
-        = link_to users_profile_path(user), class: 'members_index-items'
+        = link_to users_profile_path(user), class: 'members_index-item'
           .members_index-image
             = render partial: 'image', locals: { user: user }
           .members_index-text

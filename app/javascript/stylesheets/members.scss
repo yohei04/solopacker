@@ -2,23 +2,28 @@
 
 .members_index-wrapper {
   background-color: $bgc-sign;
+  padding: 3rem;
 }
 
 .members_index-container {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
   background-color: white;
+  .pagination {
+    justify-content: flex-end;
+  }
 }
 
 .members_index-inner {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
+  padding: 2rem 0;
 }
 
 .members_index-item {
   position: relative;
   display: flex;
-  margin-left: 2rem;
+  margin-left: 5rem;
   // justify-content: center;
   align-items: center;
   &:hover {
@@ -29,13 +34,20 @@
     height: 100px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 2rem;
+    margin-right: 1.4rem;
   }
   .orgin_country_flag {
     position: absolute;
-    top: 65%;
-    left: 0%;
+    top: 65px;
+    left: -10px;
     font-size: 2.6rem;
+  }
+  .profile-items {
+    display: flex;
+    margin-bottom: 0.2rem;
+  }
+  .profile-words {
+    margin-right: .4rem;
   }
   .members_index-text {
     font-size: 1rem;
@@ -65,22 +77,42 @@
 }
 
 .members_show-inner-top {
-  position: relative;
   display: flex;
   justify-content: center;
-  align-items: center;
-  img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 2rem;
-  }
-  .orgin_country_flag {
-    position: absolute;
-    top: 65%;
-    left: 0%;
-    font-size: 2.6rem;
+  // align-items: center;
+  .members_show-image {
+    position: relative;
+    img {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 2rem;
+    }
+    .orgin_country_flag {
+      position: absolute;
+      top: 150px;
+      left: 0%;
+      font-size: 3rem;
+    }
   }
 }
-
+.members_show-text {
+  // font-size: 1.2rem;
+  .user_name_age_gender {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .profile-items {
+    padding-bottom: .6rem;
+  }
+  .profile-words {
+    display: block;
+    padding-bottom: .2rem;
+    color: rgba(105, 102, 102, 0.582);
+  }
+  .user-info {
+    font-size: 1.2rem;
+    // margin-left: 1rem;
+  }
+}

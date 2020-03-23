@@ -1,20 +1,22 @@
-.user_name_age_gender
+.user_name_age_gender.profile-items
   span.user_name = user.user_name 
   - if user.age.present?
     span.age = "(#{user.age})"
   - if user.gender.present?
     span.gender = user.gender
   - if user.origin.present?
-.origin_country
-  span.from from 
-  span.country_name = country_name(user.origin)
-  span.country_flag = country_flag(user.origin)
+.origin_country.profile-items
+  span.from.profile-words from 
+  .user-info
+    span.country_name = country_name(user.origin)
+    span.country_flag = country_flag(user.origin)
 - if user.current_city.present?
-.current_country
-  span.now_in now in 
-  span.city_name = "#{user.current_city} _ "
-  span.country_name = country_name(user.current_country)
-  span.country_flag = country_flag(user.current_country)
+.current_country.profile-items
+  span.now_in.profile-words now in 
+  .user-info
+    span.city_name = "#{user.current_city} _ "
+    span.country_name = country_name(user.current_country)
+    span.country_flag = country_flag(user.current_country)
 
 
 

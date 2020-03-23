@@ -3,7 +3,6 @@
     h2.members_index-title
       | Members
     .members_index-inner
-      = render partial: 'layouts/paginate', locals: { object: @users }
       - @users.each do |user|
         = link_to users_profile_path(user), class: 'members_index-item'
           .members_index-image
@@ -11,4 +10,5 @@
           .members_index-text
             = render partial: 'simpleInfo', locals: { user: user }
         hr
+    = render partial: 'layouts/paginate', locals: { object: @users }
 

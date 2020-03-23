@@ -8,7 +8,8 @@
         .recruit_index-btns
           = link_to 'New Recruit', new_recruit_path, class: "recruit_create"
           = render partial: 'recruits/search'
-        = render partial: 'recruits/index', locals: { recruits: @recruits }
+        .recruit_index-home
+          = render partial: 'recruits/index', locals: { recruits: @recruits }
         .home-paginate
           = render partial: 'layouts/paginate', locals: { object: @recruits }
 - else

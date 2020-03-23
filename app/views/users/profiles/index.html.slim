@@ -4,7 +4,7 @@
       | Members
     .members_index-inner
       - @users.each do |user|
-        = link_to users_profile_path(user), class: 'members_index-item'
+        .members_index-item
           .members_index-image
             = render partial: 'image', locals: { user: user }
           .members_index-text

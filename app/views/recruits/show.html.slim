@@ -35,8 +35,7 @@
         .comment_index-item
           - if comment.user != @recruit.user
             .comment_index-image
-              = link_to users_profile_path(comment.user)
-                = render partial: './users/profiles/image', locals: { user: comment.user }
+              = render partial: './users/profiles/image', locals: { user: comment.user }
               p = comment.user.user_name
           .comment_index-comment
             = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 

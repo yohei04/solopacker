@@ -22,8 +22,8 @@
 }
 
 .recruit_show-container {
-  .recruit_show-title {
-    margin: -3.5rem 0 1rem 0;
+  .recruit_show-inner-title {
+    margin-bottom: 1rem;
   }
   width: 50%;
   margin: 0 auto;
@@ -31,28 +31,56 @@
   background-color: white;
 }
 
-
-.recruit_show-inner-top {
-  display: flex;
+.recruit_show-inner {
+  .recruit_show-inner-middle {
+    display: flex;
+  }
+  .recruit_show-inner-profileInfo {
+    margin-right: 1.6rem;
+  }
+  .recruit_show-inner-text {
+    font-size: 1.6rem;
+  }
+  // .when {
+  //   display: none;
+  // }
+  .recruit-items {
+    margin-bottom: .6rem;
+    &:first-child {
+      margin-top: 1rem;
+    }
+  }
+  .recruit-words {
+    font-size: 1.4rem;
+    // padding-bottom: .6rem;
+    color: rgba(105, 102, 102, 0.582);
+  }
+  .user-info {
+    font-size: 1.4rem;
+    margin-top: .2rem;
+  }
+  .when-info {
+    // font-size: 2rem;
+    // margin-bottom: 2rem;
+  }
 }
 
 
 .recruit_show-inner-image {
+  position: relative;
   img {
-    position:relative;
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
-    margin-right: 2rem;
-    .link{
-    display: block;
+    // margin-right: 2rem;
+  }
+  .orgin_country_flag {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    }
+    top: 150px;
+    left: 0%;
+    font-size: 3rem;
+
   }
 }
 

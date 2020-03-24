@@ -1,19 +1,21 @@
-.when.recruit-items
-  span.recruit-words When:
+.recruit-items
+  span.when.recruit-words When:
   / i.far.fa-calendar-alt
-  .user-info
+  .when-info.user-info
     span.date_time
       = recruit.date_time.strftime('%Y/%-m/%-d(%a)')
     span.date_time
       = recruit.date_time.strftime('%-H:%M')
-.howlong.recruit-items
-  span.recruit-words How long:
-  / i.fas.fa-hourglass-half
-  .user-info
-    span = "#{recruit.hour}h"
-.where.recruit-items
-  span.recruit-words Where: 
+.recruit-items
+  span.where.recruit-words Where: 
   / i.fasfa-map-marked-alt
   .user-info
     span = recruit.city
     span = recruit.country
+    span.country_flag = country_flag(recruit.user.current_country)
+.recruit-items
+  span.how_long.recruit-words How long:
+  / i.fas.fa-hourglass-half
+  .user-info
+    span = "#{recruit.hour}h"
+

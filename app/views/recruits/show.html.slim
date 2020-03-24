@@ -1,18 +1,23 @@
 .recruit_show-wrapper
   .recruit_show-container
-    h2.recruit_show-title
-      = @recruit.title
     .recruit_show-inner
-      .recruit_show-inner-top
+      h2.recruit_show-inner-title
+        = @recruit.title
+      .recruit_show-inner-middle
         .recruit_show-inner-profileInfo
           .recruit_show-inner-image
             = render partial: './users/profiles/image', locals: { user: @recruit.user }
           .recruit_show-inner-text
-            = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
+            span.user_name = @recruit.user.user_name 
+            - if @recruit.user.age.present?
+              span.age = "(#{@recruit.user.age})"
+            - if @recruit.user.gender.present?
+              span.gender = @recruit.user.gender
+            / = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
         .recruit_show-inner-recruitInfo
           = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
           .recruit_show-inner-plan.recruit-items
-            p.recruit-words My plan:
+            p.my_plan.recruit-words My plan:
             p.user-info = @recruit.content
       .recruit_show-inner-bottom
         -if current_user == @recruit.user

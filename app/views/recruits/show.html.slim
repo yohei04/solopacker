@@ -3,7 +3,7 @@
     h2.recruit_show-title
       = @recruit.title
     .recruit_show-inner
-      .recruit_show-inner-post
+      .recruit_show-inner-top
         .recruit_show-inner-profileInfo
           .recruit_show-inner-image
             = render partial: './users/profiles/image', locals: { user: @recruit.user }
@@ -11,9 +11,19 @@
             = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
         .recruit_show-inner-recruitInfo
           = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
-          .recruit_show-inner-plan
-            p My plan:
-            p = @recruit.content
+          .recruit_show-inner-plan.recruit-items
+            p.recruit-words My plan:
+            p.user-info = @recruit.content
+      .recruit_show-inner-bottom
+        -if current_user == @recruit.user
+          = link_to edit_recruit_path(@recruit), method: :get do
+            i.fas.fa-edit
+          = link_to @recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{@recruit.title}?" }
+            i.far.fa-trash-alt
+        i.far.fa-comment-dots
+        = link_to "(#{@recruit.comments.count})", recruit_path(@recruit)
+        i.fas.fa-user-friends.faa-wrench.animated-hover
+        = "(#{@recruit.participations.count})"
 
 .comment-wrapper
   .comment-container

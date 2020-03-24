@@ -2,22 +2,20 @@
 .recruit_index-inner
   - recruits.each do |recruit|
     .recruit_index-item
-      .recruit_index-item-title
-        h5 = recruit.title
+      = link_to recruit
+        h5.recruit_index-item-title
+          = recruit.title
       .recruit_index-item-middle
-        .image
-          = render partial: './users/profiles/image', locals: { user: recruit.user }
-        .recruit-name
-          span post by
-          span  = link_to recruit.user.user_name, users_profile_path(recruit.user)
-        .recruit_index-item-texts
-          = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
+        .user-image-name
+          .image
+            = render partial: './users/profiles/image', locals: { user: recruit.user }
+          .recruit-name
+            span Host 
+            span  = link_to recruit.user.user_name, users_profile_path(recruit.user)
+        = link_to recruit
+          .recruit_index-item-texts
+            = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
       .recruit_index-item-bottom
-        -if current_user == recruit.user
-          = link_to edit_recruit_path(recruit), method: :get do
-            i.fas.fa-edit
-          = link_to recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{recruit.title}?" }
-            i.far.fa-trash-alt
         i.far.fa-comment-dots
         = link_to "(#{recruit.comments.count})", recruit_path(recruit)
         i.fas.fa-user-friends.faa-wrench.animated-hover

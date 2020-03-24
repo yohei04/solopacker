@@ -158,7 +158,18 @@
   width: 30%;
   background-color: white;
   margin: 1rem;
-  padding: .6rem;
+  padding: .6rem 1rem;
+  border: dashed rgba(255, 145, 0, 0.664);
+  &:hover {
+    // box-shadow: 0 10px 20px #960;
+    transform:rotate(5deg);
+  }
+  a {
+    color: #000;
+    &:hover {
+    opacity: .7;
+    }
+  }
   &::before, &::after {
     content:"";
     position: absolute;
@@ -177,6 +188,29 @@
     right: 5px;
     transform:rotate(5deg);
   }
+}
+.recruit_index-item-title {
+  padding: .6rem 0 1rem;
+  &::before {
+    content: "";/* 中身は空でいい */
+    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    width: 35px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
+    height: 35px;
+    position: absolute;
+    display: inline-block;
+    top: -10px;
+    left: 50%;
+    background-size: contain;
+    vertical-align: middle;
+  }
+}
+.recruit_index-item-middle {
+  position: relative;
+  display: flex;
+  // align-items: center;
+  a:hover {
+    opacity: .7;
+  }
   img {
     width: 100px;
     height: 100px;
@@ -184,23 +218,23 @@
     border-radius: 50%;
     margin-right: 1rem;
   }
-}
-.recruit_index-item-title {
-  &::before {
-    content: "";/* 中身は空でいい */
-    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
-    width: 30px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
-    height: 30px;
-    position: relative;
-    display: inline-block;
-    top: -15px;
-    left: 50%;
-    background-size: contain;
-    vertical-align: middle;
+  .orgin_country_flag {
+    position: absolute;
+    top: 65px;
+    left: -10px;
+    font-size: 2.6rem;
   }
-}
-.recruit_index-item-middle {
-  display: flex;
+  .recruit-items {
+    // display: flex;
+    margin-bottom: 0.2rem;
+  }
+  .recruit-words {
+    margin-bottom: .2rem;
+    display: block;
+  }
+  .user-info {
+    margin-right: 1rem;
+  }
 }
 
 .home-paginate {
@@ -238,4 +272,5 @@
   color: rgb(87, 84, 84);
   text-shadow: 2px 2px 3px #000;
 }
+
 

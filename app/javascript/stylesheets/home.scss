@@ -116,7 +116,7 @@
   position: absolute;
   display: inline-block;
   font-size: 2rem;
-  background-color: brown;
+  background-color: $color-main;
   border-radius: 50px;
   padding: 1rem;
   color: white;
@@ -137,7 +137,7 @@
     border-radius: 0px;
   }
   .btn {
-    background-color: brown;
+    background-color: $color-main;
   }
 }
 
@@ -191,7 +191,7 @@
   }
 }
 .recruit_index-item-title {
-  padding: .6rem 0 1rem;
+  padding: 1.2rem 0 .8rem;
   &::before {
     content: "";/* 中身は空でいい */
     background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
@@ -254,10 +254,10 @@
   }
   // > li, > a {
   //   border: none;     /*枠線をなくす*/
-  //   color: brown;   /*文字の色を変える*/
+  //   color: $color-main;   /*文字の色を変える*/
   // }
   // > .active, > a {     
-  //   background: brown;     /*背景の色を変える*/
+  //   background: $color-main;     /*背景の色を変える*/
   //   border-radius: 50px;     /*角を丸くする*/
   // }
   // > li, > a:hover {        

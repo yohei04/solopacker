@@ -53,14 +53,12 @@
       
       .comment_new
         = render "devise/shared/error_messages", resource: @comment
-        = form_with url: recruit_comments_path(@recruit), local: true do |f|
-          .comment_new-inner
+        .comment_new-inner
+          = form_with url: recruit_comments_path(@recruit), local: true do |f|
             .field.comment_new_content
-              / = f.label :content, 'Write your plan:'
-              = f.text_area :content, placeholder: "Write your reply Write your reply Write your reply"
+              = f.text_area :content, placeholder: "Write your comment"
             .field.comment_new-btn
-              .actions
-                = f.submit "Reply", class: "btn btn-primary"
+              = f.submit "Comment", class: "btn"
 
       .comment_index
         - @recruit.comments.each do |comment|

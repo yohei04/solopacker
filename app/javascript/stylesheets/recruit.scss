@@ -121,12 +121,29 @@
 }
 
 // comment#new
+.comment_new {
+}
 .comment_new-inner {
-  margin: 0 auto;
+  width: 70%;
+  margin: 1rem auto 2rem;
+  text-align: center;
+  .comment_new_content {
+    text-align: center;
+    width: 100%;
+  }
   textarea {
-    width: 60%;
-    margin: 0 auto;
+    width: 100%;
+    height: 70px;
     border-radius: 10px;
+    padding: .4rem;
+  }
+  .comment_new-btn {
+    text-align: right;
+  }
+  .btn {
+    color: white;
+    border-radius: 50px;
+    background-color: $color-main;
   }
 }
 

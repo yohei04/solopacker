@@ -1,25 +1,26 @@
 
 .recruit_index-inner
   - recruits.each do |recruit|
-    .recruit_index-item
-      = link_to recruit
-        h4.recruit_index-item-title
-          = recruit.title
-      .recruit_index-item-middle
-        .user-image-name
-          .image
-            = render partial: './users/profiles/image', locals: { user: recruit.user }
-          .recruit-name
-            span Host 
-            span  = link_to recruit.user.user_name, users_profile_path(recruit.user)
+    .recruit_index-dummy
+      .recruit_index-item
         = link_to recruit
-          .recruit_index-item-texts
-            = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
-      .recruit_index-item-bottom
-        i.far.fa-comment-dots
-        = link_to "(#{recruit.comments.count})", recruit_path(recruit)
-        i.fas.fa-user-friends.faa-wrench.animated-hover
-        = "(#{recruit.participations.count})"
+          h4.recruit_index-item-title
+            = recruit.title
+        .recruit_index-item-middle
+          .user-image-name
+            .image
+              = render partial: './users/profiles/image', locals: { user: recruit.user }
+            .recruit-name
+              span Host 
+              span  = link_to recruit.user.user_name, users_profile_path(recruit.user)
+          = link_to recruit
+            .recruit_index-item-texts
+              = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
+        .recruit_index-item-bottom
+          i.far.fa-comment-dots
+          = link_to "(#{recruit.comments.count})", recruit_path(recruit)
+          i.fas.fa-user-friends.faa-wrench.animated-hover
+          = "(#{recruit.participations.count})"
 
 
       / <i class="fab fa-twitter faa-wrench animated-hover"></i>

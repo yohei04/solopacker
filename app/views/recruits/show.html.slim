@@ -1,6 +1,6 @@
 .recruit_show-wrapper
   .recruit_show-container
-    .recruit_show-inner
+    .recruit_show-inner.animated-hover
       h2.recruit_show-inner-title
         = @recruit.title
       .recruit_show-inner-middle
@@ -17,9 +17,9 @@
               / = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
           .recruit_show-inner-joinMember
             p ☆Joined Member☆
-            .member-name
+            .member-names
               - @recruit.participated_users.each do |participated_user|
-                = link_to "•#{participated_user.user_name}", users_profile_path(participated_user)
+                = link_to "•#{participated_user.user_name}", users_profile_path(participated_user), class: "member-name"
             .join-btns
               - if current_user.id == @recruit.user_id
               - elsif current_user.participated?(@recruit)

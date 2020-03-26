@@ -23,19 +23,57 @@
 
 .recruit_show-container {
   border: solid 2px orange;
+  width: 50%;
+  margin: 0 auto;
+  background-color: white;
   .recruit_show-inner-title {
     margin-bottom: 1rem;
   }
-  width: 50%;
-  margin: 0 auto;
-  padding: 1rem;
-  background-color: white;
 }
 
 .recruit_show-inner {
   font-family: 'Handlee', cursive;
+  position: relative;
+  padding: 1rem;
+  &::before, &::after {
+    content:"";
+    position: absolute;
+    z-index: -1;/*影を下の層に持っていく*/
+    bottom: 10px;
+    display: block;
+    width: 50%;
+    height: 50%;
+    box-shadow: 0 15px 10px #960;
+  }
+  &::before {
+    left: 5px;
+    transform:rotate(-5deg);
+  }
+  &::after {
+    right: 5px;
+    transform:rotate(5deg);
+  }
+  .recruit_show-inner-title {
+    margin-bottom: 1rem;
+    &::before {
+    content: "";/* 中身は空でいい */
+    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    width: 50px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
+    height: 50px;
+    position: absolute;
+    display: inline-block;
+    top: -10px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-size: contain;
+    vertical-align: middle;
+  }
+  }
   .recruit_show-inner-middle {
     display: flex;
+  }
+  .recruit_show-inner-middle-left {
+    width: 40%;
   }
   .recruit_show-inner-profileInfo {
     margin-right: 1.6rem;
@@ -85,18 +123,21 @@
     margin: 1rem 0 .3rem;
     // font-size: 1.4rem;
     p {
-      margin: 1rem 0 .6rem;
+      margin: 1rem 0 .4rem;
       font-size: 1.2rem;
       // border-bottom: 1px solid $color-gray;
     }
-    .member-name {
+    .member-names {
+      display: flex;
+      flex-wrap:wrap;
+      margin-left: 1rem;
     }
-    a {
+    .member-name {
       font-size: 1rem;
       margin-right: auto;
       color: black;
-      margin-right: 1rem;
-      
+      margin: 0 1rem .3rem 0;
+      border-bottom: 1px solid white;
       &:hover {
         border-bottom: 1px solid $color-gray;
       }
@@ -111,14 +152,22 @@
 .join-btns {
   a {
     display: block;
+    width: 80%;
     text-align: center;
-    width: 200px;
-    background-color: $color-main;
-    padding: 1rem;
+    margin-top: 1rem;
+    padding: .2rem;
     border-radius: 50px;
+    border: 1px solid $white;
     color: white;
+    background-color: $color-main;
+    &:hover {
+      border: 1px solid $color-main;
+      color: $color-main;
+      background-color: white;
+    }
   }
 }
+
 
 // comment#new
 .comment_new {

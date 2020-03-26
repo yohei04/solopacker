@@ -153,18 +153,44 @@
   justify-content: center;
   z-index: 2;
 }
+.recruit_index-dummy {
+  width: 30%;
+  &::before {
+    content: "";/* 中身は空でいい */
+    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    width: 35px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
+    height: 35px;
+    position: relative;
+    display: inline-block;
+    top: 44px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-size: contain;
+    vertical-align: middle;
+    z-index: 1;
+  }
+}
 .recruit_index-item {
   font-family: 'Handlee', cursive;
   position: relative;
-  width: 30%;
+  // width: 30%;
   background-color: white;
   margin: 1rem;
   padding: .6rem 1rem;
   border: dashed rgba(255, 145, 0, 0.664);
   &:hover {
-    // box-shadow: 0 10px 20px #960;
-    transform:rotate(5deg);
+    animation: swing linear .3s 3;
+    transform-origin: top center;
   }
+  @keyframes swing {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    50% { transform: rotate(0deg); }
+    75% { transform: rotate(-10deg); }
+    100% { transform: rotate(0deg); }
+  }
+
+
   a {
     color: #000;
     &:hover {
@@ -189,21 +215,26 @@
     right: 5px;
     transform:rotate(5deg);
   }
+  &:hover {
+    &::before, &::after {
+      display: none;
+    }
+  }
 }
 .recruit_index-item-title {
   padding: 1.2rem 0 .8rem;
-  &::before {
-    content: "";/* 中身は空でいい */
-    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
-    width: 35px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
-    height: 35px;
-    position: absolute;
-    display: inline-block;
-    top: -10px;
-    left: 50%;
-    background-size: contain;
-    vertical-align: middle;
-  }
+  // &::before {
+  //   content: "";/* 中身は空でいい */
+  //   background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+  //   width: 35px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
+  //   height: 35px;
+  //   position: absolute;
+  //   display: inline-block;
+  //   top: -10px;
+  //   left: 50%;
+  //   background-size: contain;
+  //   vertical-align: middle;
+  // }
 }
 .recruit_index-item-middle {
   position: relative;

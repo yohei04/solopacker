@@ -32,43 +32,46 @@
 
 .comment-wrapper
   .comment-container
-    .comment_index-inner
-      .comment_index_btns
-        p 
-          = "comments(#{@recruit.comments.count})"
-          = "joins(#{@recruit.participations.count})"
-          .joined_users
-            - @recruit.participated_users.each do |participated_user|
-              span = "#{participated_user.user_name} / "
+    .comment-inner
+      .comment-btns
+        .joined_users
+          - @recruit.participated_users.each do |participated_user|
+            span = "#{participated_user.user_name} / "
+        .join-btns
           - if current_user.id == @recruit.user_id
           - elsif current_user.participated?(@recruit)
-            = button_to 'delete Join', recruit_participation_path(@recruit), method: :delete
+            = link_to 'changed my mind', recruit_participation_path(@recruit), method: :delete, class: "delete_join-btn"
           - else
-            = button_to 'Join', recruit_participations_path(@recruit)
-      - @recruit.comments.each do |comment|
-        .comment_index-item
-          - if comment.user != @recruit.user
-            .comment_index-image
-              = render partial: './users/profiles/image', locals: { user: comment.user }
-              p = comment.user.user_name
-          .comment_index-comment
-            = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
-          - if comment.user == @recruit.user
-            .comment_index-image
-              = render partial: './users/profiles/image', locals: { user: comment.user }
-              p = comment.user.user_name
-          .comment_index-btns
-            - if current_user == comment.user
-              = link_to 'delete', recruit_comment_path(recruit_id: @recruit, id: comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }
+            = link_to 'I will Join', recruit_participations_path(@recruit), class: "join-btn"
+      
+      .comment_new
+        = render "devise/shared/error_messages", resource: @comment
+        = form_with url: recruit_comments_path(@recruit), local: true do |f|
+          .comment_new-inner
+            .field.comment_new_content
+              / = f.label :content, 'Write your plan:'
+              = f.text_area :content, placeholder: "Write your reply Write your reply Write your reply"
+            .field.comment_new-btn
+              .actions
+                = f.submit "Reply", class: "btn btn-primary"
 
+      .comment_index
+        - @recruit.comments.each do |comment|
+          .comment_index-item
+            .comment_index-item-flex
+              - if comment.user != @recruit.user
+                .comment_index-image
+                  = render partial: './users/profiles/image', locals: { user: comment.user }
+                  p = comment.user.user_name
+                .comment_index-comment-left
+                  = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
+              - elsif comment.user == @recruit.user
+                .comment_index-comment-right
+                  = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
+                .comment_index-image
+                  = render partial: './users/profiles/image', locals: { user: comment.user }
+                  p = comment.user.user_name
+            .comment_index-btns
+              - if current_user == comment.user
+                = link_to 'delete', recruit_comment_path(recruit_id: @recruit, id: comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }
 
-    .comment_new
-      = render "devise/shared/error_messages", resource: @comment
-      = form_with url: recruit_comments_path(@recruit), local: true do |f|
-        .comment_new-inner
-          .field.comment_new_content
-            / = f.label :content, 'Write your plan:'
-            = f.text_area :content, placeholder: "Write your reply Write your reply Write your reply"
-          .field.recruit_new-btn
-            .actions
-              = f.submit "Reply", class: "btn btn-primary"

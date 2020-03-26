@@ -34,7 +34,7 @@ User.create!(name: 'foobar',
               )
 end
 
-users = User.order(:created_at).take(10)
+users = User.all.sample(10)
 5.times do
   users.each { |user| user.recruits.create!(
     date_time: Faker::Time.between(Time.current, Time.current + 10),

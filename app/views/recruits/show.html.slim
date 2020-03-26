@@ -20,6 +20,12 @@
             .member-name
               - @recruit.participated_users.each do |participated_user|
                 = link_to "•#{participated_user.user_name}", users_profile_path(participated_user)
+            .join-btns
+              - if current_user.id == @recruit.user_id
+              - elsif current_user.participated?(@recruit)
+                = link_to 'changed my mind', recruit_participation_path(@recruit), method: :delete, class: "delete_join-btn"
+              - else
+                = link_to 'I will Join', recruit_participations_path(@recruit), class: "join-btn", method: :post
         
         .recruit_show-inner-recruitInfo
           = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
@@ -44,12 +50,7 @@
         / .joined_users
         /   - @recruit.participated_users.each do |participated_user|
         /     span = "#{participated_user.user_name} / "
-        .join-btns
-          - if current_user.id == @recruit.user_id
-          - elsif current_user.participated?(@recruit)
-            = link_to 'changed my mind', recruit_participation_path(@recruit), method: :delete, class: "delete_join-btn"
-          - else
-            = link_to 'I will Join', recruit_participations_path(@recruit), class: "join-btn", method: :post
+        
       
       .comment_new
         = render "devise/shared/error_messages", resource: @comment

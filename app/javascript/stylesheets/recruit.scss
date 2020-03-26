@@ -160,12 +160,20 @@
   margin: 0 auto;
 }
 
+.comment_index {
+  height: 400px;
+  padding: 2rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .comment_index-item {
   margin-bottom: 1rem;
   margin-left: 5rem;
   align-items: center;
   .comment_index-item-flex {
     display: flex;
+    overflow-wrap: break-word;
   }
   .comment_index-image {
     width: 20%;
@@ -208,8 +216,8 @@
     position: relative;
     text-align: center;
     img {
-      width: 70px;
-      height: 70px;
+      width: 50px;
+      height: 50px;
       object-fit: cover;
       border-radius: 50%;
       margin: 0 2rem;
@@ -224,55 +232,11 @@
       font-size: 1.6rem;
     }
   }
-}
-
-
-
-// .comment_index-image {
-//   img {
-//     position:relative;
-//     width: 50px;
-//     height: 50px;
-//     object-fit: cover;
-//     border-radius: 50%;
-//     margin-right: 2rem;
-//     .link{
-//       display: block;
-//       position: absolute;
-//       top: 0;
-//       left: 0;
-//       width: 100%;
-//       height: 100%;
-//     }
-//   }
-// }
-.comment_index-comment {
-  background-color: white;
-  width: 400px;
-  p {
-    overflow-wrap: break-word;
-  }
-}
-
-
-
-
-
-.comment_index_btns {
-  position: relative;
-  &:hover {
-    .joined_users {
-      display: block;
-      background-color: rgba(73, 121, 211, 0.911);
+  .comment_index-btns {
+    text-align: right;
+    margin-right: 7rem;
+    
+    a {
     }
-  }
-  .joined_users {
-    position: absolute;
-    width: 300px;
-    height: 30px;
-    top: -30px;
-    left: 70px;
-    border-radius: 10px 10px 10px 10px;
-    display: none;
   }
 }

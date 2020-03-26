@@ -31,6 +31,23 @@
   }
 }
 
+.recruit_show-dummy {
+  &::before {
+    content: "";/* 中身は空でいい */
+    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    width: 50px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
+    height: 50px;
+    position: relative;
+    display: inline-block;
+    top: 2px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-size: contain;
+    vertical-align: middle;
+    z-index: 1;
+  }
+}
+
 .recruit_show-inner {
   font-family: 'Handlee', cursive;
   position: relative;
@@ -55,19 +72,6 @@
   }
   .recruit_show-inner-title {
     margin-bottom: 1rem;
-    &::before {
-    content: "";/* 中身は空でいい */
-    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
-    width: 50px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
-    height: 50px;
-    position: absolute;
-    display: inline-block;
-    top: -10px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    background-size: contain;
-    vertical-align: middle;
-  }
   }
   .recruit_show-inner-middle {
     display: flex;
@@ -105,6 +109,7 @@
   }
   .recruit_show-inner-image {
     position: relative;
+    margin-bottom: 0.6rem;
     img {
       width: 150px;
       height: 150px;
@@ -114,7 +119,7 @@
     }
     .orgin_country_flag {
       position: absolute;
-      top: 50px;
+      top: 110px;
       left: 0%;
       font-size: 3rem;
     }
@@ -289,3 +294,4 @@
     }
   }
 }
+

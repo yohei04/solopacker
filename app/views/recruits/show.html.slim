@@ -4,16 +4,23 @@
       h2.recruit_show-inner-title
         = @recruit.title
       .recruit_show-inner-middle
-        .recruit_show-inner-profileInfo
-          .recruit_show-inner-image
-            = render partial: './users/profiles/image', locals: { user: @recruit.user }
-          .recruit_show-inner-text
-            span.user_name = @recruit.user.user_name 
-            - if @recruit.user.age.present?
-              span.age = "(#{@recruit.user.age})"
-            - if @recruit.user.gender.present?
-              span.gender = @recruit.user.gender
-            / = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
+        .recruit_show-inner-middle-left
+          .recruit_show-inner-profileInfo
+            .recruit_show-inner-image
+              = render partial: './users/profiles/image', locals: { user: @recruit.user }
+            .recruit_show-inner-text
+              span.user_name = @recruit.user.user_name 
+              - if @recruit.user.age.present?
+                span.age = "(#{@recruit.user.age})"
+              - if @recruit.user.gender.present?
+                span.gender = @recruit.user.gender
+              / = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
+          .recruit_show-inner-joinMember
+            p ☆Joined Member☆
+            .member-name
+              - @recruit.participated_users.each do |participated_user|
+                = link_to "•#{participated_user.user_name}", users_profile_path(participated_user)
+        
         .recruit_show-inner-recruitInfo
           = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
           .recruit_show-inner-plan.recruit-items
@@ -26,7 +33,7 @@
           = link_to @recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{@recruit.title}?" }
             i.far.fa-trash-alt
         i.far.fa-comment-dots
-        = link_to "(#{@recruit.comments.count})", recruit_path(@recruit)
+        = "(#{@recruit.comments.count})"
         i.fas.fa-user-friends.faa-wrench.animated-hover
         = "(#{@recruit.participations.count})"
 
@@ -34,15 +41,15 @@
   .comment-container
     .comment-inner
       .comment-btns
-        .joined_users
-          - @recruit.participated_users.each do |participated_user|
-            span = "#{participated_user.user_name} / "
+        / .joined_users
+        /   - @recruit.participated_users.each do |participated_user|
+        /     span = "#{participated_user.user_name} / "
         .join-btns
           - if current_user.id == @recruit.user_id
           - elsif current_user.participated?(@recruit)
             = link_to 'changed my mind', recruit_participation_path(@recruit), method: :delete, class: "delete_join-btn"
           - else
-            = link_to 'I will Join', recruit_participations_path(@recruit), class: "join-btn"
+            = link_to 'I will Join', recruit_participations_path(@recruit), class: "join-btn", method: :post
       
       .comment_new
         = render "devise/shared/error_messages", resource: @comment
@@ -65,7 +72,7 @@
                   p = comment.user.user_name
                 .comment_index-comment-left
                   = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
-              - elsif comment.user == @recruit.user
+              - else comment.user == @recruit.user
                 .comment_index-comment-right
                   = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
                 .comment_index-image

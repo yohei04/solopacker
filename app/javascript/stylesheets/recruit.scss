@@ -22,10 +22,10 @@
 }
 
 .recruit_show-container {
-  border: solid 2px orange;
   width: 50%;
   margin: 0 auto;
   background-color: white;
+  border: dashed rgba(255, 145, 0, 0.664);
   .recruit_show-inner-title {
     margin-bottom: 1rem;
   }
@@ -77,7 +77,8 @@
     display: flex;
   }
   .recruit_show-inner-middle-left {
-    width: 40%;
+    width: 30%;
+    text-align: center;
   }
   .recruit_show-inner-profileInfo {
     margin-right: 1.6rem;
@@ -159,7 +160,7 @@
     display: block;
     width: 80%;
     text-align: center;
-    margin-top: 1rem;
+    margin: 1rem auto 0;
     padding: .2rem;
     border-radius: 50px;
     border: 1px solid $white;

@@ -4,14 +4,56 @@
   padding: 3rem 0;
   background-color: $bgc-sign;
 }
-
 .recruit_form-container {
-  width: 30%;
+  width: 50%;
   margin: 0 auto;
+}
+.recruit_form-title {
+  font-size: 2rem;
 }
 
 .recruit_form-inner {
   background-color: white;
+  padding: 1rem;
+  font-size: 1.2rem;
+  form {
+    width: 90%;
+    margin: 0 auto;
+  }
+  .field {
+    margin-bottom: 0.6rem;
+  }
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  #recruit_title {
+    width: 100%;
+  }
+  #recruit_country {
+    width: 70%;
+  }
+  #recruit_city {
+    width: 70%;
+  }
+  #recruit_content {
+    width: 100%;
+    height: 150px;
+  }
+  .recruit_form-btn {
+    text-align: center;
+    .btn {
+      width: 40%;
+      color: white;
+      border-radius: 50px;
+      background-color: $color-main;border: 1px solid $white;
+      &:hover {
+        border: 1px solid $color-main;
+        color: $color-main;
+        background-color: white;
+      }
+    }
+  }
 }
 
 
@@ -151,6 +193,16 @@
   }
   .recruit_show-inner-bottom {
     font-size: 1.2rem;
+    text-align: right;
+    .fa-edit, .fa-trash-alt, .comment-icon, .join-icon {
+      margin-right: 0.2rem;
+    }
+    a {
+      color: black;
+      &:hover {
+        color: black;
+      }
+    }
   }
 }
 
@@ -231,7 +283,25 @@
     overflow-wrap: break-word;
   }
   .comment_index-image {
+    position: relative;
     width: 20%;
+    text-align: center;
+    img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin: 0 2rem;
+    }
+    a:hover {
+      opacity: .7;
+    }
+    .orgin_country_flag {
+      position: absolute;
+      top: 28px;
+      left: 40px;
+      font-size: 1.6rem;
+    }
   }
   .comment_index-comment-left {
     position: relative;
@@ -265,26 +335,6 @@
       border: 12px solid transparent;
       border-right: 12px solid white;
       transform: rotate(180deg);
-    }
-  }
-  .comment_index-image {
-    position: relative;
-    text-align: center;
-    img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin: 0 2rem;
-    }
-    a:hover {
-      opacity: .7;
-    }
-    .orgin_country_flag {
-      position: absolute;
-      top: 45px;
-      left: 30px;
-      font-size: 1.6rem;
     }
   }
   .comment_index-btns {

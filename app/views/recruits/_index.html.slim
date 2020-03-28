@@ -15,8 +15,10 @@
           .recruit_index-item-texts
             = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
       .recruit_index-item-bottom
-        i.far.fa-comment-dots
-        = link_to "(#{recruit.comments.count})", recruit_path(recruit)
-        i.fas.fa-user-friends.faa-wrench.animated-hover
-        = "(#{recruit.participations.count})"
+        span.comment-icon
+          i.far.fa-comment-dots
+          = link_to "(#{recruit.comments.count})", recruit_path(recruit)
+        span.join-icon
+          i.fas.fa-user-friends.faa-wrench.animated-hover
+          = "(#{recruit.participations.count})"
 

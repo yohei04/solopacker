@@ -74,6 +74,7 @@
 }
 
 .recruit_show-dummy {
+  width: 100%;
   &::before {
     content: "";/* 中身は空でいい */
     background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
@@ -114,6 +115,7 @@
   }
   .recruit_show-inner-title {
     margin-bottom: 1rem;
+    word-wrap: break-word;
   }
   .recruit_show-inner-middle {
     display: flex;
@@ -125,30 +127,8 @@
   .recruit_show-inner-profileInfo {
     margin-right: 1.6rem;
   }
-  .recruit_show-inner-text {
-    font-size: 1.6rem;
-  }
-  // .when {
-  //   display: none;
-  // }
-  .recruit-items {
-    margin-bottom: .6rem;
-    &:first-child {
-      margin-top: 1rem;
-    }
-  }
-  .recruit-words {
-    font-size: 1.4rem;
-    // padding-bottom: .6rem;
-    color: $color-gray;
-  }
-  .user-info {
-    font-size: 1.4rem;
-    margin-top: .2rem;
-  }
-  .when-info {
-    // font-size: 2rem;
-    // margin-bottom: 2rem;
+  .recruit_show-inner-name {
+    font-size: 1.8rem;
   }
   .recruit_show-inner-image {
     position: relative;
@@ -191,16 +171,41 @@
       }
     }
   }
+  .recruit_show-inner-recruitInfo {
+    width: 70%;
+    .recruit-items {
+      margin-bottom: .6rem;
+      &:first-child {
+        margin-top: 1rem;
+      }
+    }
+    .recruit-words {
+      font-size: 1.4rem;
+      // padding-bottom: .6rem;
+      color: $color-gray;
+    }
+    .user-info {
+      font-size: 1.4rem;
+      margin-top: .2rem;
+      word-wrap: break-word;
+    }
+    .when-info {
+      // font-size: 2rem;
+      // margin-bottom: 2rem;
+    }
+  }
+
   .recruit_show-inner-bottom {
     font-size: 1.2rem;
     text-align: right;
+    color: rgb(87, 84, 84);
     .fa-edit, .fa-trash-alt, .comment-icon, .join-icon {
       margin-right: 0.2rem;
     }
     a {
-      color: black;
+      color: rgb(87, 84, 84);
       &:hover {
-        color: black;
+        color: rgb(87, 84, 84);
       }
     }
   }

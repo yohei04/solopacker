@@ -116,3 +116,22 @@
     // margin-left: 1rem;
   }
 }
+
+.members-recruis {
+  background-color: $bgc-sign;
+  padding: 0 0 3rem 1rem;
+}
+.host_recruits, .join_recruits {
+  h3 {
+    font-size: 2rem;
+    padding: 1rem 0 0 2rem;
+  }
+  .host_recruits-inner, .join_recruits-inner {
+    width: 100%;
+    max-width: 1400px;
+    display: flex;
+    overflow-x: scroll;
+  }
+  @include recruit();
+}
+

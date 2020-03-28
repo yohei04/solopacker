@@ -1,19 +1,21 @@
 - if user_signed_in?
   section#recruit
     .recruit_index-wrapper
+      h2.recruit_index-title
+        i.fas.fa-map-marker-alt
+        = searched_recruit_country
       .recruit_index-container
         = image_pack_tag 'cork_board.jpg', class: "cork_board"
-        h2.recruit_index-title
-          / = recruits_title
-          | Recruit all
-        .recruit_index-btns
-          = render partial: 'recruits/search'
-        .recruit_index-inner
-          = render partial: 'recruits/index', locals: { recruits: @recruits }
-        .home-paginate
-          = render partial: 'layouts/paginate', locals: { object: @recruits }
-        .recruit_index-blank-dummy
-          = render partial: 'recruits/blank'
+        .on-image
+          .recruit_index-btns
+            = render partial: 'recruits/search'
+          .recruit_index-inner
+            = render partial: 'recruits/index', locals: { recruits: @recruits }
+          .home-paginate
+            = render partial: 'layouts/paginate', locals: { object: @recruits }
+          .recruit_index-blank
+            = render partial: 'recruits/blank'
+            
 - else
   section#main_vew
     .main_view-wrapper

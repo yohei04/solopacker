@@ -21,27 +21,10 @@
 }
 
 .members_index-item {
-  position: relative;
   display: flex;
   margin-left: 5rem;
-  // justify-content: center;
   align-items: center;
-  a:hover {
-    opacity: .7;
-  }
-  img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 1.4rem;
-  }
-  .orgin_country_flag {
-    position: absolute;
-    top: 65px;
-    left: -10px;
-    font-size: 2.6rem;
-  }
+  @include user-image();
   .profile-items {
     display: flex;
     margin-bottom: 0.2rem;
@@ -82,19 +65,8 @@
   // align-items: center;
   .members_show-image {
     position: relative;
-    img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin-right: 2rem;
-    }
-    .orgin_country_flag {
-      position: absolute;
-      top: 150px;
-      left: 0%;
-      font-size: 3rem;
-    }
+    @include user-image($width: 200px, $height: 200px, $margin-right: 2rem,
+                   $top: 150px, $left: 0px, $font-size: 3rem);
   }
 }
 .members_show-text {
@@ -127,9 +99,10 @@
     padding: 1rem 0 0 2rem;
   }
   .host_recruits-inner, .join_recruits-inner {
+    display: flex;
     width: 100%;
     max-width: 1400px;
-    display: flex;
+    height: 350px;
     overflow-x: scroll;
   }
   @include recruit();

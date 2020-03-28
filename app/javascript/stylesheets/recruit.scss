@@ -75,44 +75,14 @@
 
 .recruit_show-dummy {
   width: 100%;
-  &::before {
-    content: "";/* 中身は空でいい */
-    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
-    width: 50px;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
-    height: 50px;
-    position: relative;
-    display: inline-block;
-    top: 2px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    background-size: contain;
-    vertical-align: middle;
-    z-index: 1;
-  }
+  @include recruit-pin($width: 50px, $height: 50px, $top: 70px);
 }
 
 .recruit_show-inner {
   font-family: 'Handlee', cursive;
   position: relative;
-  padding: 1rem;
-  &::before, &::after {
-    content:"";
-    position: absolute;
-    z-index: -1;/*影を下の層に持っていく*/
-    bottom: 10px;
-    display: block;
-    width: 50%;
-    height: 50%;
-    box-shadow: 0 15px 10px #960;
-  }
-  &::before {
-    left: 5px;
-    transform:rotate(-5deg);
-  }
-  &::after {
-    right: 5px;
-    transform:rotate(5deg);
-  }
+  padding: 3rem 1rem 1rem;
+  @extend %recruit-shadow;
   .recruit_show-inner-title {
     margin-bottom: 1rem;
     word-wrap: break-word;
@@ -131,21 +101,9 @@
     font-size: 1.8rem;
   }
   .recruit_show-inner-image {
-    position: relative;
     margin-bottom: 0.6rem;
-    img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 50%;
-      // margin-right: 2rem;
-    }
-    .orgin_country_flag {
-      position: absolute;
-      top: 110px;
-      left: 0%;
-      font-size: 3rem;
-    }
+    @include user-image($width: 150px, $height: 150px, $margin-right: 0,
+                   $top: 110px, $left: 0px, $font-size: 3rem);
   }
   .recruit_show-inner-joinMember {
     margin: 1rem 0 .3rem;
@@ -273,7 +231,7 @@
 }
 
 .comment_index {
-  height: 400px;
+  height: 600px;
   padding: 2rem;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -288,25 +246,10 @@
     overflow-wrap: break-word;
   }
   .comment_index-image {
-    position: relative;
     width: 20%;
     text-align: center;
-    img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      border-radius: 50%;
-      margin: 0 2rem;
-    }
-    a:hover {
-      opacity: .7;
-    }
-    .orgin_country_flag {
-      position: absolute;
-      top: 28px;
-      left: 40px;
-      font-size: 1.6rem;
-    }
+    @include user-image($width: 50px, $height: 50px, $margin-right: 0,
+                   $top: 28px, $left: 40px, $font-size: 1.6rem);
   }
   .comment_index-comment-left {
     position: relative;

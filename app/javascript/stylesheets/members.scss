@@ -9,9 +9,6 @@
   width: 60%;
   margin: 0 auto;
   background-color: white;
-  .pagination {
-    justify-content: flex-end;
-  }
 }
 
 .members_index-inner {
@@ -42,6 +39,9 @@
       }
     }
   }
+}
+.members-paginate {
+  @include pagination($justify-content: flex-end)
 }
 
 

@@ -201,17 +201,5 @@
 
 
 .home-paginate {
-  .pagination {
-    position: absolute;
-    bottom: 50px;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    font-size: .01rem;
-    .page-item.disabled {
-      display: none;
-    }
-  }
+  @include pagination()
 }
-
-
-

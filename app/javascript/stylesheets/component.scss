@@ -61,6 +61,26 @@
   }
 }
 
+// ページネーション
+@mixin pagination($justify-content: center, $font-size: .01rem) {
+  .pagination {
+    font-size: $font-size;
+    justify-content: $justify-content;
+    .page-item.active .page-link {
+      color: white;
+      background-color: $color-main; 
+      border-color: $color-main; 
+    }
+    .page-link {
+      color: $color-main;
+      background-color: white; 
+    }
+    .page-item.disabled {
+      display: none;
+    }
+  }
+}
+
 
 
 // 募集の外側
@@ -156,7 +176,7 @@
   .recruit_index-item-bottom {
     text-align: right;
     font-size: 1.2rem;
-    color: rgb(87, 84, 84);
+    color: $color-black;
     a {
       margin-right: 0.4rem;
     }

@@ -156,14 +156,14 @@
   .recruit_show-inner-bottom {
     font-size: 1.2rem;
     text-align: right;
-    color: rgb(87, 84, 84);
+    color: $color-black;
     .fa-edit, .fa-trash-alt, .comment-icon, .join-icon {
       margin-right: 0.2rem;
     }
     a {
-      color: rgb(87, 84, 84);
+      color: $color-black;
       &:hover {
-        color: rgb(87, 84, 84);
+        color: $color-black;
       }
     }
   }

@@ -10,5 +10,6 @@
           .members_index-text
             = render partial: 'simpleInfo', locals: { user: user }
         hr
-    = render partial: 'layouts/paginate', locals: { object: @users }
+    .members-paginate
+      = render partial: 'layouts/paginate', locals: { object: @users }
 

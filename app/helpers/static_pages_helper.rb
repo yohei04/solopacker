@@ -1,10 +1,8 @@
 module StaticPagesHelper
-# def recruits_title
-#   search_country_code = params[:q][:country_cont]
-#   if search_country_code.present?
-#     "Recruits in #{country_name(search_country_code)}"
-#   else
-#     'All Recruits'
-#   end
-# end
+  def searched_recruit_country
+    return 'All Recruits' if params[:q].try(:[], :country_cont).blank?
+
+    name = country_name(params[:q][:country_cont])
+    name.present? ? "Recruits in #{name}" : 'No such country!'
+  end
 end

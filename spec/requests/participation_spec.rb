@@ -10,7 +10,7 @@ describe 'Participation', type: :request do
       it 'is successfully created' do
         login_as user_a
         get recruit_path(recruit_a)
-        expect(response.body).to include "joins(#{recruit_a.participations.count})"
+        expect(response.body).to include "(#{recruit_a.participations.count})"
         expect do
           post recruit_participations_path(recruit_a), params: FactoryBot.attributes_for(:participation)
         end.to change(Participation, :count).by(1)

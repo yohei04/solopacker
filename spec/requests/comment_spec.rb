@@ -16,7 +16,7 @@ describe 'Comment', type: :request do
         expect(response.status).to eq 302
         get recruit_path(recruit_a)
         expect(response.body).to include 'test'
-        expect(response.body).to include "comments(#{recruit_a.comments.count})"
+        expect(response.body).to include "(#{recruit_a.comments.count})"
       end
     end
     context 'with incorrect parameters' do

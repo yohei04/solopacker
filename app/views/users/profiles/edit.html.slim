@@ -34,14 +34,17 @@
             = f.label :gender, 'Gender:' 
             = f.select :gender, ['♂', '♀', 'other'], {include_blank: 'select'}
           .field.origin
-            = f.label :origin, 'Hometown:'
+            = f.label :origin, 'Home Country:'
             = f.country_select :origin, {include_blank: 'select'}, class: 'select-origin'
+          .field.current_place
+            = f.label :current_place, 'Current place:'
+            = f.text_field :current_place, id: :autocomplete_address
           .field.current_country
             = f.label :current_country, 'Current Country:'
-            = f.country_select :current_country, {include_blank: 'select'}, class: 'current_country'
+            = f.text_field :current_country, id: :country
           .field.current_city
             = f.label :current_city, 'Current City:'
-            = f.text_field :current_city
+            = f.text_field :current_city, id: :locality
           .field.language_1
             = f.label :language_1, 'Language①:'
             = f.text_field :language_1
@@ -67,3 +70,6 @@
           /     = link_to 'Change password', edit_user_registration_path(current_user)
           /   p  
           /     = link_to "Delete account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete
+
+
+= javascript_pack_tag 'autocomplete'

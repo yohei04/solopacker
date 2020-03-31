@@ -17,7 +17,7 @@ $(document).on('turbolinks:load', function () {
       for (var j in component.types) {  // Some types are ["country", "political"]
         var type_element = document.getElementById(component.types[j]);
         if (type_element) {
-          type_element.value = component.long_name;
+          type_element.value = component.short_name;
         }
       }
     }

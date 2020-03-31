@@ -65,7 +65,7 @@ describe 'sign, profile page', type: :system do
       it 'Saveするとデータが更新されてホームに遷移する' do
         expect(page).to have_content 'Date Of Birth'
         expect(page).to have_content 'Language①'
-        select 'China', from: 'Hometown:'
+        select 'China', from: 'Home Country:'
         fill_in 'user_name', with: 'hogehoge'
         fill_in 'user_language_1', with: 'Chinese'
         click_on 'Save'

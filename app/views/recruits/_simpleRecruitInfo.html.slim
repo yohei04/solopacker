@@ -10,9 +10,9 @@
   span.where.recruit-words Where: 
   / i.fasfa-map-marked-alt
   .user-info
-    span = recruit.city
+    span = "#{recruit.city}_"
     span = recruit.country
-    span.country_flag = country_flag(recruit.user.current_country)
+    span.country_flag = country_flag(recruit.country)
 .recruit-items
   span.how_long.recruit-words How long:
   / i.fas.fa-hourglass-half

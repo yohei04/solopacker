@@ -51,7 +51,7 @@ class RecruitsController < ApplicationController
   private
 
     def recruit_params
-      params.require(:recruit).permit(:date_time, :hour, :country, :city, :title, :content)
+      params.require(:recruit).permit(:date_time, :hour, :country, :city, :title, :content, :address, :latitude, :longitude)
     end
 
     def profile_blank_check?

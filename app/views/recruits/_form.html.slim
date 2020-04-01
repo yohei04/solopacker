@@ -10,8 +10,13 @@
     = f.select :hour, (0.5..24).step(0.5).to_a
   .recruit_new-where
     .field.recruit_new_place
-      = f.label :meeting_place, 'Meeting Place:'
-      = f.text_field :meeting_place, value: city, id: :autocomplete_address
+      = f.label :address, 'Meeting Place:'
+      = f.text_field :address, value: city, id: :autocomplete_address
+      = f.hidden_field :latitude, id: :latitude 
+      = f.hidden_field :longitude, id: :longitude 
+    .field.recruit_sss_place
+      / = f.hidden_field :longitude
+
     .field.recruit_new_country
       / = f.label :country, 'Meeting Country:'
       = f.hidden_field :country, value: country, id: :country

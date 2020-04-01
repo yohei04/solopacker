@@ -9,6 +9,8 @@ $(document).on('turbolinks:load', function () {
 
   function onPlaceChanged() {
     var place = this.getPlace();
+    document.getElementById('latitude').value = place.geometry.location.lat();
+    document.getElementById('longitude').value = place.geometry.location.lng();
 
     // console.log(place);  // Uncomment this line to view the full object returned by Google API.     
 

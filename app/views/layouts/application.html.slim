@@ -14,9 +14,6 @@ html
     = render 'layouts/flash'
     = render 'layouts/header'
     = yield
-    
-
-    / = javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{ENV['GOOGLE_API_SERVER_KEY']}"
-
-    / = javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyD54MsAIEAXORVFqDzlkp_br_yJoAh3F6c"
     = debug(params) if Rails.env.development? 
+
+    

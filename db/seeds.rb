@@ -42,7 +42,10 @@ users = User.all.sample(10)
     country: Faker::Address.country_code,
     city: Faker::Address.city,
     title: Faker::Book.title,
-    content: [Faker::Matz.quote, Faker::OnePiece.quote].sample
+    content: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
+    address: Faker::Address.city,
+    latitude: Faker::Address.latitude,
+    longitude: Faker::Address.longitude,
   ) }
 end
 

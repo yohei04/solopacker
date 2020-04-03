@@ -32,7 +32,7 @@
     const data = JSON.parse(document.getElementById('hoge').dataset.resource);
     function initMap() {
       // 日本の中央を表示する
-      const defaultSettings = {zoom: 2, center: {lat: 40.804365, lng: 141.134867}};
+      const defaultSettings = {zoom: 2, center: {lat: 0, lng: 0}};
       const map = new google.maps.Map(
         document.querySelector('#map'),
         defaultSettings
@@ -42,39 +42,30 @@
       let currentWindow;
 
       data.map(d => {
+        var contentString = 
+        '<div id="content">'+
+          `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
+          `<p>@${d.city}<p>`+
+        '</div>';
+
         // マーカーをつける
         const marker = new google.maps.Marker({
           position: {lat: d.latitude, lng: d.longitude},
-          map: map
+          animation: google.maps.Animation.DROP,
+          map: map,
+          icon: 'http://hibana.xii.jp/icon/pin/004/c1.png',
         });
 
         // マーカークリックしたら地名をポップアップさせる
         marker.addListener('click', () => {
           currentWindow && currentWindow.close();
-          const infoWindow = new google.maps.InfoWindow({content: d.title});
+          const infoWindow = new google.maps.InfoWindow({content: contentString});
           infoWindow.open(map, marker);
           currentWindow = infoWindow;
         });
       });
     }
 
-
-  
-    //Initialize and add the map
-    //function initMap() {
-      //The location of Uluru
-      //var uluru = {lat: -25.344, lng: 131.036};
-      //The map, centered at Uluru
-      //var map = new google.maps.Map(
-        //document.getElementById('map'), {zoom: 4, center: uluru});
-      //The marker, positioned at Uluru
-    //  var marker = new google.maps.Marker({position: uluru, map: map});
-    //}
-  /!
-    | Load the API from the specified URL
-    | * The async attribute allows the browser to render the page while the API loads
-    | * The key parameter will contain your own API key (which is not needed for this tutorial)
-    | * The callback parameter executes the initMap() function
   script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap"  
 
 

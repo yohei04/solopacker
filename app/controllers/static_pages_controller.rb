@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
   def home
     @q = Recruit.ransack(params[:q])
     @recruits = @q.result(distinct: true).page(params[:page]).per(6).recent
-    @recruits_json = Recruit.all.to_json(only: [:title, :latitude, :longitude])
+    @recruits_json = Recruit.all.to_json(only: [:id, :title, :city, :latitude, :longitude])
   end
 
   def map

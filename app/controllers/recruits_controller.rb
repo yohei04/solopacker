@@ -1,4 +1,6 @@
 class RecruitsController < ApplicationController
+  before_action :authenticate_user!, except: [:map]
+
   def show
     @recruit = Recruit.find(params[:id])
     @comment = Comment.new
@@ -46,6 +48,10 @@ class RecruitsController < ApplicationController
     recruit.destroy!
     flash[:notice] = 'Recruit deleted!'
     redirect_to root_path
+  end
+
+  def map
+    @recruits_json = Recruit.all.to_json(only: [:id, :title, :city, :latitude, :longitude])
   end
 
   private

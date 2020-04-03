@@ -11,7 +11,7 @@
   .recruit_new-where
     .field.recruit_new_place
       = f.label :address, 'Meeting Place:'
-      = f.text_field :address, value: city, id: :autocomplete_address
+      = f.text_field :address, placeholder: city, id: :autocomplete_address
       = f.hidden_field :latitude, id: :latitude 
       = f.hidden_field :longitude, id: :longitude 
     .field.recruit_sss_place

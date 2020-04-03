@@ -1,3 +1,5 @@
+include ProfilesHelper
+
 User.create!(name: 'foobar',
              user_name: 'foobar',
              email: 'foobar@example.com',
@@ -35,19 +37,20 @@ User.create!(name: 'foobar',
 end
 
 users = User.all.sample(10)
-5.times do
+2.times do |n|
   users.each { |user| user.recruits.create!(
     date_time: Faker::Time.between(Time.current, Time.current + 10),
     hour: ((0.5..24).step(0.5).map(&:itself)).sample,
-    country: Faker::Address.country_code,
+    country: user.current_country,
     city: Faker::Address.city,
     title: Faker::Book.title,
     content: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
     address: Faker::Address.city,
-    latitude: Faker::Address.latitude,
-    longitude: Faker::Address.longitude,
+    latitude: Geocoder.search(country_name(user.current_country)).first.coordinates[0],
+    longitude: Geocoder.search(country_name(user.current_country)).first.coordinates[1],
   ) }
 end
+
 
 recruits = Recruit.order(created_at: :desc).take(5)
 5.times do

@@ -64,7 +64,6 @@
   justify-content: center;
   // align-items: center;
   .members_show-image {
-    position: relative;
     @include user-image($width: 200px, $height: 200px, $margin-right: 2rem,
                    $top: 150px, $left: 0px, $font-size: 3rem);
   }

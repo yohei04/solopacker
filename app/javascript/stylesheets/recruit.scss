@@ -98,12 +98,12 @@
     margin-right: 1.6rem;
   }
   .recruit_show-inner-name {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
   }
   .recruit_show-inner-image {
     margin-bottom: 0.6rem;
-    @include user-image($width: 150px, $height: 150px, $margin-right: 0,
-                   $top: 110px, $left: 0px, $font-size: 3rem);
+    @include user-image($width: 170px, $height: 170px, $margin-right: 0,
+                   $top: 120px, $left: -140px, $font-size: 3rem);
   }
   .recruit_show-inner-joinMember {
     margin: 1rem 0 .3rem;
@@ -238,24 +238,24 @@
 }
 
 .comment_index-item {
-  margin-bottom: 1rem;
-  margin-left: 5rem;
+  margin-top: 1rem;
   align-items: center;
-  .comment_index-item-flex {
-    display: flex;
-    overflow-wrap: break-word;
-  }
+}
+.comment_index-item-left {
+  display: flex;
+  overflow-wrap: break-word;
   .comment_index-image {
     width: 20%;
-    text-align: center;
+    text-align: right;
+    padding-right: 1.5rem;
     @include user-image($width: 50px, $height: 50px, $margin-right: 0,
-                   $top: 28px, $left: 40px, $font-size: 1.6rem);
+                    $top: 28px, $left: 0px, $right: 55px, $font-size: 1.6rem);
   }
-  .comment_index-comment-left {
+  .comment_index-comment {
     position: relative;
     width: 60%;
     border-radius: 20px;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     background-color: $color-trueWhite;
     &::after {
       content: "";
@@ -267,13 +267,24 @@
       border-right: 12px solid $color-trueWhite;
     }
   }
-  .comment_index-comment-right {
+}
+.comment_index-item-right {
+  display: flex;
+  overflow-wrap: break-word;
+  justify-content: flex-end;
+  .comment_index-image {
+    width: 20%;
+    text-align: left;
+    padding-left: 1.5rem;
+    @include user-image($width: 50px, $height: 50px, $margin-right: 0,
+                    $top: 28px, $left: 15px, $font-size: 1.6rem);
+  }
+  .comment_index-comment {
     position: relative;
     width: 60%;
     border-radius: 20px;
-    padding: 1rem;
+    padding: 1rem 1rem 0 1rem;
     background-color: $color-trueWhite;
-    margin-left: auto;
     &::after {
       content: "";
       display: inline-block;
@@ -285,12 +296,12 @@
       transform: rotate(180deg);
     }
   }
-  .comment_index-btns {
-    text-align: right;
-    margin-right: 7rem;
-    
-    a {
-    }
+}
+.comment_index-btns {
+  text-align: right;
+  margin-top: 1rem;
+  a {
   }
 }
+
 

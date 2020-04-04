@@ -41,7 +41,7 @@
 
 // ユーザーアイコンと国旗
 @mixin user-image($width: 100px, $height: 100px, $margin-right: 1.4rem,
-                   $top: 65px, $left: -10px, $font-size: 2.6rem) {
+                   $top: 65px, $left: -10px, $right: 0, $font-size: 2.6rem) {
   position: relative;
   a:hover {
     opacity: .7;
@@ -57,6 +57,7 @@
     position: absolute;
     top: $top;
     left: $left;
+    right: $right;
     font-size: $font-size;
   }
 }

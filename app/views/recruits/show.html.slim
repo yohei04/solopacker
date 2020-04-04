@@ -68,20 +68,19 @@
       .comment_index
         - @recruit.comments.each do |comment|
           .comment_index-item
-            .comment_index-item-flex
-              - if comment.user != @recruit.user
+            - if comment.user != @recruit.user
+              .comment_index-item-left
                 .comment_index-image
                   = render partial: './users/profiles/image', locals: { user: comment.user }
                   p = comment.user.user_name
-                .comment_index-comment-left
-                  = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
-              - else comment.user == @recruit.user
-                .comment_index-comment-right
-                  = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
+                .comment_index-comment
+                  = render partial: 'comment', locals: { recruit: @recruit, comment: comment }
+            - else comment.user == @recruit.user
+              .comment_index-item-right
+                .comment_index-comment
+                    = render partial: 'comment', locals: { recruit: @recruit, comment: comment }
                 .comment_index-image
                   = render partial: './users/profiles/image', locals: { user: comment.user }
                   p = comment.user.user_name
-            .comment_index-btns
-              - if current_user == comment.user
-                = link_to 'delete', recruit_comment_path(recruit_id: @recruit, id: comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }
+          
 

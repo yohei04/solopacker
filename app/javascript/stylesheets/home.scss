@@ -12,8 +12,8 @@
   .main_view-container {
     position: absolute;
     text-align: center;
-    color: white;
-    text-shadow: 0.1rem 0.1rem 0.8rem #000;
+    color: $color-trueWhite;
+    text-shadow: 0.1rem 0.1rem 0.8rem $color-trueBlack;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%,-50%);
@@ -95,7 +95,7 @@
 
 .recruit_index-container {
   margin: 0 auto;
-  background-color: white;
+  background-color: $color-trueWhite;
   position: relative;
   .cork_board {
     width: 100%;
@@ -151,8 +151,8 @@
   @include recruit-pin($top: -5, $left: 45%);
   a {
     background-color: $color-main;
-    color: black;
-    // text-shadow: .1rem .1rem .3rem #000;
+    color: $color-trueBlack;
+    // text-shadow: .1rem .1rem .3rem $color-trueBlack;
     &:hover {
       color: $color-main;
     }

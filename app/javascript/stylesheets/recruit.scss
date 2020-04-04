@@ -13,7 +13,7 @@
 }
 
 .recruit_form-inner {
-  background-color: white;
+  background-color: $color-trueWhite;
   padding: 1rem;
   font-size: 1.2rem;
   form {
@@ -44,13 +44,13 @@
     text-align: center;
     .btn {
       width: 40%;
-      color: white;
+      color: $color-trueWhite;
       border-radius: 50px;
       background-color: $color-main;border: 1px solid $white;
       &:hover {
         border: 1px solid $color-main;
         color: $color-main;
-        background-color: white;
+        background-color: $color-trueWhite;
       }
     }
   }
@@ -66,7 +66,7 @@
 .recruit_show-container {
   width: 50%;
   margin: 0 auto;
-  background-color: white;
+  background-color: $color-trueWhite;
   border: dashed rgba(255, 145, 0, 0.664);
   .recruit_show-inner-title {
     margin-bottom: 1rem;
@@ -121,9 +121,9 @@
     .member-name {
       font-size: 1rem;
       margin-right: auto;
-      color: black;
+      color: $color-trueBlack;
       margin: 0 1rem .3rem 0;
-      border-bottom: 1px solid white;
+      border-bottom: 1px solid $color-trueWhite;
       &:hover {
         border-bottom: 1px solid $color-gray;
       }
@@ -178,13 +178,13 @@
     margin: 1rem auto 0;
     padding: .2rem;
     border-radius: 50px;
-    border: 1px solid $white;
-    color: white;
+    border: 1px solid $color-trueWhite;
+    color: $color-trueWhite;
     background-color: $color-main;
     &:hover {
       border: 1px solid $color-main;
       color: $color-main;
-      background-color: white;
+      background-color: $color-trueWhite;
     }
   }
 }
@@ -211,7 +211,7 @@
     text-align: right;
   }
   .btn {
-    color: white;
+    color: $color-trueWhite;
     border-radius: 50px;
     background-color: $color-main;
   }
@@ -256,7 +256,7 @@
     width: 60%;
     border-radius: 20px;
     padding: 1rem;
-    background-color: white;
+    background-color: $color-trueWhite;
     &::after {
       content: "";
       display: inline-block;
@@ -264,7 +264,7 @@
       top: 18px; 
       left: -24px;
       border: 12px solid transparent;
-      border-right: 12px solid white;
+      border-right: 12px solid $color-trueWhite;
     }
   }
   .comment_index-comment-right {
@@ -272,7 +272,7 @@
     width: 60%;
     border-radius: 20px;
     padding: 1rem;
-    background-color: white;
+    background-color: $color-trueWhite;
     margin-left: auto;
     &::after {
       content: "";
@@ -281,7 +281,7 @@
       top: 18px; 
       right: -24px;
       border: 12px solid transparent;
-      border-right: 12px solid white;
+      border-right: 12px solid $color-trueWhite;
       transform: rotate(180deg);
     }
   }

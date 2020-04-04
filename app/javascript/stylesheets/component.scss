@@ -108,10 +108,10 @@
 
 
 // 一つの募集
-@mixin recruit(){
+@mixin recruit($width: 32%){
   .recruit_index-dummy {
     position: relative;
-    width: 32%;
+    width: $width;
     z-index: 1;
     @include recruit-pin();
   }

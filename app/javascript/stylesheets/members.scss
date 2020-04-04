@@ -89,21 +89,23 @@
 }
 
 .members-recruis {
+  display: flex;
+  width: 100%;
   background-color: $bgc-sign;
   padding: 0 0 3rem 1rem;
 }
 .host_recruits, .join_recruits {
+  width: 50%;
   h3 {
     font-size: 2rem;
     padding: 1rem 0 0 2rem;
   }
   .host_recruits-inner, .join_recruits-inner {
-    display: flex;
-    width: 100%;
-    max-width: 1400px;
-    height: 350px;
-    overflow-x: scroll;
+    width: 60%;
+    // height: 500px;
+    // overflow-y: auto;
+    margin: 0 auto;
+    @include recruit($width: 100%);
   }
-  @include recruit();
 }
 

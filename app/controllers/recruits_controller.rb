@@ -51,7 +51,21 @@ class RecruitsController < ApplicationController
   end
 
   def map
-    @recruits_json = Recruit.all.to_json(only: [:id, :title, :city, :latitude, :longitude])
+    # @recruits_json = Recruit.all.to_json(only: [:id, :title, :city, :latitude, :longitude])
+    @recruits_json = Recruit.includes(:user).map{|r|
+      {
+        id: r.id,
+        title: r.title,
+        city: r.city,
+        latitude: r.latitude,
+        longitude: r.longitude,
+        user: {
+          id: r.user.id,
+          name: r.user.user_name,
+          image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true),
+        }
+      }
+    }.to_json
   end
 
   private

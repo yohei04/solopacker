@@ -29,12 +29,22 @@ javascript:
         `<p>@${d.city}<p>`+
       '</div>';
 
+      var image = {
+        url: `http://localhost:3000/${d.user.image}`,
+        // This marker is 20 pixels wide by 32 pixels high.
+        scaledSize: new google.maps.Size(50, 50),
+        // The origin for this image is (0, 0).
+        origin: new google.maps.Point(0, 0),
+        // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(0, 32)
+      };
+
       // マーカーをつける
       const marker = new google.maps.Marker({
         position: {lat: d.latitude, lng: d.longitude},
         animation: google.maps.Animation.DROP,
         map: map,
-        icon: 'http://hibana.xii.jp/icon/pin/004/c1.png',
+        icon: image,
       });
 
       // マーカークリックしたら地名をポップアップさせる

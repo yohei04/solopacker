@@ -11,9 +11,4 @@ class Recruit < ApplicationRecord
   validates :city, presence: true
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 500 }
-  validates :address, presence: true
-  validates :latitude, presence: true
-  validates :longitude, presence: true
-  geocoded_by :address
-  after_validation :geocode
 end

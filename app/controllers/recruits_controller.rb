@@ -1,6 +1,8 @@
 class RecruitsController < ApplicationController
   before_action :authenticate_user!, except: [:map]
 
+  include RecruitHelper
+
   def show
     @recruit = Recruit.find(params[:id])
     @comment = Comment.new
@@ -53,29 +55,27 @@ class RecruitsController < ApplicationController
   def map
     # @recruits_json = Recruit.all.to_json(only: [:id, :title, :city, :latitude, :longitude])
     @recruits_json = Recruit.includes(:user).map{|r|
-      {
-        id: r.id,
-        title: r.title,
-        city: r.city,
-        latitude: r.latitude,
-        longitude: r.longitude,
-        user: {
-          id: r.user.id,
-          name: r.user.user_name,
-          image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true),
+      # if r.user.image.attached?
+        {
+          id: r.id,
+          title: r.title,
+          city: r.city,
+          lat: latitude(r.city),
+          lng: longitude(r.city),
+          user: {
+            id: r.user.id,
+            name: r.user.user_name,
+            image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true),
+          }
         }
-      }
+      # end
     }.to_json
   end
 
   private
 
     def recruit_params
-      params.require(:recruit).permit(:date_time, :hour, :country, :city, :title, :content, :address, :latitude, :longitude)
+      params.require(:recruit).permit(:date_time, :hour, :country, :city, :title, :content)
     end
 
-    def profile_blank_check?
-      [current_user.gender, current_user.origin, current_user.current_country,
-       current_user.language_1, current_user.introduce].any?(&:blank?)
-    end
 end

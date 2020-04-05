@@ -1,23 +1,21 @@
 $(document).on('turbolinks:load', function () {
   function initializeAutocomplete(id) {
-    var element = document.getElementById(id);
+    let element = document.getElementById(id);
     if (element) {
-      var autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode'] });
+      let autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode'] });
       google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
     }
   }
 
   function onPlaceChanged() {
-    var place = this.getPlace();
-    document.getElementById('latitude').value = place.geometry.location.lat();
-    document.getElementById('longitude').value = place.geometry.location.lng();
+    let place = this.getPlace();
 
     // console.log(place);  // Uncomment this line to view the full object returned by Google API.     
 
-    for (var i in place.address_components) {
-      var component = place.address_components[i];
-      for (var j in component.types) {  // Some types are ["country", "political"]
-        var type_element = document.getElementById(component.types[j]);
+    for (let i in place.address_components) {
+      let component = place.address_components[i];
+      for (let j in component.types) {  // Some types are ["country", "political"]
+        let type_element = document.getElementById(component.types[j]);
         if (type_element) {
           type_element.value = component.short_name;
         }
@@ -28,3 +26,23 @@ $(document).on('turbolinks:load', function () {
     initializeAutocomplete('autocomplete_address');
   });
 }); 
+
+// cityを空にする
+// document.getElementById('autocomplete_address').value = "";
+
+
+
+//let country = document.getElementById('country');
+//let locality = document.getElementById('locality');
+//let latitude = document.getElementById('latitude');
+//let longitude = document.getElementById('longitude');
+//
+//country.value = place.address_components[2].short_name;
+//locality.value = place.address_components[0].long_name;
+
+// if (latitude) {
+//   latitude.value = place.geometry.location.lat();
+// };
+// if (longitude) {
+//   longitude.value = place.geometry.location.lng();
+// };

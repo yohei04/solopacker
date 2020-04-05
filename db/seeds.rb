@@ -13,11 +13,15 @@ User.create!(name: 'foobar',
              language_1: 'Japanese',
              language_2: 'English',
              language_3: 'Chinese',
-             introduce: 'Hi, I\'m an Example User.'
-            #  image: 
+             introduce: 'Hi, I\'m an Example User.',
+             image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img0.jpg"))
              )
 
-10.times do |n|
+# citiesのjsonデータからcitiesのみの配列作成
+json = ActiveSupport::JSON.decode(File.read('db/fixtures/country/cities.json'))
+cities = json.map { |hash| hash["city"] }
+
+15.times do |n|
   User.create!(name: Faker::DragonBall.character,
                user_name: Faker::Name.first_name,
                email: "foobar#{n-1}@example.com",
@@ -26,31 +30,34 @@ User.create!(name: 'foobar',
                date_of_birth: Faker::Date.birthday(18, 40),
                gender: ['♂', '♀', 'other'].sample,
                origin: Faker::Address.country_code,
-               current_country: Faker::Address.country_code,
-               current_city: Faker::Address.city,
+               current_country: 'dummy',
+               current_city: cities.sample,
                language_1: Faker::Nation.language,
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
+               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{[*1..20].delete_at(rand([*1..20].length))}.jpg"))
               )
 end
 
-users = User.all.sample(10)
-2.times do |n|
-  users.each { |user| user.recruits.create!(
-    date_time: Faker::Time.between(Time.current, Time.current + 10),
-    hour: ((0.5..24).step(0.5).map(&:itself)).sample,
-    country: user.current_country,
-    city: Faker::Address.city,
-    title: Faker::Book.title,
-    content: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-    address: Faker::Address.city,
-    latitude: Geocoder.search(country_name(user.current_country)).first.coordinates[0],
-    longitude: Geocoder.search(country_name(user.current_country)).first.coordinates[1],
-  ) }
+# current_cityからダミーのcurrent_countryを上書き
+users = User.all
+users.each do |user|
+  user.current_country = Geocoder.search(user.current_city).first.country_code
+  user.save!
 end
 
+sample_users = User.all.sample(15)
+2.times do |n|
+  sample_users.each { |user| user.recruits.create!(
+    date_time: Faker::Time.between(Time.now - 3.days, Time.now + 10.days),
+    hour: ((0.5..6).step(0.5).map(&:itself)).sample,
+    country: user.current_country,
+    city: user.current_city,
+    title: Faker::Book.title,
+    content: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
+  ) }
+end
 
 recruits = Recruit.order(created_at: :desc).take(5)
 5.times do
@@ -64,6 +71,6 @@ recruits.each do |recruit|
   joinable_user_ids = recruit.comments.map(&:user_id)
   joinable_user_ids.delete(recruit.user_id)
   5.times do
-     recruit.participations.create(user_id: joinable_user_ids.sample)
+    recruit.participations.create(user_id: joinable_user_ids.sample)
   end
 end 

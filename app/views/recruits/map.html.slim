@@ -8,7 +8,22 @@ css:
     height: 500px;
   }
 
-li#hoge data-resource = @recruits_json
+  .gm-style img[src='http://localhost:3000//rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96326bd70d4dd05064e4fe7bf3572386d02ccc39/img3.jpg'] { 
+    border-radius:50%;
+  }
+//  .gm-style img[src='http://localhost:3000//rails/active_storage/blobs///eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96326bd70d//4dd05064e4fe7bf3572386d02ccc39/img3.jpg']:after { 
+//    content:""; !important 
+//    position: absolute; !important 
+//    bottom: -10px; !important 
+//    left: 40px; !important 
+//    border-width: 10px 10px 0; !important 
+//    border-style: solid; !important 
+//    border-color: #424242 transparent; !important 
+//    display: block; !important 
+//    width: 0; !important 
+//  }
+
+#hoge data-resource = @recruits_json
 javascript:
   const data = JSON.parse(document.getElementById('hoge').dataset.resource);
   function initMap() {
@@ -27,12 +42,14 @@ javascript:
       '<div id="content">'+
         `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
         `<p>@${d.city}<p>`+
+      //  `<img src=http://localhost:3000/${d.user.image} width="200px">`+
       '</div>';
 
       var image = {
+    //    url: 'http://hibana.xii.jp/icon/pin/004/c18.png',
         url: `http://localhost:3000/${d.user.image}`,
         // This marker is 20 pixels wide by 32 pixels high.
-        scaledSize: new google.maps.Size(50, 50),
+        scaledSize: new google.maps.Size(30, 30),
         // The origin for this image is (0, 0).
         origin: new google.maps.Point(0, 0),
         // The anchor for this image is the base of the flagpole at (0, 32).
@@ -41,7 +58,7 @@ javascript:
 
       // マーカーをつける
       const marker = new google.maps.Marker({
-        position: {lat: d.latitude, lng: d.longitude},
+        position: {lat: d.lat, lng: d.lng},
         animation: google.maps.Animation.DROP,
         map: map,
         icon: image,
@@ -58,3 +75,5 @@ javascript:
   }
 
 script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap"  
+
+

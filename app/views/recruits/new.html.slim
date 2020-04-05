@@ -4,5 +4,5 @@
     .recruit_form-inner
       = render "devise/shared/error_messages", resource: @recruit
       = render partial: 'form', locals: { recruit: @recruit, 
-                                          country: current_user.current_country,
-                                          city: current_user.current_city }
+                                          country: @recruit.country,
+                                          city: @recruit.city }

@@ -37,8 +37,8 @@
             = f.label :origin, 'Home Country:'
             = f.country_select :origin, {include_blank: 'select'}, class: 'select-origin'
           .field.current_place
-            = f.label :current_place, 'Current place:'
-            = f.text_field :current_place, id: :autocomplete_address
+            = f.label :current_place, 'Current City:'
+            = f.text_field :current_place, placeholder: 'where you are at now', id: :autocomplete_address
           .field.current_country
             = f.label :current_country, 'Current Country:'
             = f.text_field :current_country, id: :country
@@ -73,3 +73,5 @@
 
 
 = javascript_pack_tag 'autocomplete'
+
+

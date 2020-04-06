@@ -1,6 +1,9 @@
 .navbar {
   a {
-    color: white;
+    color: $color-black;
+    &:hover {
+      opacity: .8;
+    }
   }
   .logo {
     display: flex;
@@ -30,7 +33,7 @@
           margin-bottom: 0;
         }
         a {
-          color: black;
+          color: $color-black;
         }
       }
     }

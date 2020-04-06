@@ -22,6 +22,12 @@ time, mark, audio, video {
 
 body {
 }
+a {
+  
+  &:hover {
+    text-decoration: none;
+  }
+}
 
 // article,aside,details,figcaption,figure,
 // footer,header,hgroup,menu,nav,section {

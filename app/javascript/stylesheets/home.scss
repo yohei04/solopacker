@@ -12,8 +12,8 @@
   .main_view-container {
     position: absolute;
     text-align: center;
-    color: white;
-    text-shadow: 0.1rem 0.1rem 0.8rem #000;
+    color: $color-trueWhite;
+    text-shadow: 0.1rem 0.1rem 0.8rem $color-trueBlack;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%,-50%);
@@ -82,36 +82,123 @@
 }
 
 
+
+
+
+
 // recruit#indexセクション
 .recruit_index-wrapper {
-  padding: 3rem;
-  background-color: rgba(22, 224, 22, 0.233);
+  font-family: 'Handlee', cursive;
+  padding: 5rem 3rem 20rem;
+  background-color: rgba(160, 143, 143, 0.233);
 }
 
 .recruit_index-container {
   margin: 0 auto;
-  background-color: white;
+  background-color: $color-trueWhite;
+  position: relative;
+  .cork_board {
+    width: 100%;
+  }
+  .on-image {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+  }
+}
+
+.recruit_index-title {
+  width: 60%;
+  margin: 0 auto;
+  font-size: 80px;
+  color: #474747;
+  border-radius: 20px;
+  text-align: center;
+  .svg-inline--fa{
+    margin: 0 1rem;
+  }
+}
+.recruit_search {
+  text-align: right;
+  select, button {
+    height: 2.4rem;
+  }
+  .btn {
+    background-color: $color-main;
+  }
 }
 
 .recruit_index-inner {
+  width: 100%;
+  padding: 2rem;
+  top: 170px;
+  left: 0;
   display: flex;
   flex-wrap:wrap;
-  justify-content: space-around;
-}
-.recruit_index-item {
-  width: 30%;
-  background-color: rgba(153, 99, 99, 0.288);
-  margin: 1rem;
-  padding: 0.6rem;
-  img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 2rem;
-  }
-}
-.recruit_index-item-middle {
-  display: flex;
+  justify-content: center;
+  z-index: 2;
 }
 
+@include recruit();
+
+.recruit-dummy {
+  position: relative;
+  width: 32%;
+  z-index: 1;
+  margin: 6rem 0 0 5rem;
+  @include recruit-pin($top: -5, $left: 45%);
+  a {
+    background-color: $color-main;
+    color: $color-trueBlack;
+    // text-shadow: .1rem .1rem .3rem $color-trueBlack;
+    &:hover {
+      color: $color-main;
+    }
+  }
+}
+.recruit-blank, .recruit_index-blank-1, .recruit_index-blank-2, .recruit_index-blank-3, .recruit_index-blank-4 {
+  width: 85%;
+  height: 230px;
+  top: 0;
+  left: 0;
+  @include recruit-container($position: absolute, $padding: 2.4rem 1rem 0);
+  box-shadow: 0 8px 8px #960;
+  &::before, &::after {
+    display: none;
+  }
+}
+.recruit-blank {
+  transform: rotate(3deg);
+  z-index: 10;
+  .recruit-info {
+    font-size: 1.2rem;
+    margin-top: 0.6rem;
+  }
+  p {
+    margin-bottom: 0.3rem;
+  }
+}
+.recruit_index-blank-1 {
+  transform: rotate(5deg);
+  z-index: 4;
+}
+.recruit_index-blank-2 {
+  transform: rotate(-5deg);
+  z-index: 2;
+}
+.recruit_index-blank-3 {
+  transform: rotate(8deg);
+  z-index: 3;
+}
+.recruit_index-blank-4 {
+  transform: rotate(0deg);
+  z-index: 1;
+  right: 20px;
+}
+
+
+
+.home-paginate {
+  @include pagination()
+}

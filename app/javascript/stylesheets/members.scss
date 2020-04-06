@@ -2,34 +2,50 @@
 
 .members_index-wrapper {
   background-color: $bgc-sign;
+  padding: 3rem;
 }
 
 .members_index-container {
-  width: 50%;
+  width: 60%;
   margin: 0 auto;
-  background-color: white;
+  background-color: $color-trueWhite;
 }
 
 .members_index-inner {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
+  padding: 2rem 0;
 }
 
-.members_index-items {
+.members_index-item {
   display: flex;
-  justify-content: center;
+  margin-left: 5rem;
   align-items: center;
-  img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 2rem;
+  @include user-image();
+  &:hover {
+    opacity: .7;
+  }
+  .profile-items {
+    display: flex;
+    margin-bottom: 0.2rem;
+  }
+  .profile-words {
+    margin-right: .4rem;
+  }
+  .members_index-text {
+    font-size: 1rem;
+    color: $color-trueBlack;
+    a {
+      text-decoration: none;
+      &:hover {
+        // text-decoration: none;
+      }
+    }
   }
 }
-
-
-
+.members-paginate {
+  @include pagination($justify-content: flex-end)
+}
 
 
 // Members#show
@@ -43,18 +59,56 @@
   width: 50%;
   margin: 0 auto;
   padding: 1rem;
-  background-color: white;
+  background-color: $color-trueWhite;
 }
 
 .members_show-inner-top {
   display: flex;
   justify-content: center;
-  align-items: center;
-  img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 2rem;
+  // align-items: center;
+  .members_show-image {
+    @include user-image($width: 200px, $height: 200px, $margin-right: 2rem,
+                   $top: 150px, $left: 0px, $font-size: 3rem);
   }
 }
+.members_show-text {
+  // font-size: 1.2rem;
+  .user_name_age_gender {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .profile-items {
+    padding-bottom: .6rem;
+  }
+  .profile-words {
+    display: block;
+    padding-bottom: .2rem;
+    color: $color-gray;
+  }
+  .user-info {
+    font-size: 1.2rem;
+    // margin-left: 1rem;
+  }
+}
+
+.members-recruis {
+  display: flex;
+  width: 100%;
+  background-color: $bgc-sign;
+  padding: 0 0 3rem 1rem;
+}
+.host_recruits, .join_recruits {
+  width: 50%;
+  h3 {
+    font-size: 2rem;
+    padding: 1rem 0 0 2rem;
+  }
+  .host_recruits-inner, .join_recruits-inner {
+    width: 60%;
+    // height: 500px;
+    // overflow-y: auto;
+    margin: 0 auto;
+    @include recruit($width: 100%);
+  }
+}
+

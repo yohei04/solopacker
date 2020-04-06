@@ -3,6 +3,6 @@ class StaticPagesController < ApplicationController
 
   def home
     @q = Recruit.ransack(params[:q])
-    @recruits = @q.result(distinct: true).page(params[:page]).per(24).recent
+    @recruits = @q.result(distinct: true).page(params[:page]).per(6).recent
   end
 end

@@ -7,7 +7,10 @@ html
     = csp_meta_tag
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" media="all" rel="stylesheet" type="text/css" /
+    <link href="https://fonts.googleapis.com/css?family=Delius|Handlee|Mali|Sriracha|Sue+Ellen+Francisco&display=swap" rel="stylesheet">
   body
     = render 'layouts/flash'
     = render 'layouts/header'
     = yield
+    = debug(params) if Rails.env.development? 

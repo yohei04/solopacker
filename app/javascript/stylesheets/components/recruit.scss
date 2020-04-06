@@ -1,0 +1,191 @@
+
+// 募集のピン
+@mixin recruit-pin($width: 35px, $height: 35px, $top: 10px, $left: 51%) {
+  &::before {
+    content: "";/* 中身は空でいい */
+    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    width: $width;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
+    height: $height;
+    position: absolute;
+    display: inline-block;
+    top: $top;
+    left: $left;
+    transform: translate(-50%, 0%);
+    background-size: contain;
+    vertical-align: middle;
+    z-index: 20;
+  }
+}
+
+// 募集の影
+%recruit-shadow {
+  &::before, &::after {
+    content:"";
+    position: absolute;
+    z-index: -1;/*影を下の層に持っていく*/
+    bottom: 10px;
+    display: block;
+    width: 50%;
+    height: 50%;
+    box-shadow: 0 15px 10px #960;
+  }
+  &::before {
+    left: 5px;
+    transform:rotate(-5deg);
+  }
+  &::after {
+    right: 5px;
+    transform:rotate(5deg);
+  }
+}
+
+// ユーザーアイコンと国旗
+@mixin user-image($width: 100px, $height: 100px, $margin-right: 1.4rem,
+                   $top: 65px, $left: -10px, $right: 0, $font-size: 2.6rem) {
+  position: relative;
+  a:hover {
+    opacity: .7;
+  }
+  img {
+    width: $width;
+    height: $height;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: $margin-right;
+  }
+  .orgin_country_flag {
+    position: absolute;
+    top: $top;
+    left: $left;
+    right: $right;
+    font-size: $font-size;
+  }
+}
+
+// ページネーション
+@mixin pagination($justify-content: center, $font-size: .01rem) {
+  .pagination {
+    font-size: $font-size;
+    justify-content: $justify-content;
+    .page-item.active .page-link {
+      color: $color-trueWhite;
+      background-color: $color-main; 
+      border-color: $color-main; 
+    }
+    .page-link {
+      color: $color-main;
+      background-color: $color-trueWhite; 
+    }
+    .page-item.disabled {
+      display: none;
+    }
+  }
+}
+
+
+
+// 募集の外側
+@mixin recruit-container($position: relative, $background-color: $color-trueWhite, $border: dashed rgba(255, 145, 0, 0.664), $padding: .6rem 1rem) {
+  position: $position;
+  background-color: $background-color;
+  border: $border;
+  padding: $padding;
+  transform-origin: top center;
+  @extend %recruit-shadow;
+}
+
+// 理想
+// .recruit-dummy {
+//   width: 32%;
+//   z-index: 1;
+//   @include recruit-pin();
+//   .recruit-container {
+//     @include recruit-out
+//   }
+// }
+
+
+
+
+// 一つの募集
+@mixin recruit($width: 32%){
+  .recruit_index-dummy {
+    position: relative;
+    width: $width;
+    z-index: 1;
+    @include recruit-pin();
+  }
+  .recruit_index-item {
+    position: relative;
+    // width: 30%;
+    background-color: $color-trueWhite;
+    margin: 1rem;
+    padding: .6rem 1rem;
+    border: dashed rgba(255, 145, 0, 0.664);
+    @extend %recruit-shadow;
+    &:hover {
+      transform: rotate(5deg);
+      transform-origin: top center;
+    }
+    a {
+      color: $color-trueBlack;
+      &:hover {
+        opacity: .7;
+      }
+    }
+    &:hover {
+      &::before, &::after {
+        display: none;
+      }
+    }
+  }
+    // ↓振り子
+    // &:hover {
+    //   animation: swing linear .3s 3;
+    //   transform-origin: top center;
+    // }
+    // @keyframes swing {
+    //   0% { transform: rotate(0deg); }
+    //   25% { transform: rotate(10deg); }
+    //   50% { transform: rotate(0deg); }
+    //   75% { transform: rotate(-10deg); }
+    //   100% { transform: rotate(0deg); }
+    // }
+  .recruit_index-item-title {
+    padding: 1.2rem 0 .8rem;
+    font-size: 1.6rem;
+    word-wrap: break-word;
+  }
+  .recruit_index-item-middle {
+    display: flex;
+    .image {
+      @include user-image($margin-right: 1rem);
+      // &:hover {
+      //   opacity: .7;
+      // }
+    }
+    .recruit-items {
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+    .recruit-words {
+      margin-bottom: .2rem;
+      display: block;
+    }
+    .user-info {
+      margin-right: 1rem;
+    }
+    // .country_flag {
+    //   display: none;
+    // }
+  }
+  .recruit_index-item-bottom {
+    text-align: right;
+    font-size: 1.2rem;
+    color: $color-black;
+    a {
+      margin-right: 0.4rem;
+    }
+  }
+}
+

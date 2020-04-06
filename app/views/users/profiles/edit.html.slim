@@ -29,7 +29,7 @@
         .profile-buttom-items
           .field.date_of_birth
             = f.label :date_of_birth, 'Date Of Birth:'
-            = f.date_field :date_of_birth
+            = f.date_select :date_of_birth
           .field.gender
             = f.label :gender, 'Gender:' 
             = f.select :gender, ['♂', '♀', 'other'], {include_blank: 'select'}
@@ -62,8 +62,8 @@
         .profile-btns
           .actions
             = f.submit "Save", class: "btn btn-primary"
-          .profile-password-delete
-            p
-              = link_to 'Change password', edit_user_registration_path(current_user)
-            p  
-              = link_to "Delete account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete
+          / .profile-password-delete
+          /   p
+          /     = link_to 'Change password', edit_user_registration_path(current_user)
+          /   p  
+          /     = link_to "Delete account", registration_path(current_user), data: { confirm: "Are you sure?" }, method: :delete

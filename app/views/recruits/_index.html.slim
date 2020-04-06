@@ -1,21 +1,25 @@
-.recruit_index-inner
-  - recruits.each do |recruit|
+- recruits.each do |recruit|
+  .recruit_index-dummy
     .recruit_index-item
-      .recruit_index-item-title
-        h5 = recruit.title
+      = link_to recruit
+        h4.recruit_index-item-title
+          = recruit.title
       .recruit_index-item-middle
-        .image
-          = render partial: './users/profiles/image', locals: { user: recruit.user }
-          p 
-            | post by
-            = link_to recruit.user.user_name, users_profile_path(recruit.user)
-        .recruit_index-item-texts
-          = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
+        .user-image-name
+          .image
+            = link_to users_profile_path(recruit.user)
+              = render partial: './users/profiles/image', locals: { user: recruit.user }
+          .recruit-name
+            span Host 
+            span  = link_to recruit.user.user_name, users_profile_path(recruit.user)
+        = link_to recruit
+          .recruit_index-item-texts
+            = render partial: './recruits/simpleRecruitInfo', locals: { recruit: recruit }
       .recruit_index-item-bottom
-        -if current_user == recruit.user
-          = link_to 'edit', edit_recruit_path(recruit)
-          = link_to 'delete', recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{recruit.title}?" }
-        span Comments
-      = link_to 'detail', recruit_path(recruit)
-      = link_to "comments(#{recruit.comments.count})", recruit_path(recruit)
-      = "joins(#{recruit.participations.count})"
+        span.comment-icon
+          i.far.fa-comment-dots
+          = link_to "(#{recruit.comments.count})", recruit_path(recruit)
+        span.join-icon
+          i.fas.fa-user-friends.faa-wrench.animated-hover
+          = "(#{recruit.participations.count})"
+

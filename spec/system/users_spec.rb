@@ -86,7 +86,7 @@ describe 'sign, profile page', type: :system do
     end
   end
   describe 'User/Profile' do
-    let!(:users) { FactoryBot.create_list(:user, 10) }
+    let!(:users) { FactoryBot.create_list(:user, 11) }
     context 'when visit User/Profile#index page' do
       it 'has user list and pagination' do
         login_as user_a
@@ -100,9 +100,9 @@ describe 'sign, profile page', type: :system do
         expect(page).to have_selector '.origin_country'
         expect(page).to have_selector '.current_country'
         expect(page).to have_selector '.pagination'
-        expect(page).to have_selector('.user_name', count: 5)
+        expect(page).to have_selector('.user_name', count: 10)
         click_on '2'
-        expect(page).to have_selector '.user_name', text: users[6].user_name
+        expect(page).to have_selector '.user_name', text: users[10].user_name
       end
     end
     context 'when visit User/Profile#show page' do
@@ -154,7 +154,7 @@ describe 'Recruit page' do
     context 'with full information' do
       it 'shows success flash' do
         fill_in 'Title:', with: 'title'
-        fill_in 'Write your plan:', with: 'Write your plan'
+        fill_in 'About your plan:', with: 'Write your plan'
         click_on 'Save'
         expect(page).to have_content 'Recruit created!'
       end

@@ -1,5 +1,8 @@
 = form_with model: recruit, local: true do |f|
-  .recruit_new_datetime
+  .field.recruit_new_content
+    = f.label :title, 'Title:'
+    = f.text_field :title, placeholder: "Let's go grab some beer!"
+  .field.recruit_new_datetime
     = f.label :date_time, 'When:'
     = f.datetime_select :date_time, minute_step: 15
   .field.recruit_new_hour
@@ -13,11 +16,8 @@
       = f.label :city, 'Meeting City:'
       = f.text_field :city, value: city
   .field.recruit_new_content
-    = f.label :title, 'Title:'
-    = f.text_field :title, placeholder: "Let's go grab some beer!"
-  .field.recruit_new_content
-    = f.label :content, 'Write your plan:'
-    = f.text_area :content, placeholder: "Write your plan Write your plan Write your plan Write your plan "
-  .field.recruit_new-btn
+    = f.label :content, 'About your plan:'
+    = f.text_area :content, placeholder: "Write your plan"
+  .field.recruit_form-btn
     .actions
-      = f.submit "Save", class: "btn btn-primary"
+      = f.submit "Save", class: "btn"

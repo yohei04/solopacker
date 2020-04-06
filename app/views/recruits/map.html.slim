@@ -41,19 +41,20 @@ javascript:
       var contentString = 
       '<div id="content">'+
         `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
-        `<p>@${d.city}<p>`+
+        `<p>@${d.city}_${d.country}<p>`+
       //  `<img src=http://localhost:3000/${d.user.image} width="200px">`+
       '</div>';
 
+      // 画像の調整
       var image = {
-    //    url: 'http://hibana.xii.jp/icon/pin/004/c18.png',
-        url: `http://localhost:3000/${d.user.image}`,
+        url: 'http://hibana.xii.jp/icon/pin/004/c18.png',
+    //    url: `http://localhost:3000/${d.user.image}`,
         // This marker is 20 pixels wide by 32 pixels high.
-        scaledSize: new google.maps.Size(30, 30),
-        // The origin for this image is (0, 0).
-        origin: new google.maps.Point(0, 0),
-        // The anchor for this image is the base of the flagpole at (0, 32).
-        anchor: new google.maps.Point(0, 32)
+    //    scaledSize: new google.maps.Size(30, 30),
+    //    // The origin for this image is (0, 0).
+    //    origin: new google.maps.Point(0, 0),
+    //    // The anchor for this image is the base of the flagpole at (0, 32).
+    //    anchor: new google.maps.Point(0, 32)
       };
 
       // マーカーをつける

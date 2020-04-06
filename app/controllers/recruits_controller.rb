@@ -1,6 +1,7 @@
 class RecruitsController < ApplicationController
   before_action :authenticate_user!, except: [:map]
 
+  include ProfilesHelper
   include RecruitHelper
 
   def show
@@ -59,12 +60,11 @@ class RecruitsController < ApplicationController
         {
           id: r.id,
           title: r.title,
+          country: country_name(r.country),
           city: r.city,
           lat: latitude(r.city),
           lng: longitude(r.city),
           user: {
-            id: r.user.id,
-            name: r.user.user_name,
             image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true),
           }
         }

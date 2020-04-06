@@ -62,8 +62,9 @@ class RecruitsController < ApplicationController
           title: r.title,
           country: country_name(r.country),
           city: r.city,
-          lat: latitude(r.city),
-          lng: longitude(r.city),
+          # 同じ都市だと画像が完全に被ってしまうのでちょっとずらした
+          lat: latitude(r.city) + ((- 0.1..0.1).step(0.001).map(&:itself)).sample,
+          lng: longitude(r.city) + (( -0.1..0.1).step(0.001).map(&:itself)).sample,
           user: {
             image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true),
           }

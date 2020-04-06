@@ -19,9 +19,9 @@ User.create!(name: 'foobar',
 
 # citiesのjsonデータからcitiesのみの配列作成
 json = ActiveSupport::JSON.decode(File.read('db/fixtures/country/cities.json'))
-cities = json.map { |hash| hash["city"] }
+all_cities = json.map { |hash| hash["city"] }
 
-15.times do |n|
+10.times do |n|
   User.create!(name: Faker::DragonBall.character,
                user_name: Faker::Name.first_name,
                email: "foobar#{n-1}@example.com",
@@ -31,12 +31,12 @@ cities = json.map { |hash| hash["city"] }
                gender: ['♂', '♀', 'other'].sample,
                origin: Faker::Address.country_code,
                current_country: 'dummy',
-               current_city: cities.sample,
+               current_city: all_cities.sample,
                language_1: Faker::Nation.language,
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{[*1..20].delete_at(rand([*1..20].length))}.jpg"))
+               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
               )
 end
 
@@ -47,16 +47,25 @@ users.each do |user|
   user.save!
 end
 
-sample_users = User.all.sample(15)
+sample_users = User.all.sample(10)
 2.times do |n|
-  sample_users.each { |user| user.recruits.create!(
-    date_time: Faker::Time.between(Time.now - 3.days, Time.now + 10.days),
-    hour: ((0.5..6).step(0.5).map(&:itself)).sample,
-    country: user.current_country,
-    city: user.current_city,
-    title: Faker::Book.title,
-    content: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-  ) }
+  sample_users.each { |user| 
+    # ユーザーの現在の国と同じ国内で募集する都市の配列を作成
+    recruit_cities = []
+    json.each do |j|
+      if j["country"] == country_name(user.current_country)
+        recruit_cities.push(j["city"])
+      end
+    end
+    user.recruits.create!(
+      date_time: Faker::Time.between(Time.now - 3.days, Time.now + 10.days),
+      hour: ((0.5..6).step(0.5).map(&:itself)).sample,
+      country: user.current_country,
+      city: recruit_cities.sample,
+      title: Faker::Book.title,
+      content: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
+    )
+  }
 end
 
 recruits = Recruit.order(created_at: :desc).take(5)

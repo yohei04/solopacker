@@ -8,7 +8,8 @@
           .recruit_show-inner-middle-left
             .recruit_show-inner-profileInfo
               .recruit_show-inner-image
-                = render partial: './users/profiles/image', locals: { user: @recruit.user }
+                = link_to users_profile_path(@recruit.user)
+                  = render partial: './users/profiles/image', locals: { user: @recruit.user }
               .recruit_show-inner-name
                 span Host: 
                 span.user_name = @recruit.user.user_name 
@@ -71,7 +72,8 @@
             - if comment.user != @recruit.user
               .comment_index-item-left
                 .comment_index-image
-                  = render partial: './users/profiles/image', locals: { user: comment.user }
+                  = link_to users_profile_path(comment.user)
+                    = render partial: './users/profiles/image', locals: { user: comment.user }
                   p = comment.user.user_name
                 .comment_index-comment
                   = render partial: 'comment', locals: { recruit: @recruit, comment: comment }
@@ -80,7 +82,8 @@
                 .comment_index-comment
                     = render partial: 'comment', locals: { recruit: @recruit, comment: comment }
                 .comment_index-image
-                  = render partial: './users/profiles/image', locals: { user: comment.user }
+                  = link_to users_profile_path(comment.user)
+                    = render partial: './users/profiles/image', locals: { user: comment.user }
                   p = comment.user.user_name
           
 

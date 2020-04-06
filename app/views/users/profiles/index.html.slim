@@ -4,12 +4,13 @@
       | Members
     .members_index-inner
       - @users.each do |user|
-        .members_index-item
-          .members_index-image
-            = render partial: 'image', locals: { user: user }
-          .members_index-text
-            = render partial: 'simpleInfo', locals: { user: user }
-        hr
+        = link_to users_profile_path(user)
+          .members_index-item
+            .members_index-image
+              = render partial: 'image', locals: { user: user }
+            .members_index-text
+              = render partial: 'simpleInfo', locals: { user: user }
+          hr
     .members-paginate
       = render partial: 'layouts/paginate', locals: { object: @users }
 

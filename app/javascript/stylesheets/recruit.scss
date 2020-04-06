@@ -97,13 +97,13 @@
   .recruit_show-inner-profileInfo {
     margin-right: 1.6rem;
   }
-  .recruit_show-inner-name {
-    font-size: 1.5rem;
-  }
   .recruit_show-inner-image {
     margin-bottom: 0.6rem;
     @include user-image($width: 170px, $height: 170px, $margin-right: 0,
                    $top: 120px, $left: -140px, $font-size: 3rem);
+  }
+  .recruit_show-inner-name {
+    font-size: 1.5rem;
   }
   .recruit_show-inner-joinMember {
     margin: 1rem 0 .3rem;

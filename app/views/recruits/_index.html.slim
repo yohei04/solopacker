@@ -7,7 +7,8 @@
       .recruit_index-item-middle
         .user-image-name
           .image
-            = render partial: './users/profiles/image', locals: { user: recruit.user }
+            = link_to users_profile_path(recruit.user)
+              = render partial: './users/profiles/image', locals: { user: recruit.user }
           .recruit-name
             span Host 
             span  = link_to recruit.user.user_name, users_profile_path(recruit.user)

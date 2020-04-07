@@ -1,7 +1,5 @@
-h2.mt-5.m-2 gmap 
-/ = form_with url: map_request_path, method: :get do |f|
-/   / = f.text_field :address
-/   = f.submit '地図表示'
+h2.mt-5.m-2 Recruits Map 
+
 #map
 css:
   #map{
@@ -25,7 +23,7 @@ css:
 
 #hoge data-resource = @recruits_json
 javascript:
-  const data = JSON.parse(document.getElementById('hoge').dataset.resource);
+  const recruits_data = JSON.parse(document.getElementById('hoge').dataset.resource);
   function initMap() {
     // 日本の中央を表示する
     const defaultSettings = {zoom: 2, center: {lat: 0, lng: 0}};
@@ -37,7 +35,7 @@ javascript:
     // 現在表示されているinfoWindowオブジェクト
     let currentWindow;
 
-    data.map(d => {
+    recruits_data.map(d => {
       var contentString = 
       '<div id="content">'+
         `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
@@ -47,14 +45,14 @@ javascript:
 
       // 画像の調整
       var image = {
-        url: 'http://hibana.xii.jp/icon/pin/004/c18.png',
-    //    url: `http://localhost:3000/${d.user.image}`,
+    //    url: 'http://hibana.xii.jp/icon/pin/004/c18.png',
+        url: `http://localhost:3000/${d.user.image}`,
         // This marker is 20 pixels wide by 32 pixels high.
-    //    scaledSize: new google.maps.Size(30, 30),
+        scaledSize: new google.maps.Size(30, 30),
     //    // The origin for this image is (0, 0).
     //    origin: new google.maps.Point(0, 0),
     //    // The anchor for this image is the base of the flagpole at (0, 32).
-    //    anchor: new google.maps.Point(0, 32)
+        anchor: new google.maps.Point(0, 32)
       };
 
       // マーカーをつける
@@ -76,5 +74,3 @@ javascript:
   }
 
 script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap"  
-
-

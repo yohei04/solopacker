@@ -24,10 +24,3 @@
   .field.recruit_form-btn
     .actions
       = f.submit "Save", class: "btn"
-
-
-
-
-
-/ script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap"  
-= javascript_pack_tag 'autocomplete'

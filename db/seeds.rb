@@ -17,11 +17,11 @@ User.create!(name: 'foobar',
              image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img0.jpg"))
              )
 
-# citiesのjsonデータからcitiesのみの配列作成
-json = ActiveSupport::JSON.decode(File.read('db/fixtures/country/cities.json'))
+# 都市と国のjsonデータから都市のみの配列作成
+json = ActiveSupport::JSON.decode(File.read('db/fixtures/country/cities_countries.json'))
 all_cities = json.map { |hash| hash["city"] }
 
-10.times do |n|
+20.times do |n|
   User.create!(name: Faker::DragonBall.character,
                user_name: Faker::Name.first_name,
                email: "foobar#{n-1}@example.com",
@@ -36,7 +36,7 @@ all_cities = json.map { |hash| hash["city"] }
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n}.jpg"))
+               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n+1}.jpg"))
               )
 end
 
@@ -47,8 +47,8 @@ users.each do |user|
   user.save!
 end
 
-sample_users = User.all.sample(10)
-2.times do |n|
+sample_users = User.all.sample(21)
+1.times do |n|
   sample_users.each { |user| 
     # ユーザーの現在の国と同じ国内で募集する都市の配列を作成
     recruit_cities = []
@@ -68,11 +68,11 @@ sample_users = User.all.sample(10)
   }
 end
 
-recruits = Recruit.order(created_at: :desc).take(5)
+recruits = Recruit.order(created_at: :desc).take(15)
 5.times do
   recruits.each { |recruit| recruit.comments.create!(
     content: [Faker::Movie.quote].sample,
-    user_id: User.all.sample(8).map(&:id).push(recruit.user_id, recruit.user_id, recruit.user_id).sample
+    user_id: User.all.sample(10).map(&:id).push(recruit.user_id, recruit.user_id, recruit.user_id).sample
   ) }
 end
 

@@ -28,25 +28,22 @@
       = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits }
 
 
-h2.mt-5.m-2 gmap 
-/ = form_with url: map_request_path, method: :get do |f|
-/   / = f.text_field :address
-/   = f.submit '地図表示'
+h2.mt-5.m-2 Recruits Map
 #map
 css:
   #map{
     height: 500px;
   }
 
-  .gm-style img[src='http://localhost:3000//rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96326bd70d4dd05064e4fe7bf3572386d02ccc39/img3.jpg'] { 
+//  .gm-style img[src='http://localhost:3000//rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96326bd70d4dd05064e4fe7bf3572386d02ccc39/img3.jpg'] { 
     border-radius:50%;
   }
 
 #hoge data-resource = hp_json
 javascript:
-  const data = JSON.parse(document.getElementById('hoge').dataset.resource);
+  const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
   function initMap() {
-    // 日本の中央を表示する
+    // 初期地を表示する
     const defaultSettings = {zoom: 2, center: {lat: 0, lng: 0}};
     const map = new google.maps.Map(
       document.querySelector('#map'),
@@ -56,7 +53,7 @@ javascript:
     // 現在表示されているinfoWindowオブジェクト
     let currentWindow;
 
-    data.map(d => {
+    hp_data.map(d => {
 
       // ピンの種類
       var pins = {

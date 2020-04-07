@@ -2,7 +2,7 @@ class Users::ProfilesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @q = User.ransack(params[:q])
+    @q = User.with_attached_image.ransack(params[:q])
     @users = @q.result(distinct: true).page(params[:page]).per(10)
   end
 

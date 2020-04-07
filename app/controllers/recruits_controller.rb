@@ -55,7 +55,7 @@ class RecruitsController < ApplicationController
 
   def map
     # @recruits_json = Recruit.all.to_json(only: [:id, :title, :city, :latitude, :longitude])
-    @recruits_json = Recruit.includes(:user).map{|r|
+    @recruits_json = Recruit.includes(user: { image_attachment: :blob }).map{|r|
       # if r.user.image.attached?
         {
           id: r.id,

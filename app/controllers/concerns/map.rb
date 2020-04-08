@@ -1,14 +1,16 @@
 module Map
+  extend ActiveSupport::Concern
   include ProfilesHelper
-  
+
   def around
     around = (-0.1..0.1).step(0.001).map(&:itself)
   end
-  
+
   def lat_lng(city)
     lat_lng = Geocoder.search(city).first.coordinates
   end
-  
+
+  # 全ての募集のjson
   def recruits_all_json
     Recruit.all.includes(user: { image_attachment: :blob }).map do |r|
       {
@@ -25,7 +27,8 @@ module Map
       }
     end.to_json
   end
-  
+
+  # タイプ別の募集(ユーザーが募集した募集と参加した募集)
   def recruits_json(recruits_type, pin_type)
     JSON.parse(recruits_type.map do |r|
       {
@@ -40,32 +43,11 @@ module Map
       }
     end.to_json)
   end
-  
 
-  def mixed_recruits_json(a_recruits, b_recruits)
-    a_recruits = recruits_json(user_recruits, pin_type)
-    b_recruits = recruits_json(user_recruits, pin_type)
-    a_recruits << b_recruits
-    mixed_recruits = a_recruits.flatten
+  # タイプ別の募集の集合のjson
+  def mixed_recruits_json(a_recruits_json, b_recruits_json)
+    a_recruits_json << b_recruits_json
+    mixed_recruits = a_recruits_json.flatten
     JSON.generate(mixed_recruits)
   end
-
-
-
-  #   participated_recruits_json = JSON.parse(user.participated_recruits.map do |r|
-  #     {
-  #       id: r.id,
-  #       title: r.title,
-  #       country: country_name(r.country),
-  #       city: r.city,
-  #       lat: latitude(r.city),
-  #       lng: longitude(r.city),
-  #       type: 'participate_pin'
-  #     }
-  #   end.to_json)
-  #   hosted_recruits_json << participated_recruits_json
-  #   hp = hosted_recruits_json.flatten
-  #   JSON.generate(hp)
-  # end
-  
 end

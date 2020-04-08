@@ -11,6 +11,10 @@ class Users::ProfilesController < ApplicationController
   def show
     @user = User.find(params[:id])
     @recruits = @user.recruits
+    @hp_recruits_josn = mixed_recruits_json(
+      recruits_json(@recruits, 'host_pin'),
+      recruits_json(@user.participated_recruits, 'participate_pin')
+    )
   end
 
   def edit

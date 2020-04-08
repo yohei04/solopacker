@@ -39,7 +39,7 @@ css:
     border-radius:50%;
   }
 
-#hoge data-resource = recruits_json(@user.participated_recruits, "host_pin")
+#hoge data-resource = @hp_recruits_josn
 javascript:
   const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
   function initMap() {

@@ -1,6 +1,4 @@
 class Recruit < ApplicationRecord
-  include Map
-
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :participations, dependent: :destroy
@@ -13,5 +11,4 @@ class Recruit < ApplicationRecord
   validates :city, presence: true
   validates :title, presence: true, length: { maximum: 50 }
   validates :content, presence: true, length: { maximum: 500 }
-
 end

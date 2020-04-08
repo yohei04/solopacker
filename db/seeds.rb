@@ -57,6 +57,10 @@ sample_users = User.all.sample(21)
         recruit_cities.push(j["city"])
       end
     end
+    # エラーが出る国の退避
+    if recruit_cities == []
+      recruit_cities.push("kyoto")
+    end
     user.recruits.create!(
       date_time: Faker::Time.between(Time.now - 3.days, Time.now + 10.days),
       hour: ((0.5..6).step(0.5).map(&:itself)).sample,

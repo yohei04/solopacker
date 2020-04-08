@@ -55,22 +55,23 @@ class RecruitsController < ApplicationController
 
   def map
     # @recruits_json = Recruit.all.to_json(only: [:id, :title, :city, :latitude, :longitude])
-    @recruits_json = Recruit.includes(user: { image_attachment: :blob }).map{|r|
+    around = (-0.1..0.1).step(0.001).map(&:itself)
+    @recruits_json = Recruit.includes(user: { image_attachment: :blob }).map do |r|
       # if r.user.image.attached?
-        {
-          id: r.id,
-          title: r.title,
-          country: country_name(r.country),
-          city: r.city,
-          # 同じ都市だと画像が完全に被ってしまうのでちょっとずらした
-          lat: latitude(r.city) + ((- 0.1..0.1).step(0.001).map(&:itself)).sample,
-          lng: longitude(r.city) + (( -0.1..0.1).step(0.001).map(&:itself)).sample,
-          user: {
-            image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true),
-          }
+      {
+        id: r.id,
+        title: r.title,
+        country: country_name(r.country),
+        city: r.city,
+        # 同じ都市だと画像が完全に被ってしまうのでちょっとずらした
+        lat: latitude(r.city) + around.sample,
+        lng: longitude(r.city) + around.sample,
+        user: {
+          image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true)
         }
+      }
       # end
-    }.to_json
+    end.to_json
   end
 
   private
@@ -78,5 +79,4 @@ class RecruitsController < ApplicationController
     def recruit_params
       params.require(:recruit).permit(:date_time, :hour, :country, :city, :title, :content)
     end
-
 end

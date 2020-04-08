@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include Map
+
   has_one_attached :image
   has_many :recruits, dependent: :destroy
   has_many :comments, dependent: :destroy

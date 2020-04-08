@@ -39,7 +39,7 @@ css:
     border-radius:50%;
   }
 
-#hoge data-resource = hp_json
+#hoge data-resource = recruits_json(@user.participated_recruits, "host_pin")
 javascript:
   const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
   function initMap() {
@@ -71,7 +71,7 @@ javascript:
         animation: google.maps.Animation.DROP,
         map: map,
       //  icon: image,
-        icon: pins[d.type].url,
+        icon: pins[d.pin].url,
       });
 
       var contentString = 

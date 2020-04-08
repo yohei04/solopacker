@@ -1,4 +1,6 @@
 class Users::ProfilesController < ApplicationController
+  include Map
+
   before_action :authenticate_user!
 
   def index

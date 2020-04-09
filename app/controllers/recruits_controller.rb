@@ -1,8 +1,6 @@
 class RecruitsController < ApplicationController
   include Map
 
-  before_action :authenticate_user!, except: [:map]
-
   def show
     @recruit = Recruit.find(params[:id])
     @comment = Comment.new

@@ -7,9 +7,9 @@ header.fixed-top
       ul.nav.navbar-right
         li
           = link_to "Home", root_path, id: "home"
-        li
-          = link_to "Map", map_recruits_path, id: "Map"
         - if user_signed_in?
+          li
+            = link_to "Map", map_recruits_path, id: "Map"
           li
             = link_to "Members", users_profiles_path, id: "member"
           li.dropdown

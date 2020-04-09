@@ -13,6 +13,11 @@ module Map
   # 全ての募集のjson
   def recruits_all_json
     Recruit.all.includes(user: { image_attachment: :blob }).map do |r|
+      if(r.user.image.attached?)
+        user_iamge_path = Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true)
+      else
+        user_iamge_path = "/packs/media/images/default_other-c1f1adec8f43fef3927559d1394e0e4c.png";
+      end
       {
         id: r.id,
         title: r.title,
@@ -22,7 +27,7 @@ module Map
         lat: lat_lng(r.city)[0] + around.sample,
         lng: lat_lng(r.city)[1] + around.sample,
         user: {
-          image: Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true)
+          image: user_iamge_path
         }
       }
     end.to_json

@@ -3,11 +3,11 @@ module Map
   include ProfilesHelper
 
   def around
-    around = (-0.1..0.1).step(0.001).map(&:itself)
+    (-0.1..0.1).step(0.001).map(&:itself)
   end
 
   def lat_lng(city)
-    lat_lng = Geocoder.search(city).first.coordinates
+    Geocoder.search(city).first.coordinates
   end
 
   # 全ての募集のjson
@@ -46,8 +46,6 @@ module Map
 
   # タイプ別の募集の集合のjson
   def mixed_recruits_json(a_recruits_json, b_recruits_json)
-    a_recruits_json << b_recruits_json
-    mixed_recruits = a_recruits_json.flatten
-    JSON.generate(mixed_recruits)
+    JSON.generate(a_recruits_json.concat(b_recruits_json))
   end
 end

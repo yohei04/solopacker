@@ -5,6 +5,7 @@ html
       | Solopacker
     = csrf_meta_tags
     = csp_meta_tag
+    = javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}"
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
     link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome-animation/0.0.10/font-awesome-animation.css" media="all" rel="stylesheet" type="text/css" /
@@ -14,3 +15,4 @@ html
     = render 'layouts/header'
     = yield
     = debug(params) if Rails.env.development? 
+

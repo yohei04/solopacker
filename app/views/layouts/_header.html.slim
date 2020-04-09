@@ -9,9 +9,7 @@ header.fixed-top
           = link_to "Home", root_path, id: "home"
         - if user_signed_in?
           li
-            = link_to "Find", "#", id: "find"
-          li
-            = link_to "Timeline", "#", id: "timeline"
+            = link_to "Map", map_recruits_path, id: "Map"
           li
             = link_to "Members", users_profiles_path, id: "member"
           li.dropdown

@@ -1,0 +1,57 @@
+h2.mt-5.m-2 Recruits Map 
+
+#map
+
+#hoge data-resource = @recruits_all_json
+javascript:
+  const recruits_data = JSON.parse(document.getElementById('hoge').dataset.resource);
+  function initMap() {
+    // 日本の中央を表示する
+    const defaultSettings = {zoom: 2, center: {lat: 0, lng: 0}};
+    const map = new google.maps.Map(
+      document.querySelector('#map'),
+      defaultSettings
+    );
+
+    // 現在表示されているinfoWindowオブジェクト
+    let currentWindow;
+
+    recruits_data.map(d => {
+      var contentString = 
+      '<div id="content">'+
+        `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
+        `<p>@${d.city}_${d.country}<p>`+
+      //  `<img src=http://localhost:3000/${d.user.image} width="200px">`+
+      '</div>';
+
+      // 画像の調整
+      var image = {
+    //    url: 'http://hibana.xii.jp/icon/pin/004/c18.png',
+        url: d.user.image,
+        // This marker is 20 pixels wide by 32 pixels high.
+        scaledSize: new google.maps.Size(30, 30),
+    //    // The origin for this image is (0, 0).
+    //    origin: new google.maps.Point(0, 0),
+    //    // The anchor for this image is the base of the flagpole at (0, 32).
+        anchor: new google.maps.Point(0, 32)
+      };
+
+      // マーカーをつける
+      const marker = new google.maps.Marker({
+        position: {lat: d.lat, lng: d.lng},
+        animation: google.maps.Animation.DROP,
+        map: map,
+        icon: image,
+      });
+
+      // マーカークリックしたら地名をポップアップさせる
+      marker.addListener('click', () => {
+        currentWindow && currentWindow.close();
+        const infoWindow = new google.maps.InfoWindow({content: contentString});
+        infoWindow.open(map, marker);
+        currentWindow = infoWindow;
+      });
+    });
+  }
+
+script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap"  

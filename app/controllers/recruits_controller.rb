@@ -1,4 +1,6 @@
 class RecruitsController < ApplicationController
+  include Map
+
   def show
     @recruit = Recruit.find(params[:id])
     @comment = Comment.new
@@ -48,6 +50,10 @@ class RecruitsController < ApplicationController
     redirect_to root_path
   end
 
+  def map
+    @recruits_all_json = recruits_all_json
+  end
+
   private
 
     def recruit_params
@@ -56,6 +62,6 @@ class RecruitsController < ApplicationController
 
     def profile_blank_check?
       [current_user.gender, current_user.origin, current_user.current_country,
-       current_user.language_1, current_user.introduce].any?(&:blank?)
+      current_user.language_1, current_user.introduce].any?(&:blank?)
     end
 end

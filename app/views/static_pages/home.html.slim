@@ -15,7 +15,8 @@
             = render partial: 'layouts/paginate', locals: { object: @recruits }
           .recruit_index-blank
             = render partial: 'recruits/blank'
-            
+
+
 - else
   section#main_vew
     .main_view-wrapper
@@ -68,7 +69,4 @@
               p contact them.
 
 
-  
-
-
-
+/ = javascript_pack_tag 'map'

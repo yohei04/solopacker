@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :profiles, only: [:index, :show, :edit, :update]
   end
   resources :recruits, except: :index do
+    get 'map', on: :collection
     resources :comments, only: [:create, :update, :destroy]
     resources :participations, only: [:index, :create, :destroy]
   end

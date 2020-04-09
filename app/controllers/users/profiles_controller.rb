@@ -1,14 +1,20 @@
 class Users::ProfilesController < ApplicationController
+  include Map
+
   before_action :authenticate_user!
 
   def index
-    @q = User.ransack(params[:q])
+    @q = User.with_attached_image.ransack(params[:q])
     @users = @q.result(distinct: true).page(params[:page]).per(10)
   end
 
   def show
     @user = User.find(params[:id])
     @recruits = @user.recruits
+    @hp_recruits_josn = mixed_recruits_json(
+      recruits_json(@recruits, 'host_pin'),
+      recruits_json(@user.participated_recruits, 'participate_pin')
+    )
   end
 
   def edit

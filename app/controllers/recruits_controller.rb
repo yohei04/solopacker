@@ -61,4 +61,9 @@ class RecruitsController < ApplicationController
     def recruit_params
       params.require(:recruit).permit(:date_time, :hour, :country, :city, :title, :content)
     end
+
+    def profile_blank_check?
+      [current_user.gender, current_user.origin, current_user.current_country,
+      current_user.language_1, current_user.introduce].any?(&:blank?)
+    end
 end

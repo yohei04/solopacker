@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
   
   root 'static_pages#home'
+  get '/rate', to: 'static_pages#rate'
   namespace :users do
     resources :profiles, only: [:index, :show, :edit, :update]
   end

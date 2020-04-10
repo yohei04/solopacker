@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  include RateApi
+
   before_action :authenticate_user!, except: [:home]
 
   def home
@@ -7,6 +9,8 @@ class StaticPagesController < ApplicationController
   end
 
   def rate
-    
+    @base_currency = currency(current_user.origin)
+    @target_currency = currency(current_user.current_country)
+    @exchange_rate = exchange_rate(@base_currency, @target_currency)
   end
 end

@@ -10,10 +10,6 @@ class ParticipationsController < ApplicationController
     else
       flash[:alert] = current_user.id == @recruit.user_id ? 'You are owner' : 'Please comment first'
     end
-    respond_to do |format|
-      format.html { redirect_to @recruit }
-      format.js
-    end
     # redirect_back(fallback_location: root_path)
   end
 
@@ -23,10 +19,6 @@ class ParticipationsController < ApplicationController
     # @recruit = Recruit.find(params[:recruit_id])
     @recruit = current_user.participated_recruits.find(params[:recruit_id])
     current_user.unparticipate(@recruit)
-    respond_to do |format|
-      format.html { redirect_to @recruit }
-      format.js
-    end
   end
 
   private

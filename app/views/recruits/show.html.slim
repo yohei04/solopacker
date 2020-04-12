@@ -1,4 +1,5 @@
 .recruit_show-wrapper
+  .flash.flash__alert style="display:none"
   .recruit_show-container
     .recruit_show-dummy
       .recruit_show-inner
@@ -39,9 +40,8 @@
           span.comment-icon
             i.far.fa-comment-dots
             = "(#{@recruit.comments.count})"
-          span.join-icon
-            i.fas.fa-user-friends.faa-wrench.animated-hover
-            = "(#{@recruit.participations.count})"
+          span.participate-icon
+            = render partial: 'participations/participate_number', locals: { recruit: @recruit }
 
 .comment-wrapper
   .comment-container

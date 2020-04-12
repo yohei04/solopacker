@@ -1,10 +1,2 @@
-document.querySelector(".participate-btn").innerHTML = "<%= escape_javascript(render('recruits/participate')) %>";
-
-
-//$("#home").html("testtesttest")
-
-//var elem = document.getElementById("home");
-//  
-//elem.style.fontSize = '32px';
-//elem.style.color = 'red';
-//elem.style.marginLeft = '100px';
+document.querySelector(".participate-btn").innerHTML = "<%= escape_javascript(render('participations/participate')) %>";
+document.querySelector(".participate-names").innerHTML = "<%= escape_javascript(render('participations/participate_members')) %>";

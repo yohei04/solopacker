@@ -18,13 +18,12 @@
                 / - if @recruit.user.gender.present?
                 /   span.gender = @recruit.user.gender
                 / = render partial: './users/profiles/simpleInfo', locals: { user: @recruit.user }
-            .recruit_show-inner-joinMember
+            .recruit_show-inner-participate
               p ☆Joined Member☆
-              .member-names
-                - @recruit.participated_users.each do |participated_user|
-                  = link_to "•#{participated_user.user_name}", users_profile_path(participated_user), class: "member-name"
+              .participate-names
+                = render partial: 'participations/participate_members'
               .participate-btn
-                = render partial: 'recruits/participate_area', locals: { recruit: @recruit }
+                = render partial: 'participations/participate_btn_area', locals: { recruit: @recruit }
           
           .recruit_show-inner-recruitInfo
             = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }

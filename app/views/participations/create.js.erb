@@ -1,1 +1,2 @@
-document.querySelector(".participate-btn").innerHTML = "<%= escape_javascript(render('recruits/unparticipate')) %>";
+document.querySelector(".participate-btn").innerHTML = "<%= escape_javascript(render('participations/unparticipate')) %>";
+document.querySelector(".participate-names").innerHTML = "<%= escape_javascript(render('participations/participate_members')) %>";

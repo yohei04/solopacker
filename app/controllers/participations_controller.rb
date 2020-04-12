@@ -3,7 +3,7 @@ class ParticipationsController < ApplicationController
 
   def create
     # @participation = current_user.participations.build(participation_params)
-    @recruit = Recruit.find_by(id: params[:recruit_id])
+    @recruit = Recruit.find(params[:recruit_id])
     if permit_participate?
       current_user.participate(@recruit)
       flash[:notice] = 'You joined this recruit!'
@@ -20,7 +20,8 @@ class ParticipationsController < ApplicationController
   def destroy
     # @participation = current_user.participations.find_by(recruit_id: params[:recruit_id])
     # redirect_back(fallback_location: root_path)
-    @recruit = Recruit.find(params[:recruit_id])
+    # @recruit = Recruit.find(params[:recruit_id])
+    @recruit = current_user.participated_recruits.find(params[:recruit_id])
     current_user.unparticipate(@recruit)
     respond_to do |format|
       format.html { redirect_to @recruit }

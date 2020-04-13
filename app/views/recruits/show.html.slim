@@ -1,5 +1,5 @@
 .recruit_show-wrapper
-  .flash.flash__alert style="display:none"
+  .flash style="display:none"
   .recruit_show-container
     .recruit_show-dummy
       .recruit_show-inner
@@ -47,7 +47,6 @@
   .comment-container
     .comment-inner
       .comment_new
-        = render "devise/shared/error_messages", resource: @comment
         .comment_new-inner
           = form_with url: recruit_comments_path(@recruit), remote: true do |f|
             .field.comment_new_content

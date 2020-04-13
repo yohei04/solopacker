@@ -6,7 +6,7 @@ class ParticipationsController < ApplicationController
     @recruit = Recruit.find(params[:recruit_id])
     if permit_participate?
       current_user.participate(@recruit)
-      flash[:notice] = 'You joined this recruit!'
+      # flash[:notice] = 'You joined this recruit!'
     else
       flash[:alert] = current_user.id == @recruit.user_id ? 'You are owner' : 'Please comment first'
     end
@@ -23,9 +23,9 @@ class ParticipationsController < ApplicationController
 
   private
 
-    def participation_params
-      params.permit(:recruit_id)
-    end
+    # def participation_params
+    #   params.permit(:recruit_id)
+    # end
 
     def permit_participate?
       current_user.commented?(@recruit) && current_user.id != @recruit.user_id

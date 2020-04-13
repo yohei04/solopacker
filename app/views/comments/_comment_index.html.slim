@@ -1,5 +1,5 @@
 - recruit.comments.each do |comment|
-  .comment_index-item
+  .comment_index-item class="comment-#{comment.id}"  
     - if comment.user != recruit.user
       .comment_index-item-left
         .comment_index-image

@@ -37,48 +37,25 @@
               i.fas.fa-edit
             = link_to @recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{@recruit.title}?" }
               i.far.fa-trash-alt
-          span.comment-icon
+          span.comment-number
             i.far.fa-comment-dots
             = "(#{@recruit.comments.count})"
-          span.participate-icon
+          span.participate-number
             = render partial: 'participations/participate_number', locals: { recruit: @recruit }
 
 .comment-wrapper
   .comment-container
     .comment-inner
-      .comment-btns
-        / .joined_users
-        /   - @recruit.participated_users.each do |participated_user|
-        /     span = "#{participated_user.user_name} / "
-        
-      
       .comment_new
         = render "devise/shared/error_messages", resource: @comment
         .comment_new-inner
-          = form_with url: recruit_comments_path(@recruit), local: true do |f|
+          = form_with url: recruit_comments_path(@recruit), remote: true do |f|
             .field.comment_new_content
-              = f.text_area :content, placeholder: "Write your comment"
+              = f.text_area :content, placeholder: "Write your comment", class: "comment-area"
             .field.comment_new-btn
               = f.submit "Comment", class: "btn"
 
       .comment_index
-        - @recruit.comments.each do |comment|
-          .comment_index-item
-            - if comment.user != @recruit.user
-              .comment_index-item-left
-                .comment_index-image
-                  = link_to users_profile_path(comment.user)
-                    = render partial: './users/profiles/image', locals: { user: comment.user }
-                  p = comment.user.user_name
-                .comment_index-comment
-                  = render partial: 'comment', locals: { recruit: @recruit, comment: comment }
-            - else comment.user == @recruit.user
-              .comment_index-item-right
-                .comment_index-comment
-                    = render partial: 'comment', locals: { recruit: @recruit, comment: comment }
-                .comment_index-image
-                  = link_to users_profile_path(comment.user)
-                    = render partial: './users/profiles/image', locals: { user: comment.user }
-                  p = comment.user.user_name
+        = render partial: 'comments/comment_index', locals: { recruit: @recruit }
           
 

@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
   def create
-    @comment = current_user.comments.build(comment_params)
-    flash[:alert] = "Comment can't be empty" unless @comment.save
-    redirect_back(fallback_location: root_path)
+    @recruit = Recruit.find(params[:recruit_id])
+    current_user.comments.create(comment_params)
+    # flash[:alert] = "Comment can't be empty" unless @comment.save
+    # redirect_back(fallback_location: root_path)
   end
 
   def destroy

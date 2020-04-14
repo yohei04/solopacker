@@ -1,14 +1,39 @@
 $(function () {
   var $baseRate = $('#base_rate');
   var $targetRate = $('#target_rate');
-  var $result = $('#result');
+  var $targetCurrency = $('#target_currency')
+  var $calcRate = $('#calc_rate');
+  // レートと通貨のjson
   var $rate_json = $('#rate_json').data('resource')
-  console.log($rate_json["JPY"])
-  $result.val($baseRate.val() * $targetRate.val())
-  $baseRate.on('input', function (event) {
-    var value = $baseRate.val();
-    $result.val(Math.round(value * $targetRate.val() * 1000) / 1000);
+
+  //計算結果
+  var baseRateResult = function ($targetRate) {
+    $baseRate.val(Math.round($targetRate.val() / $calcRate.val() * 1000) / 1000);
+  };
+  var targetRateResult = function ($baseRate) {
+    $targetRate.val(Math.round($baseRate.val() * $calcRate.val() * 1000) / 1000);
+  };
+
+  // ベースレート入力
+  $baseRate.on('input', function () {
+    targetRateResult($baseRate);
   });
+
+  // ターゲットレート入力
+  $targetRate.on('input', function () {
+    baseRateResult($targetRate);
+  });
+
+  
+
+  // ターゲット通貨セレクト
+  $targetCurrency.change(function() {
+    var selectedTargetCurrency = $targetCurrency.val();
+    selectedTargetCurrencyRate = $rate_json[`${selectedTargetCurrency}`]
+    $targetRate.val(selectedTargetCurrencyRate)
+    result($baseRate, $targetRate);
+  });
+
 });
 
 

@@ -35,7 +35,7 @@ module StaticPagesHelper
   end
 
   def exchange_rate(base_currency, target_currency)
-    1 / rate_hash(base_currency)[target_currency]
+    rate_hash(base_currency)[target_currency]
   end
 
 end

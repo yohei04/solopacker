@@ -1,19 +1,26 @@
-h3.mt-5.m-2 Rate
+.rate-wrapper.mt-5.m-2
+  .rate-container
+    h3.mb-3 Rate
+    .rate-inner.ml-3
+      = form_with url: rate_path, method: 'get', local: true do |f|
+        .rate-input
+          = f.text_field :base_rate, value: 1
+        .rate-input
+          = f.select :base_currency, options_for_select(all_currencies_array, selected: currency(current_user.origin))
+        .rate-result
+          = f.text_field :result
+        .rate-input
+          = f.select :target_currency, options_for_select(all_currencies_array, selected: currency(current_user.current_country))
+        .rate-input
+          = f.text_field :target_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country)).round(2)
+        .field.recruit_form-btn
+          / = f.submit "rate", class: "btn"
 
-= form_with url: rate_path, method: 'get', local: true do |f|
-  .rate-input
-    = f.text_field :base_rate, value: 1
-  .rate-input
-    = f.select :base_currency, options_for_select(all_currencies_array, selected: currency(current_user.origin))
-  .rate-input
-    = f.text_field :target_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country)).round(2)
-  .rate-input
-    = f.select :target_currency, options_for_select(all_currencies_array, selected: currency(current_user.current_country))
-  .field.recruit_form-btn
-    = f.submit "rate", class: "btn"
+      input id="button" type="button" value="rate" onclick="OnButtonClick();"
+      #output.mb-5
 
+    p = @base_currency
+    p = @target_currency 
+    p = @exchange_rate
 
-
-p = @base_currency
-p = @target_currency 
-p = @exchange_rate
+/ = javascript_pack_tag 'rate'

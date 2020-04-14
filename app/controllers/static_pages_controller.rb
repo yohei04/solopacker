@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
   end
 
   def rate
-    include RateApi
+    # include RateApi
     # @recruits = current_user.recruits
     # @base_currency = currency(current_user.origin)
     # @target_currency = currency(current_user.current_country)

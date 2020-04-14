@@ -9,7 +9,7 @@
         .rate-input
           = f.select :base_currency, options_for_select(all_currencies_array, selected: currency(current_user.origin))
         .rate-input
-          = f.text_field :input_target_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country))
+          = f.text_field :input_target_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country)).round(3)
         .rate-input
           = f.select :target_currency, options_for_select(all_currencies_array, selected: currency(current_user.current_country))
         .rate-result

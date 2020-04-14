@@ -12,7 +12,7 @@
 #   #   Country[self.current_country].currency_code
 #   # end
 
-#   def rate_json(base_currency)
+#   def rate_hash(base_currency)
 #     uri = URI.parse("https://prime.exchangerate-api.com/v5/#{Rails.application.credentials.dig(:RATE_API_KEY)}/latest/#{base_currency}")
 #     json = Net::HTTP.get(uri)
 #     result = JSON.parse(json)
@@ -20,11 +20,11 @@
 #   end
 
 #   def all_currencies_array
-#     rate_json("USD").keys
+#     rate_hash("USD").keys
 #   end
 
 #   def exchange_rate(base_currency, target_currency)
-#     1 / rate_json(base_currency)[target_currency]
+#     1 / rate_hash(base_currency)[target_currency]
 #   end
 
 

@@ -1,4 +1,5 @@
 .rate-wrapper.mt-5.m-2
+#rate_json data-resource = rate_json(currency(current_user.origin))
   .rate-container
     h3.mb-3 Rate
     .rate-inner.ml-3
@@ -16,8 +17,8 @@
         .field.recruit_form-btn
           / = f.submit "rate", class: "btn"
 
-      input id="button" type="button" value="rate" onclick="OnButtonClick();"
-      #output.mb-5
+      //input id="button" type="button" value="rate" onclick="OnButtonClick();"
+      //#output.mb-5
 
     p = @base_currency
     p = @target_currency 

@@ -6,34 +6,36 @@ $(function () {
   // レートと通貨のjson
   var $rate_json = $('#rate_json').data('resource')
 
+  
+
   //計算結果
-  var baseRateResult = function ($targetRate) {
-    $baseRate.val(Math.round($targetRate.val() / $calcRate.val() * 1000) / 1000);
+  var baseRateResult = function ($targetRate, $calcRate) {
+    return $baseRate.val(Math.round($targetRate.val() / $calcRate.val() * 1000) / 1000);
   };
-  var targetRateResult = function ($baseRate) {
-    $targetRate.val(Math.round($baseRate.val() * $calcRate.val() * 1000) / 1000);
+  var targetRateResult = function ($baseRate, $calcRate) {
+    return $targetRate.val(Math.round($baseRate.val() * $calcRate.val() * 1000) / 1000);
   };
 
   // ベースレート入力
   $baseRate.on('input', function () {
-    targetRateResult($baseRate);
+    targetRateResult($baseRate, $calcRate);
   });
 
   // ターゲットレート入力
   $targetRate.on('input', function () {
-    baseRateResult($targetRate);
+    baseRateResult($targetRate, $calcRate);
   });
 
+  // return $result.val(Math.round($baseRate.val() * $targetRate.val() * 1000) / 1000)
   
 
   // ターゲット通貨セレクト
   $targetCurrency.change(function() {
     var selectedTargetCurrency = $targetCurrency.val();
     selectedTargetCurrencyRate = $rate_json[`${selectedTargetCurrency}`]
-    $targetRate.val(selectedTargetCurrencyRate)
-    result($baseRate, $targetRate);
+    $calcRate.val(selectedTargetCurrencyRate);
+    targetRateResult($baseRate, $calcRate);
   });
-
 });
 
 

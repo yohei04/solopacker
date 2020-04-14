@@ -1,29 +1,31 @@
 $(function () {
+  var $inputBaseRate = $('#input_base_rate');
+  var $baseCurrency = $('#base_currency')
+  var $inputTargetRate = $('#input_target_rate');
+  var $targetCurrency = $('#target_currency')
   var $baseRate = $('#base_rate');
   var $targetRate = $('#target_rate');
-  var $targetCurrency = $('#target_currency')
-  var $calcRate = $('#calc_rate');
   // レートと通貨のjson
   var $rate_json = $('#rate_json').data('resource')
 
   
 
   //計算結果
-  var baseRateResult = function ($targetRate, $calcRate) {
-    return $baseRate.val(Math.round($targetRate.val() / $calcRate.val() * 1000) / 1000);
+  var inputBaseRateResult = function ($inputTargetRate, $targetRate) {
+    return $inputBaseRate.val(Math.round($inputTargetRate.val() / $targetRate.val() * 1000) / 1000);
   };
-  var targetRateResult = function ($baseRate, $calcRate) {
-    return $targetRate.val(Math.round($baseRate.val() * $calcRate.val() * 1000) / 1000);
+  var inputTargetRateResult = function ($inputBaseRate, $targetRate) {
+    return $inputTargetRate.val(Math.round($inputBaseRate.val() * $targetRate.val() * 1000) / 1000);
   };
 
   // ベースレート入力
-  $baseRate.on('input', function () {
-    targetRateResult($baseRate, $calcRate);
+  $inputBaseRate.on('input', function () {
+    inputTargetRateResult($inputBaseRate, $targetRate);
   });
 
   // ターゲットレート入力
-  $targetRate.on('input', function () {
-    baseRateResult($targetRate, $calcRate);
+  $inputTargetRate.on('input', function () {
+    inputBaseRateResult($inputTargetRate, $targetRate);
   });
 
   // return $result.val(Math.round($baseRate.val() * $targetRate.val() * 1000) / 1000)
@@ -33,8 +35,16 @@ $(function () {
   $targetCurrency.change(function() {
     var selectedTargetCurrency = $targetCurrency.val();
     selectedTargetCurrencyRate = $rate_json[`${selectedTargetCurrency}`]
-    $calcRate.val(selectedTargetCurrencyRate);
-    targetRateResult($baseRate, $calcRate);
+    $targetRate.val(selectedTargetCurrencyRate);
+    inputTargetRateResult($inputBaseRate, $targetRate);
+  });
+
+  // ターゲット通貨セレクト
+  $baseCurrency.change(function() {
+    var selectedBaseCurrency = $baseCurrency.val();
+    selectedBaseCurrencyRate = $rate_json[`${selectedBaseCurrency}`]
+    $baseRate.val(selectedBaseCurrencyRate);
+    inputBaseRateResult($inputBaseRate, $targetRate);
   });
 });
 

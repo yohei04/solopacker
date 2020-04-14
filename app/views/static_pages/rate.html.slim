@@ -5,15 +5,18 @@
     .rate-inner.ml-3
       = form_with url: rate_path, method: 'get', local: true do |f|
         .rate-input
-          = f.text_field :base_rate, value: 1
+          = f.text_field :input_base_rate, value: 1
         .rate-input
           = f.select :base_currency, options_for_select(all_currencies_array, selected: currency(current_user.origin))
         .rate-input
-          = f.text_field :target_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country))
+          = f.text_field :input_target_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country))
         .rate-input
           = f.select :target_currency, options_for_select(all_currencies_array, selected: currency(current_user.current_country))
         .rate-result
-          = f.text_field :calc_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country))
+          = f.text_field :base_rate, value: 1
+        .rate-result
+          = f.text_field :target_rate, value: exchange_rate(currency(current_user.origin), currency(current_user.current_country))
+
         .field.recruit_form-btn
           / = f.submit "rate", class: "btn"
 

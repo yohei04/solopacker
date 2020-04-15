@@ -1,0 +1,15 @@
+h5 = subtitle
+.rate-currency.base_rate
+  .rate-input
+    = f.text_field input_base_rate, value: 1
+  .rate-input
+    = f.select base_currency, options_for_select(all_currencies_array, selected: currency(current_user.origin))
+.rate-currency.target_rate
+  .rate-input
+    = f.text_field input_target_rate, value: exchange_rate(currency(current_user.origin), currency(target_country)).round(3)
+  .rate-input
+    = f.select target_currency, options_for_select(all_currencies_array, selected: currency(target_country))
+  .rate-result
+  = f.hidden_field base_rate, value: 1
+.rate-result
+  = f.hidden_field target_rate, value: exchange_rate(currency(current_user.origin), currency(target_country))

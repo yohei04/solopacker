@@ -39,7 +39,7 @@ $(function () {
     });
   };
 
-  // 選択可能用
+  // current country
   var $inputBaseRate = $('#input_base_rate');
   var $baseCurrency = $('#base_currency')
   var $inputTargetRate = $('#input_target_rate');
@@ -48,4 +48,12 @@ $(function () {
   var $targetRate = $('#target_rate');
   rating($inputBaseRate, $baseCurrency, $inputTargetRate, $targetCurrency, $baseRate, $targetRate);
 
+  // next recruit
+  var $inputBaseRate = $('#input_base_rate_recruit');
+  var $baseCurrency = $('#base_currency_recruit')
+  var $inputTargetRate = $('#input_target_rate_recruit');
+  var $targetCurrency = $('#target_currency_recruit')
+  var $baseRate = $('#base_rate_recruit');
+  var $targetRate = $('#target_rate_recruit');
+  rating($inputBaseRate, $baseCurrency, $inputTargetRate, $targetCurrency, $baseRate, $targetRate);
 });

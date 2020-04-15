@@ -1,0 +1,31 @@
+.rate-wrapper {
+  padding: 5rem 0;
+}
+
+.rate-container {
+  width: 50%;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1rem 0;
+  border: solid 2px $color-trueBlack;
+  h1 {
+    margin-bottom: 1rem;
+  }
+}
+
+.rate-inner {
+  width: 80%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.rate-item {
+  width: 80%;
+  margin: 0 auto 1rem;
+  border: solid 1px $color-trueBlack;
+}
+
+.rate-currency {
+  display: flex;
+  margin-bottom: 1rem;
+}

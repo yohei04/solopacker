@@ -16,15 +16,17 @@
                             target_rate: 'target_rate',
                             target_country: current_user.current_country,
                            }
-        .rate-item.next_recruit
-          = render partial: 'static_pages/rate_item',
-                   locals: { f: f,
-                            subtitle: "Next Recruit",
-                            input_base_rate: 'input_base_rate_recruit', 
-                            base_currency: 'base_currency_recruit',
-                            input_target_rate: 'input_target_rate_recruit',
-                            target_currency: 'target_currency_recruit',
-                            base_rate: 'base_rate_recruit',
-                            target_rate: 'target_rate_recruit',
-                            target_country: current_user.recruits.last.country,
-                           }
+        - current_user.uniq_feature_mix_recruits[1..3].each do |mix_recruit|
+          - if mix_recruit.country != current_user.current_country && mix_recruit.country != current_user.origin && currency_present?(mix_recruit.country)
+            .rate-item.next_recruit
+              = render partial: 'static_pages/rate_item',
+                      locals: { f: f,
+                                subtitle: "Next Recruit",
+                                input_base_rate: 'input_base_rate_recruit', 
+                                base_currency: 'base_currency_recruit',
+                                input_target_rate: 'input_target_rate_recruit',
+                                target_currency: 'target_currency_recruit',
+                                base_rate: 'base_rate_recruit',
+                                target_rate: 'target_rate_recruit',
+                                target_country: mix_recruit.country,
+                              }

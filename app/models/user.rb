@@ -24,4 +24,33 @@ class User < ApplicationRecord
   def participated?(recruit)
     participations.exists?(recruit_id: recruit.id)
   end
+
+  def feature_host_recruits
+    feature_host_recruits = []
+    self.recruits.happen_recent.each do |recruit|
+      feature_host_recruits.push(recruit) if recruit.date_time > Time.now
+    end
+    feature_host_recruits
+  end
+
+  def feature_participate_recruits
+    feature_participate_recruits = []
+    self.participated_recruits.happen_recent.each do |recruit|
+      feature_participate_recruits.push(recruit) if recruit.date_time > Time.now
+    end
+    feature_participate_recruits
+  end
+
+  def feature_mix_recruits
+    feature_host_recruits.concat(feature_participate_recruits).sort_by! { |r| r[:date_time] }.reverse
+  end
+
+  def uniq_feature_mix_recruits
+    feature_mix_recruits.uniq { |r| r[:country] }
+  end
+
+  # def feature_three_recruits
+  #   feature_mix_recruits.date_time
+  # end
+  # .sort_by{ | k, v | v }
 end

@@ -37,7 +37,12 @@ module StaticPagesHelper
   end
 
   def exchange_rate(base_currency, target_currency)
+    return if rate_hash(base_currency)[target_currency].blank?
     rate_hash(base_currency)[target_currency]
+  end
+
+  def currency_present?(country)
+    all_currencies_array.map {|c| c == currency(country) }.any?
   end
 
 end

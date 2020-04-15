@@ -12,6 +12,7 @@ module StaticPagesHelper
   require 'json'
 
   def currency(country)
+    return if country.blank?
     Country[country].currency_code
   end
 
@@ -36,13 +37,16 @@ module StaticPagesHelper
     rate_hash("USD").keys
   end
 
+  def currency_present?(currency)
+    all_currencies_array.map {|c| c == currency }.any?
+  end
+
   def exchange_rate(base_currency, target_currency)
-    return if rate_hash(base_currency)[target_currency].blank?
+    base_currency = "USD" unless currency_present?(base_currency)
+    target_currency = "USD" unless currency_present?(target_currency)
     rate_hash(base_currency)[target_currency]
   end
 
-  def currency_present?(country)
-    all_currencies_array.map {|c| c == currency(country) }.any?
-  end
+
 
 end

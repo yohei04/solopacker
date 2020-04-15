@@ -6,10 +6,10 @@ $(function () {
                             $baseRate, $targetRate) {
     //入力値とレートから計算結果を算出する関数
     var inputBaseRateResult = function ($inputTargetRate, $baseRate, $targetRate) {
-      return $inputBaseRate.val(Math.round($inputTargetRate.val() * $baseRate.val() / $targetRate.val() * 1000) / 1000);
+      $inputBaseRate.val(Math.round($inputTargetRate.val() * $baseRate.val() / $targetRate.val() * 100) / 100);
     };
     var inputTargetRateResult = function ($inputBaseRate, $baseRate, $targetRate) {
-      return $inputTargetRate.val(Math.round($inputBaseRate.val() / $baseRate.val() * $targetRate.val() * 1000) / 1000);
+      $inputTargetRate.val(Math.round($inputBaseRate.val() / $baseRate.val() * $targetRate.val() * 100) / 10);
     };
   
     // ベースレート入力
@@ -39,21 +39,14 @@ $(function () {
     });
   };
 
-  // current country
-  var $inputBaseRate = $('#input_base_rate');
-  var $baseCurrency = $('#base_currency')
-  var $inputTargetRate = $('#input_target_rate');
-  var $targetCurrency = $('#target_currency')
-  var $baseRate = $('#base_rate');
-  var $targetRate = $('#target_rate');
-  rating($inputBaseRate, $baseCurrency, $inputTargetRate, $targetCurrency, $baseRate, $targetRate);
-
-  // next recruit
-  var $inputBaseRate = $('#input_base_rate_recruit');
-  var $baseCurrency = $('#base_currency_recruit')
-  var $inputTargetRate = $('#input_target_rate_recruit');
-  var $targetCurrency = $('#target_currency_recruit')
-  var $baseRate = $('#base_rate_recruit');
-  var $targetRate = $('#target_rate_recruit');
-  rating($inputBaseRate, $baseCurrency, $inputTargetRate, $targetCurrency, $baseRate, $targetRate);
+  // 複数の計算に対応
+  for (var i = 0; i < 5; i++) {
+    var $inputBaseRate = $(`#input_base_rate-${i}`);
+    var $baseCurrency = $(`#base_currency-${i}`)
+    var $inputTargetRate = $(`#input_target_rate-${i}`);
+    var $targetCurrency = $(`#target_currency-${i}`)
+    var $baseRate = $(`#base_rate-${i}`);
+    var $targetRate = $(`#target_rate-${i}`);
+    rating($inputBaseRate, $baseCurrency, $inputTargetRate, $targetCurrency, $baseRate, $targetRate);
+  };
 });

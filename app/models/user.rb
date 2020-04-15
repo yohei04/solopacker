@@ -42,15 +42,10 @@ class User < ApplicationRecord
   end
 
   def feature_mix_recruits
-    feature_host_recruits.concat(feature_participate_recruits).sort_by! { |r| r[:date_time] }.reverse
+    feature_host_recruits.concat(feature_participate_recruits).sort_by! { |r| r[:date_time] }
   end
 
   def uniq_feature_mix_recruits
     feature_mix_recruits.uniq { |r| r[:country] }
   end
-
-  # def feature_three_recruits
-  #   feature_mix_recruits.date_time
-  # end
-  # .sort_by{ | k, v | v }
 end

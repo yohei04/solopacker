@@ -1,3 +1,8 @@
+/ -if !currency_present?(currency(current_user.origin))
+/   - current_user.origin = "US"
+/ -if !currency_present?(currency(target_country))
+/   - target_country = "JP"
+
 h5 = subtitle
 .rate-currency.base_rate
   .rate-input
@@ -10,6 +15,6 @@ h5 = subtitle
   .rate-input
     = f.select target_currency, options_for_select(all_currencies_array, selected: currency(target_country))
   .rate-result
-  = f.hidden_field base_rate, value: 1
-.rate-result
-  = f.hidden_field target_rate, value: exchange_rate(currency(current_user.origin), currency(target_country))
+    = f.hidden_field base_rate, value: 1
+  .rate-result
+    = f.hidden_field target_rate, value: exchange_rate(currency(current_user.origin), currency(target_country))

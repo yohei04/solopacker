@@ -1,31 +1,64 @@
 .rate-wrapper {
-  padding: 5rem 0;
+  // padding: 2.5rem 0;
+  .cork_board {
+    width: 100%;
+  }
+  .on-image {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+  }
 }
 
 .rate-container {
-  width: 50%;
-  max-width: 500px;
-  margin: 0 auto;
-  padding: 1rem 0;
-  border: solid 2px $color-trueBlack;
-  h1 {
-    margin-bottom: 1rem;
+  width: 60%;
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 1.4rem 3rem;
+  border: solid 1px $color-trueBlack;
+  background-color: #fff;
+  opacity: .9;
+  h2 {
+    font-size: 2rem;
+    margin-bottom: .4rem;
   }
 }
 
 .rate-inner {
-  width: 80%;
   margin: 0 auto;
   text-align: center;
 }
 
 .rate-item {
-  width: 80%;
   margin: 0 auto 1rem;
   border: solid 1px $color-trueBlack;
+  // opacity: .9;
+  // background-color: $color-trueWhite;
+  h3 {
+    margin: .4rem;
+  }
+  p {
+    margin: 1rem;
+    a {
+      font-size: 1.6rem;
+      color: $color-main;
+      &:hover {
+        color: darken($color-main, 10%);
+      }
+    }
+  }
+}
+
+.rate-bottom {
 }
 
 .rate-currency {
   display: flex;
+  justify-content: center;
   margin-bottom: 1rem;
+  input {
+    width: 100%;
+    max-width: 200px;
+  }
 }

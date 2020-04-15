@@ -1,9 +1,9 @@
-/ -if !currency_present?(currency(current_user.origin))
-/   - current_user.origin = "US"
-/ -if !currency_present?(currency(target_country))
-/   - target_country = "JP"
+-if !currency_present?(currency(current_user.origin))
+  - current_user.origin = "US"
+-if !currency_present?(currency(target_country))
+  - target_country = "US"
 
-= link_to subtitle, recruit
+p = link_to subtitle, recruit
 h3 = country_flag(target_country)
 .rate-bottom
   .rate-currency.base_rate

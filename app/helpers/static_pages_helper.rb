@@ -11,11 +11,6 @@ module StaticPagesHelper
   require 'uri'
   require 'json'
 
-  def currency(country)
-    return if country.blank?
-    Country[country].currency_code
-  end
-
   # def current_country_currency
   #   Country[self.current_country].currency_code
   # end
@@ -37,16 +32,38 @@ module StaticPagesHelper
     rate_hash("USD").keys
   end
 
+  def currency(country)
+    return if country.blank?
+    return if Country[country].blank?
+    Country[country].currency_code
+  end
+
   def currency_present?(currency)
     all_currencies_array.map {|c| c == currency }.any?
   end
 
-  def exchange_rate(base_currency, target_currency)
-    base_currency = "USD" unless currency_present?(base_currency)
-    target_currency = "USD" unless currency_present?(target_currency)
-    rate_hash(base_currency)[target_currency]
+  def default_currency(country)
+    if !currency_present?(currency(country))
+      "USD"
+    else
+      currency(country)
+    end
   end
 
+  
 
+  # def currency(country)
+  #   return if country.blank?
+  #   if !currency_present?(Country[country].currency_code)
+  #     "USD"
+  #   else
+  #     Country[country].currency_code
+  #   end
+  # end
 
+  def exchange_rate(base_currency, target_currency)
+    # base_currency = "USD" unless currency_present?(base_currency)
+    # target_currency = "EUR" unless currency_present?(target_currency)
+    rate_hash(base_currency)[target_currency]
+  end
 end

@@ -1,15 +1,16 @@
 .rate-wrapper
   #rate_json data-resource = rate_json(currency(current_user.origin))
-  = image_pack_tag 'currency.jpg'
+  = image_pack_tag 'currency.jpg', class: "currency-img"
   .on-image
     .rate-container
       h2 Exchange Rate
       .rate-inner
         = form_with url: rate_path, method: 'get', local: true do |f|
           .rate-item.current_country
-            = render partial: 'static_pages/rate_item', 
+            = render partial: 'static_pages/rate_item',
                     locals: { f: f,
                               subtitle: "Current Country",
+                              target_country_flag: current_user.current_country,
                               recruit: users_profile_path(current_user),
                               input_base_rate: "input_base_rate-0", 
                               base_currency: "base_currency-0",
@@ -17,21 +18,24 @@
                               target_currency: "target_currency-0",
                               base_rate: "base_rate-0",
                               target_rate: "target_rate-0",
+                              base_country: current_user.origin,
                               target_country: current_user.current_country,
                             }
           - current_user.uniq_feature_mix_recruits.each_with_index do |mix_recruit, i|
-            - if mix_recruit.country != current_user.current_country && mix_recruit.country != current_user.origin && currency_present?(currency(mix_recruit.country))
+            - if currency(mix_recruit.country) != currency(current_user.current_country) && currency(mix_recruit.country) != currency(current_user.origin) && currency_present?(currency(mix_recruit.country))
               .rate-item.feature_recruit
                 = render partial: 'static_pages/rate_item',
-                        locals: { f: f,
-                                  subtitle: "Next Recruit #{i +1}",
-                                  recruit: mix_recruit,
-                                  input_base_rate: "input_base_rate-#{i +1}", 
-                                  base_currency: "base_currency-#{i +1}",
-                                  input_target_rate: "input_target_rate-#{i +1}",
-                                  target_currency: "target_currency-#{i +1}",
-                                  base_rate: "base_rate-#{i +1}",
-                                  target_rate: "target_rate-#{i +1}",
-                                  target_country: mix_recruit.country,
-                                }
-            - break if i == 2
+                      locals: { f: f,
+                                subtitle: "Next Recruit #{i+1}",
+                                target_country_flag: mix_recruit.country,
+                                recruit: mix_recruit,
+                                input_base_rate: "input_base_rate-#{i+1}", 
+                                base_currency: "base_currency-#{i+1}",
+                                input_target_rate: "input_target_rate-#{i+1}",
+                                target_currency: "target_currency-#{i+1}",
+                                base_rate: "base_rate-#{i+1}",
+                                target_rate: "target_rate-#{i+1}",
+                                base_country: current_user.origin,
+                                target_country: mix_recruit.country,
+                              }
+              - break if i == 2

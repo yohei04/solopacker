@@ -1,23 +1,22 @@
--if !currency_present?(currency(current_user.origin))
-  - current_user.origin = "US"
--if !currency_present?(currency(target_country))
-  - target_country = "US"
+/ - base_country = "US" unless currency_present?(currency(base_country))
+/ - target_country = "DK" unless currency_present?(currency(target_country))
+/ - base_country = "US" if currency(base_country) == currency(target_country)
 
 p = link_to subtitle, recruit
-h3 = country_flag(target_country)
+h3 = country_flag(target_country_flag)
 .rate-bottom
   .rate-currency.base_rate
     .rate-input
       = f.text_field input_base_rate, value: 1
     .rate-input
-      = f.select base_currency, options_for_select(all_currencies_array, selected: currency(current_user.origin))
+      = f.select base_currency, options_for_select(all_currencies_array, selected: default_currency(base_country))
   .rate-currency.target_rate
     .rate-input
-      = f.text_field input_target_rate, value: exchange_rate(currency(current_user.origin), currency(target_country)).round(3)
+      = f.text_field input_target_rate, value: exchange_rate(default_currency(base_country), default_currency(target_country))
     .rate-input
-      = f.select target_currency, options_for_select(all_currencies_array, selected: currency(target_country))
+      = f.select target_currency, options_for_select(all_currencies_array, selected: default_currency(target_country))
       
 .rate-result
-  = f.hidden_field base_rate, value: 1
+  = f.text_field base_rate, value: 1
 .rate-result
-  = f.hidden_field target_rate, value: exchange_rate(currency(current_user.origin), currency(target_country))
+  = f.text_field target_rate, value: exchange_rate(default_currency(base_country), default_currency(target_country))

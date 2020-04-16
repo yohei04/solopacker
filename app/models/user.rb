@@ -27,16 +27,16 @@ class User < ApplicationRecord
 
   def feature_host_recruits
     feature_host_recruits = []
-    self.recruits.happen_recent.each do |recruit|
-      feature_host_recruits.push(recruit) if recruit.date_time > Time.now
+    recruits.happen_recent.each do |recruit|
+      feature_host_recruits.push(recruit) if recruit.date_time > Time.zone.now
     end
     feature_host_recruits
   end
 
   def feature_participate_recruits
     feature_participate_recruits = []
-    self.participated_recruits.happen_recent.each do |recruit|
-      feature_participate_recruits.push(recruit) if recruit.date_time > Time.now
+    participated_recruits.happen_recent.each do |recruit|
+      feature_participate_recruits.push(recruit) if recruit.date_time > Time.zone.now
     end
     feature_participate_recruits
   end

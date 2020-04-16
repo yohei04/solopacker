@@ -25,16 +25,16 @@
             - if currency(mix_recruit.country) != currency(current_user.current_country) && currency(mix_recruit.country) != currency(current_user.origin) && currency_present?(currency(mix_recruit.country))
               .rate-item.feature_country
                 = render partial: 'static_pages/rate_item',
-                      locals: { f: f,
-                                subtitle: "Next Country",
-                                recruit: mix_recruit,
-                                input_base_rate: "input_base_rate-#{i+1}", 
-                                base_currency: "base_currency-#{i+1}",
-                                input_target_rate: "input_target_rate-#{i+1}",
-                                target_currency: "target_currency-#{i+1}",
-                                base_rate: "base_rate-#{i+1}",
-                                target_rate: "target_rate-#{i+1}",
-                                base_country: current_user.origin,
-                                target_country: mix_recruit.country,
-                              }
+                    locals: { f: f,
+                              subtitle: "Next Country",
+                              recruit: mix_recruit,
+                              input_base_rate: "input_base_rate-#{i+1}", 
+                              base_currency: "base_currency-#{i+1}",
+                              input_target_rate: "input_target_rate-#{i+1}",
+                              target_currency: "target_currency-#{i+1}",
+                              base_rate: "base_rate-#{i+1}",
+                              target_rate: "target_rate-#{i+1}",
+                              base_country: current_user.origin,
+                              target_country: mix_recruit.country,
+                            }
               - break if i == 1

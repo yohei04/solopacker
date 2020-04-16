@@ -9,7 +9,7 @@ $(function () {
       $inputBaseRate.val(Math.round($inputTargetRate.val() * $baseRate.val() / $targetRate.val() * 100) / 100);
     };
     var inputTargetRateResult = function ($inputBaseRate, $baseRate, $targetRate) {
-      $inputTargetRate.val(Math.round($inputBaseRate.val() / $baseRate.val() * $targetRate.val() * 100) / 10);
+      $inputTargetRate.val(Math.round($inputBaseRate.val() / $baseRate.val() * $targetRate.val() * 100) / 100);
     };
   
     // ベースレート入力

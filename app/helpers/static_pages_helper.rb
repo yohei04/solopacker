@@ -11,9 +11,10 @@ module StaticPagesHelper
   require 'uri'
   require 'json'
 
-  # def current_country_currency
-  #   Country[self.current_country].currency_code
-  # end
+  def currency(country)
+    return if Country[country].blank?
+    Country[country].currency_code
+  end
 
   def rate_hash(base_currency)
     # uri = URI.parse("https://prime.exchangerate-api.com/v5/#{Rails.application.credentials.dig(:RATE_API_KEY)}/latest/#{base_currency}")
@@ -28,14 +29,12 @@ module StaticPagesHelper
     JSON.generate(rate_hash(base_currency))
   end
 
-  def all_currencies_array
-    rate_hash("USD").keys
+  def exchange_rate(base_currency, target_currency)
+    rate_hash(base_currency)[target_currency]
   end
 
-  def currency(country)
-    return if country.blank?
-    return if Country[country].blank?
-    Country[country].currency_code
+  def all_currencies_array
+    rate_hash("USD").keys
   end
 
   def currency_present?(currency)
@@ -48,22 +47,5 @@ module StaticPagesHelper
     else
       currency(country)
     end
-  end
-
-  
-
-  # def currency(country)
-  #   return if country.blank?
-  #   if !currency_present?(Country[country].currency_code)
-  #     "USD"
-  #   else
-  #     Country[country].currency_code
-  #   end
-  # end
-
-  def exchange_rate(base_currency, target_currency)
-    # base_currency = "USD" unless currency_present?(base_currency)
-    # target_currency = "EUR" unless currency_present?(target_currency)
-    rate_hash(base_currency)[target_currency]
   end
 end

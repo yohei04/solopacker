@@ -36,7 +36,7 @@ all_cities = json.map { |hash| hash["city"] }
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n+1}.jpg"))
+              #  image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n+1}.jpg"))
               )
 end
 

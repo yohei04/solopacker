@@ -2,6 +2,7 @@
   .sign-container
     h2
       | Sign up
+    = link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post
     = form_with model: @user, url: user_registration_path, id: "new_user", class: "new_user", local: true do |f|
       = render "devise/shared/error_messages", resource: resource
       .field

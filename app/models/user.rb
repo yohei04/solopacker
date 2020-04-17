@@ -60,4 +60,24 @@ class User < ApplicationRecord
   def uniq_feature_mix_recruits
     feature_mix_recruits.uniq { |r| r[:country] }
   end
+
+
+  # ゲストサインイン
+  def self.guest
+    find_or_create_by!(name: 'Guest User',
+                       user_name: 'Guest User',
+                       email: 'guest@example.com',
+                       date_of_birth: "Mon, 17 Apr 1995",
+                       gender: '♂',
+                       origin: 'JP',
+                       current_country: 'CA',
+                       current_city: 'Vancouver',
+                       language_1: 'Japanese',
+                       language_2: 'English',
+                       language_3: 'Chinese',
+                       introduce: 'Hi, I\'m a Guest User.',
+                       )  do |user|
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
 end

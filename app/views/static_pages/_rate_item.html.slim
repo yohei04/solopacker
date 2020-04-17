@@ -3,7 +3,7 @@ h3 = country_flag(target_country)
 .rate-bottom
   .rate-currency.base_rate
     .rate-input
-      = f.text_field input_base_rate, value: 1
+      = f.text_field input_base_rate, value: 1.0
     .rate-input
       = f.select base_currency, options_for_select(all_currencies_array, selected: default_currency(base_country))
   .rate-currency.target_rate
@@ -13,6 +13,6 @@ h3 = country_flag(target_country)
       = f.select target_currency, options_for_select(all_currencies_array, selected: default_currency(target_country))
       
 .rate-result
-  = f.hidden_field base_rate, value: 1
+  = f.hidden_field base_rate, value: 1.0
 .rate-result
   = f.hidden_field target_rate, value: exchange_rate(default_currency(base_country), default_currency(target_country))

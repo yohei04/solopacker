@@ -1,5 +1,4 @@
 module StaticPagesHelper
-
   def searched_recruit_country
     return 'All Recruits' if params[:q].try(:[], :country_cont).blank?
 
@@ -7,6 +6,10 @@ module StaticPagesHelper
     name.present? ? "Recruits in #{name}" : 'No such country!'
   end
 
+
+  # ↓Rate関連
+  DEFAULT_COUNTRY = "USD"
+  
   def currency(country)
     return if Country[country].blank?
 
@@ -14,8 +17,7 @@ module StaticPagesHelper
   end
 
   def rate_hash(base_currency)
-    # uri = URI.parse("https://prime.exchangerate-api.com/v5/#{Rails.application.credentials.dig(:RATE_API_KEY)}/latest/#{base_currency}")
-    uri = URI.parse("https://api.exchangeratesapi.io/latest?base=#{base_currency}")
+    uri = URI.parse("#{RATE_API_URL}#{base_currency}")
     json = Net::HTTP.get(uri)
     result = JSON.parse(json)
     # result["conversion_rates"]
@@ -31,7 +33,7 @@ module StaticPagesHelper
   end
 
   def all_currencies_array
-    rate_hash('USD').keys
+    rate_hash(DEFAULT_COUNTRY).keys
   end
 
   def currency_present?(currency)
@@ -40,7 +42,7 @@ module StaticPagesHelper
 
   def default_currency(country)
     if !currency_present?(currency(country))
-      'USD'
+      DEFAULT_COUNTRY
     else
       currency(country)
     end

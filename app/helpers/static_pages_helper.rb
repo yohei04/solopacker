@@ -6,10 +6,9 @@ module StaticPagesHelper
     name.present? ? "Recruits in #{name}" : 'No such country!'
   end
 
-
   # ↓Rate関連
-  DEFAULT_COUNTRY = "USD"
-  
+  DEFAULT_COUNTRY = 'USD'.freeze
+
   def currency(country)
     return if Country[country].blank?
 

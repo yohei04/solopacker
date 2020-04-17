@@ -6,6 +6,5 @@ class StaticPagesController < ApplicationController
     @recruits = @q.result(distinct: true).page(params[:page]).per(6).create_recent
   end
 
-  def rate
-  end
+  def rate; end
 end

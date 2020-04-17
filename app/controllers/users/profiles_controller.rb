@@ -1,7 +1,7 @@
 class Users::ProfilesController < ApplicationController
   include Map
-
   before_action :authenticate_user!
+  before_action :check_guest, only: [:edit, :update]
 
   def index
     @q = User.with_attached_image.ransack(params[:q])
@@ -38,5 +38,12 @@ class Users::ProfilesController < ApplicationController
                                    :current_country, :current_city,
                                    :language_1, :language_2, :language_3,
                                    :introduce, :image)
+    end
+
+  # before action
+    def check_guest
+      if current_user.email == 'guest@example.com'
+        redirect_to root_path, alert: "Guest user can't edit profile"
+      end
     end
 end

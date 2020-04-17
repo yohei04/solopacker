@@ -65,7 +65,7 @@ class User < ApplicationRecord
   # ゲストサインイン
   def self.guest
     find_or_create_by!(name: 'Guest User',
-                       user_name: 'Guest User',
+                       user_name: 'Guest',
                        email: 'guest@example.com',
                        date_of_birth: "Mon, 17 Apr 1995",
                        gender: '♂',

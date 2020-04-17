@@ -1,5 +1,4 @@
 .rate-wrapper
-  / #rate_json data-resource = rate_json(currency(current_user.origin))
   #rate_json data-resource = rate_json(default_currency(current_user.origin))
   .currency-img
   .on-image
@@ -26,7 +25,7 @@
               .rate-item.feature_country
                 = render partial: 'static_pages/rate_item',
                     locals: { f: f,
-                              subtitle: "Next Country",
+                              subtitle: "Next Country#{i+1}",
                               recruit: mix_recruit,
                               input_base_rate: "input_base_rate-#{i+1}", 
                               base_currency: "base_currency-#{i+1}",
@@ -37,4 +36,4 @@
                               base_country: current_user.origin,
                               target_country: mix_recruit.country,
                             }
-              - break if i == 1
+            - break if i == 3

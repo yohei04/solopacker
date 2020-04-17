@@ -25,12 +25,13 @@
 .actions {
   position: relative;
   .btn {
+    width: 30%;
     border-radius: 50px;
   }
   a {
     position: absolute;
     top: 1rem;
-    left: 60%;
+    left: 70%;
   }
 }
 
@@ -51,4 +52,10 @@
 
 .forgot {
   margin-top: 1.5rem;
+}
+
+.guest_sign_in {
+  width: 30%;
+  margin-top: .6rem;
+  border-radius: 50px;
 }

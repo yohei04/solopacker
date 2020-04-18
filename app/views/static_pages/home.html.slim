@@ -5,10 +5,12 @@
         i.fas.fa-map-marker-alt
         = searched_recruit_country
       .recruit_index-container
-        = image_pack_tag 'cork_board.jpg', class: "cork_board"
+        = image_pack_tag 'cork_board5.jpg', class: "cork_board"
         .on-image
           .recruit_index-btns
             = render partial: 'recruits/search'
+          .recruit_index-pins
+            = render partial: 'static_pages/pins'
           .recruit_index-inner
             = render partial: 'recruits/index', locals: { recruits: @recruits }
           .home-paginate

@@ -89,16 +89,31 @@
 // recruit#indexセクション
 .recruit_index-wrapper {
   font-family: 'Handlee', cursive;
-  padding: 5rem 3rem 20rem;
-  background-color: rgba(160, 143, 143, 0.233);
+  // padding: 2rem 3rem 20rem;
+  // background-color: $bgc-sign;
+}
+
+.recruit_index-title {
+  width: 60%;
+  margin: 1rem auto 0;
+  font-size: 50px;
+  color: #474747;
+  border-radius: 20px;
+  text-align: center;
+  .svg-inline--fa{
+    margin: 0 1rem;
+  }
 }
 
 .recruit_index-container {
-  margin: 0 auto;
-  background-color: $color-trueWhite;
   position: relative;
   .cork_board {
     width: 100%;
+    // background-color: black;
+    // height: 100vh;
+    // border: solid #580101 30px;
+    // opacity: .8;
+    vertical-align: top;
   }
   .on-image {
     position: absolute;
@@ -108,17 +123,6 @@
   }
 }
 
-.recruit_index-title {
-  width: 60%;
-  margin: 0 auto;
-  font-size: 80px;
-  color: #474747;
-  border-radius: 20px;
-  text-align: center;
-  .svg-inline--fa{
-    margin: 0 1rem;
-  }
-}
 .recruit_search {
   text-align: right;
   select, button {
@@ -127,6 +131,12 @@
   .btn {
     background-color: $color-main;
   }
+}
+
+.recruit_index-pins {
+  margin: 1rem 5rem;
+  text-align: right;
+  // z-index: 12;
 }
 
 .recruit_index-inner {
@@ -146,7 +156,7 @@
   position: relative;
   width: 32%;
   z-index: 1;
-  margin: 6rem 0 0 5rem;
+  margin: 3rem 0 0 5rem;
   @include recruit-pin($top: -5, $left: 45%);
   a {
     background-color: $color-main;

@@ -1,1 +1,2 @@
+- return if !current_user.participations.find_by(recruit_id: @recruit.id)
 = link_to 'changed my mind', recruit_participation_path(recruit_id: @recruit.id, id: current_user.participations.find_by(recruit_id: @recruit.id)), class: "delete_join-btn", method: :delete, remote: true 

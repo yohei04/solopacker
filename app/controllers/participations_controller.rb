@@ -1,6 +1,5 @@
 class ParticipationsController < ApplicationController
-  include ParticipationsHelper
-
+  
   def create
     # @participation = current_user.participations.build(participation_params)
     @recruit = Recruit.find(params[:recruit_id])
@@ -8,7 +7,8 @@ class ParticipationsController < ApplicationController
       current_user.participate(@recruit)
       # flash[:notice] = 'You joined this recruit!'
     else
-      flash[:alert] = current_user.id == @recruit.user_id ? 'You are owner' : 'Please comment first'
+      flash.now[:alert] = current_user.id == @recruit.user_id ? 'You are owner' : 'Please comment first'
+      # render 'recruits/show'
     end
     # redirect_back(fallback_location: root_path)
   end

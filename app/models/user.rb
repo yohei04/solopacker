@@ -33,6 +33,10 @@ class User < ApplicationRecord
     participations.exists?(recruit_id: recruit.id)
   end
 
+  def permit_participate?(recruit)
+    commented?(recruit) && id != recruit.user_id
+  end
+
   def feature_host_recruits
     feature_host_recruits = []
     recruits.happen_recent.each do |recruit|

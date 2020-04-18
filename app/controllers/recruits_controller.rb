@@ -62,6 +62,6 @@ class RecruitsController < ApplicationController
 
     def profile_blank_check?
       [current_user.gender, current_user.origin, current_user.current_country,
-      current_user.language_1, current_user.introduce].any?(&:blank?)
+       current_user.language_1, current_user.introduce].any?(&:blank?)
     end
 end

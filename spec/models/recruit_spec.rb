@@ -47,7 +47,7 @@ describe Recruit, type: :model do
       let!(:recruit_order_2) { FactoryBot.create(:recruit, created_at: 2.years.ago) }
       let!(:recruit_order_3) { FactoryBot.create(:recruit, created_at: 10.minutes.ago) }
       it 'is most recent first' do
-        expect(recruit).to eq(Recruit.recent.first)
+        expect(recruit).to eq(Recruit.create_recent.first)
       end
     end
     context 'when delete user' do

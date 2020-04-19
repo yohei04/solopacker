@@ -1,5 +1,4 @@
 class ParticipationsController < ApplicationController
-  
   def create
     @recruit = Recruit.find(params[:recruit_id])
      respond_to do |format|

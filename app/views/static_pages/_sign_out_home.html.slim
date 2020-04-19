@@ -1,13 +1,13 @@
 section#main_vew
   .main_view-wrapper
     .main_view-image
-      = image_pack_tag 'hero.jpg'
-    .main_view-container
-      h1 Solopacker
-      p Travelling alone is sometimes boring. 
-      p Solopacker makes your travel fun, cool and sexy.
-      - unless user_signed_in?
-        = link_to "Let's Get Started!", new_user_registration_path, class: "btn"
+    .on-image
+      .main_view-container
+        h1 Solopacker
+        p Travelling alone is sometimes boring. 
+        p Solopacker makes your travel fun, cool and sexy.
+        - unless user_signed_in?
+          = link_to "Let's Get Started!", new_user_registration_path, class: "btn"
 
 Section#about
   .about-wrapper

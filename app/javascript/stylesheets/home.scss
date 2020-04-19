@@ -2,12 +2,17 @@
 .main_view-wrapper {
   position: relative;
   .main_view-image {
-    img {
-      background-size: cover;
-      width: 100%;
-      max-width: 1500px;
-      vertical-align: bottom;
-    }
+    background: url(../images/hero.jpg) no-repeat center center / cover;
+    height: 100vh;
+    background-size: cover;
+    vertical-align: bottom;
+  }
+  .on-image {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
   }
   .main_view-container {
     position: absolute;
@@ -33,6 +38,7 @@
     background-color: darken($color-main, 5%);
     color: $color-trueWhite;
     border-radius: 5px;
+    padding: .4rem 1.2rem;
     &:hover {
       background-color: darken($color-main, 8%);
     }
@@ -41,7 +47,7 @@
 
 // Aboutセクション
 .about-wrapper {
-  padding: 3rem 0;
+  padding: 5rem 0;
 }
 .about-container {
   text-align: center;
@@ -59,8 +65,8 @@
 
 // How toセクション
 .how_to-wrapper {
-  background-color: rgba(128, 185, 231, 0.05);
-  padding: 3rem 0;
+  background-color: $bgc-home;
+  padding: 5rem 0 8rem;
 }
 .how_to-container {
   text-align: center;

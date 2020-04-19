@@ -39,7 +39,7 @@ class User < ApplicationRecord
 
   def feature_host_recruits
     feature_host_recruits = []
-    recruits.happen_recent.each do |recruit|
+    recruits.each do |recruit|
       feature_host_recruits.push(recruit) if recruit.date_time > Time.zone.now
     end
     feature_host_recruits
@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   def feature_participate_recruits
     feature_participate_recruits = []
-    participated_recruits.happen_recent.each do |recruit|
+    participated_recruits.each do |recruit|
       feature_participate_recruits.push(recruit) if recruit.date_time > Time.zone.now
     end
     feature_participate_recruits

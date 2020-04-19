@@ -95,8 +95,6 @@
 
 
 
-
-
 // recruit#indexセクション
 .recruit_index-wrapper {
   font-family: 'Handlee', cursive;
@@ -108,7 +106,7 @@
   width: 60%;
   margin: 1rem auto 0;
   font-size: 50px;
-  color: #474747;
+  color: $color-black;
   border-radius: 20px;
   text-align: center;
   .svg-inline--fa{

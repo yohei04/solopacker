@@ -30,13 +30,12 @@
 
 h2.mt-5.m-2 Recruits Map
 #map
-
 #hoge data-resource = @hp_recruits_josn
 javascript:
   const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
   function initMap() {
     // 初期地を表示する
-    const defaultSettings = {zoom: 2, center: {lat: 0, lng: 0}};
+    const defaultSettings = {zoom: 2.4, center: {lat: 30, lng: 0}};
     const map = new google.maps.Map(
       document.querySelector('#map'),
       defaultSettings

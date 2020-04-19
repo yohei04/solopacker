@@ -53,7 +53,7 @@
 // show
 .recruit_show-wrapper {
   background-color: $bgc-sign;
-  padding: 4rem 0;
+  padding: 5rem 0;
 }
 
 .recruit_show-container {
@@ -201,7 +201,7 @@
 
 // comment#index
 .comment-wrapper {
-  padding: 1rem 0;
+  padding: 2rem 0;
   background-color: $bgc-sign;
 }
 
@@ -227,8 +227,8 @@
     width: 20%;
     text-align: right;
     padding-right: 1.5rem;
-    @include user-image($width: 50px, $height: 50px, $margin-right: 0,
-                    $top: 28px, $left: 0px, $right: 55px, $font-size: 1.6rem);
+    @include user-image($width: 70px, $height: 70px, $margin-right: 0,
+                    $top: 45px, $left: 0px, $right: 74px, $font-size: 1.6rem);
   }
   .comment_index-comment {
     position: relative;
@@ -255,8 +255,8 @@
     width: 20%;
     text-align: left;
     padding-left: 1.5rem;
-    @include user-image($width: 50px, $height: 50px, $margin-right: 0,
-                    $top: 28px, $left: 15px, $font-size: 1.6rem);
+    @include user-image($width: 70px, $height: 70px, $margin-right: 0,
+                    $top: 45px, $left: 17px, $font-size: 1.6rem);
   }
   .comment_index-comment {
     position: relative;

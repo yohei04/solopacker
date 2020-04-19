@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   
   root 'static_pages#home'
+  get '/about', to: 'static_pages#about'
   get '/rate', to: 'static_pages#rate'
   namespace :users do
     resources :profiles, only: [:index, :show, :edit, :update]

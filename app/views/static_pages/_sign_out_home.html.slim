@@ -1,0 +1,48 @@
+section#main_vew
+  .main_view-wrapper
+    .main_view-image
+      = image_pack_tag 'hero.jpg'
+    .main_view-container
+      h1 Solopacker
+      p Travelling alone is sometimes boring. 
+      p Solopacker makes your travel fun, cool and sexy.
+      - unless user_signed_in?
+        = link_to "Let's Get Started!", new_user_registration_path, class: "btn btn-primary"
+
+Section#about
+  .about-wrapper
+    .about-container
+      h2.about-title
+        | About
+      .about-text
+        p When you travel alone,
+        p you sometimes get bored or want to share your experience with someone.
+        p Solopacker can help you to find other travelers to share the journey with you.
+        p Find people
+        p who are in the same situation with you and explore cities with them!
+
+Section#how_to
+  .how_to-wrapper
+    .how_to-container
+      h2.how_to-title
+        | How to use
+      .how_to-items
+        .how_to-item.left
+          .how_to-logo
+            i.fas.fa-map-marked-alt.fa-5x
+          .text
+            h3.how_to-sub_title
+              | Post
+            p Post your plan
+            p and
+            p Wait till someone contacts you.
+        h3.how_to-or or
+        .how_to-item.right
+          .how_to-logo
+            i.fas.fa-search-location.fa-5x
+          .text
+            h3.how_to-sub_title
+              | Find
+            p Find posts you want to join
+            p and
+            p contact them.

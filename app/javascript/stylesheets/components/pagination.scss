@@ -1,0 +1,19 @@
+// ページネーション
+@mixin pagination($justify-content: center, $font-size: .01rem) {
+  .pagination {
+    font-size: $font-size;
+    justify-content: $justify-content;
+    .page-item.active .page-link {
+      color: $color-trueWhite;
+      background-color: $color-main; 
+      border-color: $color-main; 
+    }
+    .page-link {
+      color: $color-main;
+      background-color: $color-trueWhite; 
+    }
+    .page-item.disabled {
+      display: none;
+    }
+  }
+}

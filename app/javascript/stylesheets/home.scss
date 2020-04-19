@@ -27,10 +27,15 @@
   p {
     font-size: 1.6rem;
   }
-  .btn 
-  {
+  .btn {
     font-size: 1.6rem;
     margin-top: 2rem;
+    background-color: darken($color-main, 5%);
+    color: $color-trueWhite;
+    border-radius: 5px;
+    &:hover {
+      background-color: darken($color-main, 8%);
+    }
   }
 }
 

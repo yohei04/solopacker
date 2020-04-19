@@ -70,7 +70,8 @@
     .image {
       display: flex;
       align-items: center;
-      margin: 0 auto;
+      justify-content: center;
+      margin-left: 20%;
       img {
         width: 100px;
         height: 100px;
@@ -82,18 +83,19 @@
         display: none;
       }
     }
+    .profile-image-form {
+      display: inline;
+    }
   }
 }
 .profile-btns {
   position: relative;
   .actions {
     margin: 0 auto;
-    width: 40%;
-  }
-  .profile-password-delete {
-    position: absolute;
-    top: 0;
-    left: 25rem;
+    text-align: center;
+    .btn {
+      @extend %btn;
+    }
   }
 }
 

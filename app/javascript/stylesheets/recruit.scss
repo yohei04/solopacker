@@ -44,14 +44,7 @@
     text-align: center;
     .btn {
       width: 40%;
-      color: $color-trueWhite;
-      border-radius: 50px;
-      background-color: $color-main;border: 1px solid $white;
-      &:hover {
-        border: 1px solid $color-main;
-        color: $color-main;
-        background-color: $color-trueWhite;
-      }
+      @extend %btn;
     }
   }
 }
@@ -60,7 +53,7 @@
 // show
 .recruit_show-wrapper {
   background-color: $bgc-sign;
-  padding: 5rem 0;
+  padding: 4rem 0;
 }
 
 .recruit_show-container {
@@ -174,28 +167,17 @@
   a {
     display: block;
     width: 80%;
-    text-align: center;
     margin: 1rem auto 0;
     padding: .2rem;
-    border-radius: 50px;
-    border: 1px solid $color-trueWhite;
-    color: $color-trueWhite;
-    background-color: $color-main;
-    &:hover {
-      border: 1px solid $color-main;
-      color: $color-main;
-      background-color: $color-trueWhite;
-    }
+    @extend %btn;
   }
 }
 
 
 // comment#new
-.comment_new {
-}
 .comment_new-inner {
   width: 70%;
-  margin: 1rem auto 2rem;
+  margin: 0rem auto 2rem;
   text-align: center;
   .comment_new_content {
     text-align: center;
@@ -209,11 +191,9 @@
   }
   .comment_new-btn {
     text-align: right;
-  }
-  .btn {
-    color: $color-trueWhite;
-    border-radius: 50px;
-    background-color: $color-main;
+    .btn {
+      @extend %btn;
+    }
   }
 }
 
@@ -222,7 +202,7 @@
 // comment#index
 .comment-wrapper {
   padding: 1rem 0;
-  background-color: rgba(141, 65, 65, 0.384);
+  background-color: $bgc-sign;
 }
 
 .comment-container {
@@ -232,9 +212,8 @@
 
 .comment_index {
   height: 600px;
-  padding: 2rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
+  // overflow-y: scroll;
+  // overflow-x: hidden;
 }
 
 .comment_index-item {

@@ -14,9 +14,10 @@ header.fixed-top
             = link_to "Members", users_profiles_path, id: "member"
           li
             = link_to "Rate", rate_path, id: "rate"
-          li.dropdown
+          li.dropdown 
             a.dropdown-toggle[href="#" data-toggle="dropdown"]
-              | Account
+              = render partial: 'users/profiles/image', locals: { user: current_user }
+              / | Account
               b.caret
             ul.dropdown-menu
               li

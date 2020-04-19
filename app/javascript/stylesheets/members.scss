@@ -2,11 +2,12 @@
 
 .members_index-wrapper {
   background-color: $bgc-sign;
-  padding: 3rem;
+  padding: 5rem 0;
 }
 
 .members_index-container {
-  width: 60%;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
   background-color: $color-trueWhite;
 }
@@ -19,7 +20,7 @@
 
 .members_index-item {
   display: flex;
-  margin-left: 5rem;
+  margin-left: 7rem;
   align-items: center;
   @include user-image();
   &:hover {
@@ -33,7 +34,7 @@
     margin-right: .4rem;
   }
   .members_index-text {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: $color-trueBlack;
     a {
       text-decoration: none;

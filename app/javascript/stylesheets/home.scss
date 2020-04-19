@@ -116,13 +116,10 @@
 
 .recruit_index-container {
   position: relative;
-  .cork_board {
+  .cork_board-image {
+    background: url(../images/cork_board5.jpg) no-repeat center center / 100% 100%;
     width: 100%;
-    // background-color: black;
-    // height: 100vh;
-    // border: solid #580101 30px;
-    // opacity: .8;
-    vertical-align: top;
+    height: 1000px;
   }
   .on-image {
     position: absolute;
@@ -143,16 +140,34 @@
 }
 
 .recruit_index-pins {
-  margin: 1rem 5rem;
+  margin: 0rem 3rem;
   text-align: right;
-  // z-index: 12;
+  .pin1 {
+    margin-right: 2rem;
+  }
+  .pin2 {
+    margin-top: 1rem;
+  }
+  .pin3 {
+    margin-bottom: 1rem;
+  }
+  .pin4 {
+    margin-top: 1rem;
+  }
+  .pin5 {
+    margin-bottom: 2rem;
+  }
+  .pin6 {
+    margin-bottom: 1.5rem;
+  }
+  .pin7 {
+    margin-left: 1rem;
+  }
 }
 
 .recruit_index-inner {
   width: 100%;
   padding: 2rem;
-  top: 170px;
-  left: 0;
   display: flex;
   flex-wrap:wrap;
   justify-content: center;

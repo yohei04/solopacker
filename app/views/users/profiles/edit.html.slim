@@ -39,12 +39,12 @@
           .field.current_place
             = f.label :current_place, 'Current City:'
             = f.text_field :current_place, placeholder: 'where you are at now', id: :autocomplete_address
-          / .field.current_country
-          /   = f.label :current_country, 'Current Country:'
-          /   = f.text_field :current_country, id: :country
-          / .field.current_city
-          /   = f.label :current_city, 'Current City:'
-          /   = f.text_field :current_city, id: :locality
+          .field.current_country
+            = f.label :current_country, 'Current Country:'
+            = f.hidden_field :current_country, id: :country
+          .field.current_city
+            = f.label :current_city, 'Current City:'
+            = f.hidden_field :current_city, id: :locality
           .field.language_1
             = f.label :language_1, 'Language①:'
             = f.text_field :language_1

@@ -1,7 +1,7 @@
 = search_form_for(@q, url: root_path, method: :get, class: '') do |f|
-  = f.country_select :country_cont, class: 'form-control', placeholder: "Country, State, City", selected: current_user.current_country
+  = f.country_select :country_cont, { class: 'form-control', include_blank: 'All Countries' }
   = button_tag type: 'submit', class: 'btn' do
-      i.fas.fa-search
+    i.fas.fa-search
 
 
   / .form-group.row

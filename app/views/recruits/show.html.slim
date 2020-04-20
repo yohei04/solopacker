@@ -28,7 +28,12 @@
           
           .recruit_show-inner-recruitInfo
             = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
-            .recruit_show-inner-plan.recruit-items
+            .recruit-items
+              span.how_long.recruit-words How long:
+              .user-info
+                span = "#{@recruit.hour}h"
+
+            .recruit-items
               p.my_plan.recruit-words My plan:
               p.user-info.recruit-content = @recruit.content
         .recruit_show-inner-bottom

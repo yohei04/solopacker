@@ -65,17 +65,15 @@
 
 
 // 一つの募集
-@mixin recruit($width: 32%, ){
+@mixin recruit($width: 400px){
   .recruit_index-dummy {
     position: relative;
     width: $width;
-    max-width: 400px;
     z-index: 1;
     @include recruit-pin();
   }
   .recruit_index-item {
     position: relative;
-    // width: 30%;
     background-color: $color-trueWhite;
     margin: 1rem;
     padding: .6rem 1rem;
@@ -116,15 +114,16 @@
   }
   .recruit_index-item-middle {
     display: flex;
+    align-items: center;
     .image {
       @include user-image($margin-right: 1rem);
-      // &:hover {
-      //   opacity: .7;
-      // }
+    }
+    .recruit-name {
+      margin: .6rem 0 0 .6rem;
     }
     .recruit-items {
       font-size: 1.2rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.4rem;
     }
     .recruit-words {
       margin-bottom: .2rem;

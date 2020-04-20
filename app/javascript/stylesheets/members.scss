@@ -2,7 +2,7 @@
 
 .members_index-wrapper {
   background-color: $bgc-sign;
-  padding: 5rem 0;
+  padding: 5rem 2rem;
 }
 
 .members_index-container {
@@ -13,14 +13,14 @@
 }
 
 .members_index-inner {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   padding: 2rem 0;
 }
 
 .members_index-item {
   display: flex;
-  margin-left: 7rem;
+  margin-left: 5rem;
   align-items: center;
   @include user-image();
   &:hover {
@@ -36,12 +36,6 @@
   .members_index-text {
     font-size: 1.2rem;
     color: $color-trueBlack;
-    a {
-      text-decoration: none;
-      &:hover {
-        // text-decoration: none;
-      }
-    }
   }
 }
 .members-paginate {
@@ -108,8 +102,10 @@
     width: 60%;
     // height: 500px;
     // overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
     margin: 0 auto;
-    @include recruit($width: 100%);
+    @include recruit;
   }
 }
 

@@ -1,8 +1,7 @@
 section#recruit
   .recruit_index-wrapper
     h2.recruit_index-title
-      i.fas.fa-map-marker-alt
-      = searched_recruit_country
+      = render partial: 'static_pages/recruit_title'
     .recruit_index-container
       .cork_board-image
       .on-image
@@ -11,8 +10,8 @@ section#recruit
         .recruit_index-pins
           = render partial: 'static_pages/pins'
         .recruit_index-inner
-          = render partial: 'recruits/index', locals: { recruits: @recruits }
+          = render partial: 'recruits/index' , locals: { recruits: @recruits }
         .home-paginate
-          = render partial: 'layouts/paginate', locals: { object: @recruits }
+          = render partial: 'static_pages/pagination_home'
         .recruit_index-blank
           = render partial: 'recruits/blank'

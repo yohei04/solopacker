@@ -12,5 +12,5 @@
               = render partial: 'simpleInfo', locals: { user: user }
           hr
     .members-paginate
-      = render partial: 'pagination_profile', locals: { object: @users }
+      = render partial: 'layouts/pagination', locals: { object: @users }
 

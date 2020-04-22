@@ -12,6 +12,6 @@ section#recruit
         .recruit_index-inner
           = render partial: 'recruits/index' , locals: { recruits: @recruits }
         .home-paginate
-          = render partial: 'static_pages/pagination_home'
+          = render partial: 'layouts/pagination', locals: { object: @recruits }
         .recruit_index-blank
           = render partial: 'recruits/blank'

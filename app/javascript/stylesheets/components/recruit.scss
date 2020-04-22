@@ -26,7 +26,7 @@
     display: block;
     width: 50%;
     height: 50%;
-    box-shadow: 0 15px 10px #960;
+    box-shadow: $shadow-recruit
   }
   &::before {
     left: 5px;
@@ -41,7 +41,7 @@
 
 
 // 募集の外側
-@mixin recruit-container($position: relative, $background-color: $color-trueWhite, $border: dashed rgba(255, 145, 0, 0.664), $padding: .6rem 1rem) {
+@mixin recruit-container($position: relative, $background-color: $color-trueWhite, $border: $border-recruit, $padding: .6rem 1rem) {
   position: $position;
   background-color: $background-color;
   border: $border;
@@ -76,7 +76,7 @@
     background-color: $color-trueWhite;
     margin: 1rem;
     padding: 1rem .6rem .4rem 1.2rem;
-    border: dashed rgba(255, 145, 0, 0.664);
+    border: $border-recruit;
     @extend %recruit-shadow;
     &:hover {
       transform: rotate(5deg);

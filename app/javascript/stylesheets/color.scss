@@ -6,7 +6,11 @@ $color-gray: rgba(105, 102, 102, 0.582);
 $color-blue: #0056b3;
 $color-trueBlack: #000;
 $color-trueWhite: #fff;
+$color-shadow: #960;
 
+$border-recruit: dashed medium rgba($color-main, 0.8);
+$shadow-recruit: 0 15px 10px $color-shadow; 
+$shadow-recruit-dummy: 0 8px 8px $color-shadow;
 
 
 

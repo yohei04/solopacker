@@ -105,7 +105,7 @@
   .recruit_show-inner-name {
     font-size: 1.5rem;
   }
-  .recruit_show-inner-joinMember {
+  .recruit_show-inner-participate {
     margin: 1rem 0 .3rem;
     // font-size: 1.4rem;
     p {
@@ -113,7 +113,7 @@
       font-size: 1.2rem;
       // border-bottom: 1px solid $color-gray;
     }
-    .member-names {
+    .participate-names {
       display: flex;
       flex-wrap:wrap;
       margin-left: 1rem;
@@ -157,7 +157,7 @@
     font-size: 1.2rem;
     text-align: right;
     color: $color-black;
-    .fa-edit, .fa-trash-alt, .comment-icon, .join-icon {
+    .fa-edit, .fa-trash-alt, .comment-number, .participate-number {
       margin-right: 0.2rem;
     }
     a {
@@ -170,7 +170,7 @@
 }
 
 // join#new
-.join-btns {
+.participate-btn {
   a {
     display: block;
     width: 80%;
@@ -297,7 +297,7 @@
     }
   }
 }
-.comment_index-btns {
+.comment_index_delete {
   text-align: right;
   margin-top: 1rem;
   a {

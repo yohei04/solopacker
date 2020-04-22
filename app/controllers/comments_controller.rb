@@ -1,20 +1,28 @@
 class CommentsController < ApplicationController
   def create
-    @comment = current_user.comments.build(comment_params)
-    flash[:alert] = "Comment can't be empty" unless @comment.save
-    redirect_back(fallback_location: root_path)
+    @recruit = Recruit.find(params[:recruit_id])
+    comment = @recruit.comments.build(comment_params)
+    comment.user_id = current_user.id
+    respond_to do |format|
+      if comment.save
+        format.js
+      else
+        format.html { render 'recruits/show' }
+      end
+    end
   end
 
   def destroy
-    comment = Comment.find(params[:id])
-    comment.destroy!
-    flash[:notice] = 'Comment deleted!'
-    redirect_back(fallback_location: root_path)
+    @comment = current_user.comments.find(params[:id])
+    respond_to do |format|
+      @comment.destroy!
+      format.js
+    end
   end
 
   private
 
     def comment_params
-      params.permit(:content, :recruit_id)
+      params.permit(:content)
     end
 end

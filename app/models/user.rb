@@ -17,12 +17,24 @@ class User < ApplicationRecord
     (Time.zone.today.strftime('%Y%m%d').to_i - date_of_birth&.strftime('%Y%m%d').to_i) / 10_000
   end
 
+  def participate(recruit)
+    participated_recruits << recruit
+  end
+
+  def unparticipate(recruit)
+    participations.find_by(recruit_id: recruit.id).destroy
+  end
+
   def commented?(recruit)
     comments.exists?(recruit_id: recruit.id)
   end
 
   def participated?(recruit)
     participations.exists?(recruit_id: recruit.id)
+  end
+
+  def permit_participate?(recruit)
+    commented?(recruit) && id != recruit.user_id
   end
 
   def feature_host_recruits

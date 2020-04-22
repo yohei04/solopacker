@@ -1,0 +1,18 @@
+- recruit.comments.each do |comment|
+  .comment_index-item class="comment-#{comment.id}"  
+    - if comment.user != recruit.user
+      .comment_index-item-left
+        .comment_index-image
+          = link_to users_profile_path(comment.user)
+            = render partial: './users/profiles/image', locals: { user: comment.user }
+          p = comment.user.user_name
+        .comment_index-comment
+          = render partial: 'comments/comment_bubble', locals: { recruit: recruit, comment: comment }
+    - else comment.user == recruit.user
+      .comment_index-item-right
+        .comment_index-comment
+            = render partial: 'comments/comment_bubble', locals: { recruit: recruit, comment: comment }
+        .comment_index-image
+          = link_to users_profile_path(comment.user)
+            = render partial: './users/profiles/image', locals: { user: comment.user }
+          p = comment.user.user_name

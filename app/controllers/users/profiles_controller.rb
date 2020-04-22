@@ -4,8 +4,12 @@ class Users::ProfilesController < ApplicationController
   before_action :check_guest, only: %i[edit update]
 
   def index
-    @q = User.with_attached_image.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).per(10).create_recent
+    respond_to do |format|
+      @q = User.with_attached_image.ransack(params[:q])
+      @users = @q.result(distinct: true).page(params[:page]).per(10).create_recent
+      format.html
+      format.js
+    end
   end
 
   def show

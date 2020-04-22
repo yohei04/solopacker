@@ -3,14 +3,7 @@
     h2.members_index-title
       | Members
     .members_index-inner
-      - @users.each do |user|
-        = link_to users_profile_path(user)
-          .members_index-item
-            .members_index-image
-              = render partial: 'image', locals: { user: user }
-            .members_index-text
-              = render partial: 'simpleInfo', locals: { user: user }
-          hr
+      = render partial: 'profile_index'
     .members-paginate
       = render partial: 'layouts/pagination', locals: { object: @users }
 

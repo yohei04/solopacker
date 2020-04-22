@@ -1,0 +1,4 @@
+document.querySelector(".members_index-inner").innerHTML = "<%= escape_javascript(render partial: 'profile_index' ) %>"
+document.querySelector(".members-paginate").innerHTML = "<%= escape_javascript(render partial: 'layouts/pagination', locals: { object: @users } ) %>"
+
+

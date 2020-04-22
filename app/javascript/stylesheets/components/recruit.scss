@@ -1,4 +1,3 @@
-
 // 募集のピン
 @mixin recruit-pin($width: 35px, $height: 35px, $top: 10px, $left: 51%) {
   &::before {
@@ -65,7 +64,7 @@
 
 
 // 一つの募集
-@mixin recruit($width: 400px){
+@mixin recruit($width: 390px){
   .recruit_index-dummy {
     position: relative;
     width: $width;

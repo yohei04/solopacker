@@ -23,8 +23,6 @@
               p ☆Joined Member☆
               .participate-names
                 = render partial: 'participations/participate_members'
-              .participate-btn
-                = render partial: 'participations/participate_btn_area', locals: { recruit: @recruit }
           
           .recruit_show-inner-recruitInfo
             = render partial: './recruits/simpleRecruitInfo', locals: { recruit: @recruit }
@@ -37,6 +35,8 @@
               p.my_plan.recruit-words My plan:
               p.user-info.recruit-content = @recruit.content
         .recruit_show-inner-bottom
+          .participate-btn
+            = render partial: 'participations/participate_btn_area', locals: { recruit: @recruit }
           -if current_user == @recruit.user
             = link_to edit_recruit_path(@recruit), method: :get do
               i.fas.fa-edit

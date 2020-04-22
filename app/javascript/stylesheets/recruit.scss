@@ -85,10 +85,8 @@
   }
   .recruit_show-inner-middle-left {
     width: 30%;
+    margin-right: 0.6rem;
     text-align: center;
-  }
-  .recruit_show-inner-profileInfo {
-    margin-right: 1.6rem;
   }
   .recruit_show-inner-image {
     margin-bottom: 0.6rem;
@@ -100,19 +98,18 @@
   }
   .recruit_show-inner-participate {
     margin: 1rem 0 .3rem;
-    // font-size: 1.4rem;
     p {
       margin: 1rem 0 .4rem;
       font-size: 1.2rem;
-      // border-bottom: 1px solid $color-gray;
     }
     .participate-names {
       display: flex;
       flex-wrap:wrap;
+      height: 50px;
       margin-left: 1rem;
     }
     .member-name {
-      font-size: 1rem;
+      display: inline-block;
       margin-right: auto;
       color: $color-trueBlack;
       margin: 0 1rem .3rem 0;
@@ -140,18 +137,25 @@
       margin-top: .2rem;
       word-wrap: break-word;
     }
-    .when-info {
-      // font-size: 2rem;
-      // margin-bottom: 2rem;
-    }
   }
 
   .recruit_show-inner-bottom {
-    font-size: 1.2rem;
-    text-align: right;
+    display: flex;
+    align-items: center;
     color: $color-black;
+    .participate-btn {
+      font-size: 1.2rem;
+      width: 160px;
+      margin: 0 auto 0 1.5rem;
+      a {
+        display: block;
+        padding: .2rem 0 .1rem 0;
+        @extend %btn;
+      }
+    }
     .fa-edit, .fa-trash-alt, .comment-number, .participate-number {
       margin-right: 0.2rem;
+      font-size: 1.4rem;
     }
     a {
       color: $color-black;
@@ -162,16 +166,6 @@
   }
 }
 
-// join#new
-.participate-btn {
-  a {
-    display: block;
-    width: 80%;
-    margin: 1rem auto 0;
-    padding: .2rem;
-    @extend %btn;
-  }
-}
 
 
 // comment#new
@@ -227,8 +221,8 @@
     width: 20%;
     text-align: right;
     padding-right: 1.5rem;
-    @include user-image($width: 70px, $height: 70px, $margin-right: 0,
-                    $top: 45px, $left: 0px, $right: 74px, $font-size: 1.6rem);
+    @include user-image($width: 60px, $height: 60px, $margin-right: 0,
+                    $top: 38px, $left: 0px, $right: 66px, $font-size: 1.6rem);
   }
   .comment_index-comment {
     position: relative;
@@ -255,8 +249,8 @@
     width: 20%;
     text-align: left;
     padding-left: 1.5rem;
-    @include user-image($width: 70px, $height: 70px, $margin-right: 0,
-                    $top: 45px, $left: 17px, $font-size: 1.6rem);
+    @include user-image($width: 60px, $height: 60px, $margin-right: 0,
+                    $top: 38px, $left: 17px, $font-size: 1.6rem);
   }
   .comment_index-comment {
     position: relative;

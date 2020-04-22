@@ -24,3 +24,4 @@
       .actions
         = f.submit "Sign up", class: "btn btn-primary"
         = render "users/shared/links"
+      = link_to 'Guest Sign in', users_guest_sign_in_path, method: :post, class: "btn btn-success guest_sign_in"

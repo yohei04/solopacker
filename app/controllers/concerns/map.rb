@@ -12,7 +12,7 @@ module Map
 
   # 全ての募集のjson
   def feature_recruits_json
-    Recruit.happen_recent.includes(user: { image_attachment: :blob }).map do |r|
+    Recruit.upcoming.includes(user: { image_attachment: :blob }).map do |r|
       user_image_path = if r.user.image.attached?
                           Rails.application.routes.url_helpers.rails_blob_path(r.user.image, only_path: true)
                         else

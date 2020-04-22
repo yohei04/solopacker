@@ -34,7 +34,7 @@
         = render partial: 'recruits/index', locals: { recruits: @recruits }
     ul
       .join_recruits
-        = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits }
+        = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits.happen_recent }
     ul
       #map
       #hoge data-resource = @hp_recruits_josn

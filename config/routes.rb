@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   end
   resources :recruits, except: :index do
     get 'map', on: :collection
-    resources :comments, only: [:create, :update, :destroy]
-    resources :participations, only: [:index, :create, :destroy]
+    resources :comments, only: [:create, :destroy]
+    resources :participations, only: [:create, :destroy]
   end
 end

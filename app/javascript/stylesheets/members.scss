@@ -45,6 +45,7 @@
 
 // Members#show
 
+// ユーザープロフィール
 .members_show-wrapper {
   background-color: $bgc-sign;
   padding: 3rem 0;
@@ -60,14 +61,12 @@
 .members_show-inner-top {
   display: flex;
   justify-content: center;
-  // align-items: center;
   .members_show-image {
     @include user-image($width: 200px, $height: 200px, $margin-right: 2rem,
                    $top: 150px, $left: 0px, $font-size: 3rem);
   }
 }
 .members_show-text {
-  // font-size: 1.2rem;
   .user_name_age_gender {
     margin-bottom: 1rem;
     font-size: 2rem;
@@ -82,10 +81,18 @@
   }
   .user-info {
     font-size: 1.2rem;
-    // margin-left: 1rem;
   }
 }
 
+.members_show-inner-bottom {
+  text-align: right;
+  a {
+    @extend %link
+  }
+}
+
+
+// ユーザー募集
 .members-recruis {
   display: flex;
   width: 100%;

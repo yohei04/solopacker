@@ -10,3 +10,10 @@
     background-color: $color-trueWhite;
   }
 }
+
+%link {
+  color: $color-main;
+  &:hover {
+    color: darken($color-main, 5%);
+  }
+}

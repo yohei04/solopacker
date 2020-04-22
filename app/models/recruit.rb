@@ -1,9 +1,9 @@
 class Recruit < ApplicationRecord
+  include Scope
   belongs_to :user
   has_many :comments, dependent: :destroy
   has_many :participations, dependent: :destroy
   has_many :participated_users, through: :participations, source: :user
-  scope :create_recent, -> { order(created_at: :desc) }
   scope :happen_recent, -> { order(date_time: :asc).where('date_time >= ?', Time.zone.now.beginning_of_day) }
   validates :user_id, presence: true
   validates :date_time, presence: true

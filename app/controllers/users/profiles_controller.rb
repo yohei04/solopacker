@@ -5,7 +5,7 @@ class Users::ProfilesController < ApplicationController
 
   def index
     @q = User.with_attached_image.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).per(10)
+    @users = @q.result(distinct: true).page(params[:page]).per(10).create_recent
   end
 
   def show

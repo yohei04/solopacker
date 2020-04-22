@@ -1,3 +1,4 @@
+// ユーザー詳細
 .members_show-wrapper
   .members_show-container
     .members_show-inner
@@ -20,69 +21,74 @@
         - if @user == current_user
           = link_to "edit profile", edit_users_profile_path(current_user)
 
-.members-recruis
-  .host_recruits
-    h3 Host recruits
-    .host_recruits-inner
-      = render partial: 'recruits/index', locals: { recruits: @recruits }
-  .join_recruits
-    h3 Join recruits
-    .join_recruits-inner
-      = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits }
+
+.members-show-bottom
+  // タブ
+  ul.tab.clearfix
+    li.active Host Recruit
+    li Join Recruit
+    li Map
+  .area
+    ul.show
+      .host_recruits
+        = render partial: 'recruits/index', locals: { recruits: @recruits }
+    ul
+      .join_recruits
+        = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits }
+    ul
+      #map
+      #hoge data-resource = @hp_recruits_josn
+      javascript:
+        const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
+        function initMap() {
+          // 初期地を表示する
+          const defaultSettings = {zoom: 2.4, center: {lat: 30, lng: 0}};
+          const map = new google.maps.Map(
+            document.querySelector('#map'),
+            defaultSettings
+          );
+
+          // 現在表示されているinfoWindowオブジェクト
+          let currentWindow;
+
+          hp_data.map(d => {
+
+            // ピンの種類
+            var pins = {
+              host_pin: {
+                url: 'http://hibana.xii.jp/icon/pin/004/c18.png'
+              },
+              participate_pin: {
+                url: 'http://hibana.xii.jp/icon/pin/004/c12.png'
+              },
+            };
+
+            // マーカーをつける
+            const marker = new google.maps.Marker({
+              position: {lat: d.lat, lng: d.lng},
+              animation: google.maps.Animation.DROP,
+              map: map,
+            //  icon: image,
+              icon: pins[d.pin].url,
+            });
+
+            var contentString = 
+            '<div id="content">'+
+              `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
+              `<p>@${d.city}_${d.country}<p>`+
+            //  `<img src=http://localhost:3000/${d.user.image} width="200px">`+
+            '</div>';
+
+            // マーカークリックしたら地名をポップアップさせる
+            marker.addListener('click', () => {
+              currentWindow && currentWindow.close();
+              const infoWindow = new google.maps.InfoWindow({content: contentString});
+              infoWindow.open(map, marker);
+              currentWindow = infoWindow;
+            });
+          });
+        }
+
+      script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap" 
 
 
-h2.mt-5.m-2 Recruits Map
-#map
-#hoge data-resource = @hp_recruits_josn
-javascript:
-  const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
-  function initMap() {
-    // 初期地を表示する
-    const defaultSettings = {zoom: 2.4, center: {lat: 30, lng: 0}};
-    const map = new google.maps.Map(
-      document.querySelector('#map'),
-      defaultSettings
-    );
-
-    // 現在表示されているinfoWindowオブジェクト
-    let currentWindow;
-
-    hp_data.map(d => {
-
-      // ピンの種類
-      var pins = {
-        host_pin: {
-          url: 'http://hibana.xii.jp/icon/pin/004/c18.png'
-        },
-        participate_pin: {
-          url: 'http://hibana.xii.jp/icon/pin/004/c12.png'
-        },
-      };
-
-      // マーカーをつける
-      const marker = new google.maps.Marker({
-        position: {lat: d.lat, lng: d.lng},
-        animation: google.maps.Animation.DROP,
-        map: map,
-      //  icon: image,
-        icon: pins[d.pin].url,
-      });
-
-      var contentString = 
-      '<div id="content">'+
-        `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
-        `<p>@${d.city}_${d.country}<p>`+
-      //  `<img src=http://localhost:3000/${d.user.image} width="200px">`+
-      '</div>';
-
-      // マーカークリックしたら地名をポップアップさせる
-      marker.addListener('click', () => {
-        currentWindow && currentWindow.close();
-        const infoWindow = new google.maps.InfoWindow({content: contentString});
-        infoWindow.open(map, marker);
-        currentWindow = infoWindow;
-      });
-    });
-  }
-
-script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap" 

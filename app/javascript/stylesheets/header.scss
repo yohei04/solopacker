@@ -44,15 +44,12 @@
       display: none;
     }
     .dropdown-menu {
-      background-color: rgba(255, 255, 255, 0.315);
+      background-color: rgba(255, 255, 255, 0.8);
       min-width: 6rem;
       li {
         margin: 0 0 .5rem 1rem;
         &:last-child {
           margin-bottom: 0;
-        }
-        a {
-          color: $color-black;
         }
       }
     }

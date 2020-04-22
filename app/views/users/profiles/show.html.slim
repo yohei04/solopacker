@@ -17,7 +17,8 @@
             .user-info
               p.own-introduce = @user.introduce
       .members_show-inner-bottom
-        = link_to "edit profile", edit_users_profile_path(current_user)
+        - if @user == current_user
+          = link_to "edit profile", edit_users_profile_path(current_user)
 
 .members-recruis
   .host_recruits

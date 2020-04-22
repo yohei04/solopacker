@@ -64,7 +64,7 @@
 
 
 // 一つの募集
-@mixin recruit($width: 390px){
+@mixin recruit($width: 410px){
   .recruit_index-dummy {
     position: relative;
     width: $width;
@@ -75,7 +75,7 @@
     position: relative;
     background-color: $color-trueWhite;
     margin: 1rem;
-    padding: .6rem 1rem;
+    padding: 1rem .6rem .4rem 1.2rem;
     border: dashed rgba(255, 145, 0, 0.664);
     @extend %recruit-shadow;
     &:hover {
@@ -139,6 +139,7 @@
     text-align: right;
     font-size: 1.2rem;
     color: $color-black;
+    padding-top: .6rem;
     a {
       margin-right: 0.4rem;
     }

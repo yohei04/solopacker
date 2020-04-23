@@ -72,7 +72,7 @@
 }
 
 .recruit_show-inner {
-  font-family: 'Handlee', cursive;
+  font-family: $font-family-recruit;
   position: relative;
   padding: 3rem 1rem 1rem;
   @extend %recruit-shadow;

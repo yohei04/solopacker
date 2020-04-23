@@ -72,6 +72,7 @@
     @include recruit-pin();
   }
   .recruit_index-item {
+    font-family: $font-family-recruit;
     position: relative;
     background-color: $color-trueWhite;
     margin: 1rem;

@@ -12,5 +12,8 @@ $(function () {
   });
   searchCountry('.all_countries', '');
   searchCountry('.pin5', 'JP');
+  searchCountry('.pin6', gon.current_user_origin);
+  searchCountry('.pin1', gon.first_popular_country);
+  console.log(gon.first_popular_country)
 });
 

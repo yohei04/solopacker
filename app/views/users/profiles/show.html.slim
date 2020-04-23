@@ -31,10 +31,16 @@
   .area
     ul.show
       .host_recruits
-        = render partial: 'recruits/index', locals: { recruits: @recruits }
+        - if @recruits.blank?
+          h2 = "#{@user.user_name} hasn't hosted any recruits yet"
+        - else
+          = render partial: 'recruits/index', locals: { recruits: @recruits }
     ul
       .join_recruits
-        = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits.happen_recent }
+        - if @user.participated_recruits.blank?
+          h2 = "#{@user.user_name} hasn't joined any recruits yet"
+        - else
+          = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits.happen_recent }
     ul
       #map
       #hoge data-resource = @hp_recruits_josn

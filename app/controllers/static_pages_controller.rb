@@ -9,6 +9,7 @@ class StaticPagesController < ApplicationController
         @q = Recruit.upcoming.includes(user: { image_attachment: :blob }).ransack(params[:q])
       end
       @recruits = @q.result(distinct: true).page(params[:page]).per(6)
+      # binding.pry
       format.html
       format.js
     end

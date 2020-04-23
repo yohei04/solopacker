@@ -72,7 +72,7 @@ sample_users = User.all.sample(21)
   }
 end
 
-recruits = Recruit.order(created_at: :desc).take(10)
+recruits = Recruit.order(created_at: :desc).take(15)
 5.times do
   recruits.each { |recruit| recruit.comments.create!(
     content: [Faker::Movie.quote].sample,

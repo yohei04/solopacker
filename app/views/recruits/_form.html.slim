@@ -14,10 +14,10 @@
       = f.text_field :address, value: city, id: :autocomplete_address
     .field.recruit_new_country
       / = f.label :country, 'Meeting Country:'
-      = f.text_field :country, id: :country
+      = f.hidden_field :country, id: :country
     .field.recruit_new_city
       / = f.label :city, 'Meeting City:'
-      = f.text_field :city, id: :locality
+      = f.hidden_field :city, id: :locality
   .field.recruit_new_content
     = f.label :content, 'About your plan:'
     = f.text_area :content, placeholder: "Write your plan"

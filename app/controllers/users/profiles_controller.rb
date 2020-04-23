@@ -46,6 +46,6 @@ class Users::ProfilesController < ApplicationController
 
     # before action
     def check_guest
-      redirect_to root_path, alert: "Guest user can't edit profile" if current_user.email == 'guest@example.com'
+      redirect_to users_profile_path, alert: "Guest user can't edit profile" if current_user.email == 'guest@example.com'
     end
 end

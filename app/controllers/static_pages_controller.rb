@@ -14,7 +14,7 @@ class StaticPagesController < ApplicationController
       format.js
     end
     gon.popular_countries = Recruit.popular_countries.first(3)
-    gon.next_country = current_user.uniq_feature_mix_recruits[0].country
+    gon.next_country = current_user.uniq_feature_mix_recruits[0]&.country
     gon.current_user_origin = current_user.origin
   end
 

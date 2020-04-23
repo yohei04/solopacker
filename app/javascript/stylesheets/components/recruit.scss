@@ -64,7 +64,7 @@
 
 
 // 一つの募集
-@mixin recruit($width: 410px){
+@mixin recruit($width: 400px){
   .recruit_index-dummy {
     position: relative;
     width: $width;

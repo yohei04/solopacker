@@ -140,13 +140,28 @@
 }
 
 .recruit_index-pins {
-  margin: 0rem 3rem;
-  text-align: right;
+  .top {
+    display: flex;
+    justify-content: space-between;
+    .left {
+      margin-left: 5rem;
+    }
+    .right {
+      margin-right: 3rem;
+    } 
+  }
+  .bottom {
+    text-align: right;
+    margin-right: 3rem;
+  }
   .pin {
-    height: 50px;
+    height: 40px;
+  }
+  .first_popular_country, .second_popular_country, .third_popular_country {
+    margin-right: 2rem;
+    cursor : pointer;
   }
   .all_countries {
-    margin-right: auto;
     cursor : pointer;
   }
   .pin1 {
@@ -161,12 +176,13 @@
   .pin4 {
     margin-top: 1rem;
   }
-  .pin5 {
+  .next_country {
     margin-bottom: .8rem;
     cursor : pointer;
   }
-  .pin6 {
+  .origin {
     margin-bottom: .5rem;
+    cursor : pointer;
   }
   .pin7 {
     margin-left: 1rem;

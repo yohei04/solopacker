@@ -32,13 +32,13 @@
     ul.show
       .host_recruits
         - if @recruits.blank?
-          h2 = "#{@user.user_name} hasn't hosted any recruits yet"
+          h2.no-recruits = "#{@user.user_name} hasn't hosted any recruits yet"
         - else
           = render partial: 'recruits/index', locals: { recruits: @recruits }
     ul
       .join_recruits
         - if @user.participated_recruits.blank?
-          h2 = "#{@user.user_name} hasn't joined any recruits yet"
+          h2.no-recruits = "#{@user.user_name} hasn't joined any recruits yet"
         - else
           = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits.happen_recent }
     ul

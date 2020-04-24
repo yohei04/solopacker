@@ -48,11 +48,12 @@
 // ユーザープロフィール
 .members_show-wrapper {
   background-color: $bgc-sign;
-  padding: 3rem 0;
+  padding: 4rem 2rem 3rem;
 }
 
 .members_show-container {
-  width: 50%;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
   padding: 1rem;
   background-color: $color-trueWhite;
@@ -95,10 +96,13 @@
 
 
 .members-show-bottom {
+  background-color: $bgc-sign;
+  .no-recruits {
+    padding: 6rem 0 9rem;
+  }
 // タブ
   .tab {
     border-bottom: 3px solid $color-main;
-    background-color: $bgc-sign;
   }
   .tab li {
     color: $color-trueBlack;
@@ -134,8 +138,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto;
-  padding: 3rem 0;
-  background-color: $bgc-sign;
+  padding: 2rem 0;
   @include recruit;
 }

@@ -1,7 +1,7 @@
 class ParticipationsController < ApplicationController
   def create
     @recruit = Recruit.find(params[:recruit_id])
-     respond_to do |format|
+    respond_to do |format|
       if current_user.permit_participate?(@recruit)
         current_user.participate(@recruit)
       else

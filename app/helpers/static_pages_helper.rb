@@ -2,8 +2,10 @@ module StaticPagesHelper
   def searched_recruit_country
     return "Recruits in #{country_name(current_user.current_country)}" if params[:q].try(:[], :country_cont).nil?
     return 'All Recruits' if params[:q].try(:[], :country_cont).empty?
+
     name = country_name(params[:q][:country_cont])
     return "No Recruit in #{name}" if Recruit.find_by(country: params[:q][:country_cont]).blank?
+
     name.present? ? "Recruits in #{name}" : 'No such country!'
   end
 

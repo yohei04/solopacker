@@ -3,11 +3,11 @@ class StaticPagesController < ApplicationController
 
   def home
     respond_to do |format|
-      if params[:q].blank?
-        @q = Recruit.upcoming.includes(user: { image_attachment: :blob }).ransack(country_cont: current_user.current_country)
-      else
-        @q = Recruit.upcoming.includes(user: { image_attachment: :blob }).ransack(params[:q])
-      end
+      @q = if params[:q].blank?
+             Recruit.upcoming.includes(user: { image_attachment: :blob }).ransack(country_cont: current_user.current_country)
+           else
+             Recruit.upcoming.includes(user: { image_attachment: :blob }).ransack(params[:q])
+           end
       @recruits = @q.result(distinct: true).page(params[:page]).per(6)
       # binding.pry
       format.html

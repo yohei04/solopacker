@@ -1,9 +1,5 @@
 - if user.image.attached?
   = image_tag user.image
-/ - elsif user.gender == '♂'
-/   = image_pack_tag 'default_male.png'
-/ - elsif user.gender == '♀'
-/   = image_pack_tag 'default_female.png'
 - else
   = image_pack_tag 'default_icon.png'
 span.orgin_country_flag = country_flag(user.origin)

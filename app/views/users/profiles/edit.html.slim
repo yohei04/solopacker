@@ -29,7 +29,7 @@
         .profile-buttom-items
           .field.date_of_birth
             = f.label :date_of_birth, 'Date Of Birth:'
-            = f.date_select :date_of_birth
+            = f.date_select :date_of_birth, order:[:day, :month, :year], start_year: Time.now.year - 15, end_year: Time.now.year - 80, selected: Time.now.year - 25
           .field.gender
             = f.label :gender, 'Gender:' 
             = f.select :gender, ['♂', '♀', 'other'], {include_blank: 'select'}

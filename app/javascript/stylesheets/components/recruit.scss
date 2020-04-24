@@ -2,7 +2,7 @@
 @mixin recruit-pin($width: 35px, $height: 35px, $top: 10px, $left: 51%) {
   &::before {
     content: "";/* 中身は空でいい */
-    background: url(../images/pin20.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    background: url(../images/pin_recruit.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
     width: $width;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
     height: $height;
     position: absolute;

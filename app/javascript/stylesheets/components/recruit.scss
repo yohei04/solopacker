@@ -17,7 +17,7 @@
 }
 
 // 募集の影
-%recruit-shadow {
+@mixin recruit-shadow($left: 5px, $right: 5px, $transform-left: rotate(-5deg), $transform-right: rotate(5deg)) {
   &::before, &::after {
     content:"";
     position: absolute;
@@ -29,12 +29,12 @@
     box-shadow: $shadow-recruit
   }
   &::before {
-    left: 5px;
-    transform:rotate(-5deg);
+    left: $left;
+    transform: $transform-left;
   }
   &::after {
-    right: 5px;
-    transform:rotate(5deg);
+    right: $right;
+    transform: $transform-right;
   }
 }
 
@@ -47,7 +47,7 @@
   border: $border;
   padding: $padding;
   transform-origin: top center;
-  @extend %recruit-shadow;
+  @include recruit-shadow();
 }
 
 // 理想
@@ -78,7 +78,7 @@
     margin: 1rem;
     padding: 1rem .6rem .4rem 1.2rem;
     border: $border-recruit;
-    @extend %recruit-shadow;
+    @include recruit-shadow();
     &:hover {
       transform: rotate(5deg);
       transform-origin: top center;

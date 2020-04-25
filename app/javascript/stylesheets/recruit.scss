@@ -72,7 +72,7 @@
   font-family: $font-family-recruit;
   position: relative;
   padding: 3rem 1rem 1rem;
-  @extend %recruit-shadow;
+  @include recruit-shadow($left: 6px, $right: 6px, $transform-left: rotate(-3deg), $transform-right: rotate(3deg));
   .recruit_show-inner-title {
     margin-bottom: 1rem;
     word-wrap: break-word;
@@ -138,24 +138,27 @@
     display: flex;
     align-items: center;
     color: $color-black;
-    .participate-btn {
+    .recruit_show-inner-bottom-left {
       font-size: 1.2rem;
-      width: 160px;
-      margin: 0 auto 0 1.5rem;
+      width: 150px;
+      margin-left: 1.5rem;
       a {
         display: block;
         padding: .2rem 0 .1rem 0;
         @extend %btn;
       }
     }
-    .fa-edit, .fa-trash-alt, .comment-number, .participate-number {
-      margin-right: 0.2rem;
-      font-size: 1.4rem;
-    }
-    a {
-      color: $color-black;
-      &:hover {
+    .recruit_show-inner-bottom-right {
+      margin-left: auto;
+      .fa-edit, .fa-trash-alt, .comment-number, .participate-number {
+        margin-right: 0.2rem;
+        font-size: 1.4rem;
+      }
+      a {
         color: $color-black;
+        &:hover {
+          color: $color-black;
+        }
       }
     }
   }

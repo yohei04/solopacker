@@ -35,19 +35,20 @@
               p.my_plan.recruit-words My plan:
               p.user-info.recruit-content = @recruit.content
         .recruit_show-inner-bottom
-          .participate-btn
-            - if @recruit.feature?
+          - if @recruit.feature?
+            .recruit_show-inner-bottom-left
               = render partial: 'participations/participate_btn_area', locals: { recruit: @recruit }
-          - if current_user == @recruit.user
-            = link_to edit_recruit_path(@recruit), method: :get do
-              i.fas.fa-edit
-            = link_to @recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{@recruit.title}?" }
-              i.far.fa-trash-alt
-          span.comment-number
-            i.far.fa-comment-dots
-            = "(#{@recruit.comments.count})"
-          span.participate-number
-            = render partial: 'participations/participate_number', locals: { recruit: @recruit }
+          .recruit_show-inner-bottom-right
+            - if current_user == @recruit.user
+              = link_to edit_recruit_path(@recruit), method: :get do
+                i.fas.fa-edit
+              = link_to @recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{@recruit.title}?" }
+                i.far.fa-trash-alt
+            span.comment-number
+              i.far.fa-comment-dots
+              = "(#{@recruit.comments.count})"
+            span.participate-number
+              = render partial: 'participations/participate_number', locals: { recruit: @recruit }
 
   .comment-container
     .comment-inner

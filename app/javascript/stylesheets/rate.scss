@@ -2,12 +2,11 @@
   position: relative;
   .currency-image {
     background: url(../images/currency.jpg) no-repeat center center / cover;
-    height: calc(100vh - 1rem);
-    margin-top: 1rem;
+    height: 100vh;
   }
   .on-image {
     position: absolute;
-    padding: 0 2rem;
+    padding: 0 1.4rem;
     width: 100%;
     top: 50%;
     left: 50%;

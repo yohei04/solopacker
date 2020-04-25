@@ -1,8 +1,8 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
+@import './variables.scss';
 @import './reset.scss';
-@import './base.scss';
 @import './components/user_icon.scss';
 @import './components/recruit.scss';
 @import './components/btn.scss';

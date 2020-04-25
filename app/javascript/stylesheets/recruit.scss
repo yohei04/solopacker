@@ -2,8 +2,6 @@
 
 .recruit_form-wrapper {
   padding: 5rem 2rem;
-  background-color: $bgc-sign;
-  // height: 100vh;
 }
 .recruit_form-container {
   width: 100%;
@@ -52,7 +50,6 @@
 
 // show
 .recruit_show-wrapper {
-  background-color: $bgc-sign;
   padding: 5rem 1.4rem;
 }
 
@@ -129,7 +126,6 @@
     }
     .recruit-words {
       font-size: 1.4rem;
-      // padding-bottom: .6rem;
       color: $color-gray;
     }
     .user-info {
@@ -167,10 +163,20 @@
 }
 
 
+// comment
+.comment-wrapper {
+  padding: 2rem 1rem;
+}
+
+.comment-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+}
 
 // comment#new
 .comment_new-inner {
-  width: 70%;
+  width: 100%;
   margin: 0rem auto 2rem;
   text-align: center;
   .comment_new_content {
@@ -191,21 +197,9 @@
   }
 }
 
-
-
 // comment#index
-.comment-wrapper {
-  padding: 2rem 0;
-  background-color: $bgc-sign;
-}
-
-.comment-container {
-  width: 60%;
-  margin: 0 auto;
-}
-
 .comment_index {
-  height: 600px;
+  margin-bottom: 5rem;
   // overflow-y: scroll;
   // overflow-x: hidden;
 }

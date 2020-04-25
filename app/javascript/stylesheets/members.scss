@@ -1,8 +1,7 @@
 // Members#index
 
 .members_index-wrapper {
-  background-color: $bgc-sign;
-  padding: 5rem 2rem;
+  padding: 5rem 3rem;
 }
 
 .members_index-container {
@@ -47,7 +46,6 @@
 
 // ユーザープロフィール
 .members_show-wrapper {
-  background-color: $bgc-sign;
   padding: 4rem 2rem 3rem;
 }
 
@@ -96,9 +94,8 @@
 
 
 .members-show-bottom {
-  background-color: $bgc-sign;
   .no-recruits {
-    padding: 6rem 0 9rem;
+    padding: 3rem 0;
   }
 // タブ
   .tab {
@@ -138,6 +135,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
   @include recruit;
 }

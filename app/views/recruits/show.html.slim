@@ -36,8 +36,9 @@
               p.user-info.recruit-content = @recruit.content
         .recruit_show-inner-bottom
           .participate-btn
-            = render partial: 'participations/participate_btn_area', locals: { recruit: @recruit }
-          -if current_user == @recruit.user
+            - if @recruit.feature?
+              = render partial: 'participations/participate_btn_area', locals: { recruit: @recruit }
+          - if current_user == @recruit.user
             = link_to edit_recruit_path(@recruit), method: :get do
               i.fas.fa-edit
             = link_to @recruit, method: :delete, data: { confirm: "Are you sure you want to delete #{@recruit.title}?" }
@@ -48,16 +49,16 @@
           span.participate-number
             = render partial: 'participations/participate_number', locals: { recruit: @recruit }
 
-.comment-wrapper
   .comment-container
     .comment-inner
-      .comment_new
-        .comment_new-inner
-          = form_with url: recruit_comments_path(@recruit), remote: true do |f|
-            .field.comment_new_content
-              = f.text_area :content, placeholder: "Write your comment", class: "comment-area"
-            .field.comment_new-btn
-              = f.submit "Comment", class: "btn"
+      - if @recruit.feature?
+        .comment_new
+          .comment_new-inner
+            = form_with url: recruit_comments_path(@recruit), remote: true do |f|
+              .field.comment_new_content
+                = f.text_area :content, placeholder: "Write your comment", class: "comment-area"
+              .field.comment_new-btn
+                = f.submit "Comment", class: "btn"
 
       .comment_index
         = render partial: 'comments/comment_index', locals: { recruit: @recruit }

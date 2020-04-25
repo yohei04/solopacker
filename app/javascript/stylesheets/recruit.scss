@@ -1,5 +1,4 @@
 // #form
-
 .recruit_form-wrapper {
   padding: 5rem 2rem;
 }
@@ -50,7 +49,7 @@
 
 // show
 .recruit_show-wrapper {
-  padding: 5rem 1.4rem;
+  padding: 5rem 1.4rem 7rem;
 }
 
 .recruit_show-container {
@@ -164,14 +163,10 @@
 
 
 // comment
-.comment-wrapper {
-  padding: 2rem 1rem;
-}
-
 .comment-container {
   width: 100%;
   max-width: 650px;
-  margin: 0 auto;
+  margin: 6rem auto 0;
 }
 
 // comment#new
@@ -198,12 +193,6 @@
 }
 
 // comment#index
-.comment_index {
-  margin-bottom: 5rem;
-  // overflow-y: scroll;
-  // overflow-x: hidden;
-}
-
 .comment_index-item {
   margin-top: 1rem;
   align-items: center;

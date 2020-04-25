@@ -81,6 +81,7 @@
   align-items: center;
   margin: 0 10rem;
   .how_to-sub_title {
+    margin: 1.2rem 0 .4rem;
     font-size: 2rem;
   }
   p {
@@ -98,12 +99,11 @@
 // recruit#indexセクション
 .recruit_index-wrapper {
   font-family: $font-family-recruit;
-  // padding: 2rem 3rem 20rem;
-  // background-color: $bgc-sign;
+  padding: 3rem 1rem 8rem;
+  background-color: $bgc-sign;
 }
 
 .recruit_index-title {
-  margin: 3rem auto 0;
   font-size: 50px;
   color: $color-black;
   border-radius: 20px;

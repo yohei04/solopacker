@@ -1,14 +1,17 @@
 // #form
 
 .recruit_form-wrapper {
-  padding: 3rem 0;
+  padding: 5rem 2rem;
   background-color: $bgc-sign;
+  // height: 100vh;
 }
 .recruit_form-container {
-  width: 50%;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
 }
 .recruit_form-title {
+  margin-bottom: .2rem;
   font-size: 2rem;
 }
 
@@ -30,15 +33,12 @@
   #recruit_title {
     width: 100%;
   }
-  // #recruit_country {
-  //   width: 70%;
-  // }
   #autocomplete_address {
     width: 100%;
   }
   #recruit_content {
     width: 100%;
-    height: 150px;
+    height: 200px;
   }
   .recruit_form-btn {
     text-align: center;
@@ -53,11 +53,12 @@
 // show
 .recruit_show-wrapper {
   background-color: $bgc-sign;
-  padding: 5rem 0;
+  padding: 5rem 1.4rem;
 }
 
 .recruit_show-container {
-  width: 50%;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
   background-color: $color-trueWhite;
   border: $border-recruit;

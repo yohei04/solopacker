@@ -1,11 +1,13 @@
 // sign_up, sign_in
 .sign-wrapper {
-  padding: 1rem 0 100%;
+  height: 100vh;
+  padding: 7rem 2rem;
   background-color: $bgc-sign;
 }
 
 .sign-container {
-  width: 40%;
+  width: 100%;
+  max-width: 500px;
   margin: 0 auto;
   padding: 3rem 0;
   background-color: $color-trueWhite;

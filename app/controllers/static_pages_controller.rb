@@ -2,6 +2,7 @@ class StaticPagesController < ApplicationController
   before_action :authenticate_user!, except: [:home]
 
   def home
+    return if current_user.nil?
     respond_to do |format|
       @q = if params[:q].blank?
              Recruit.upcoming.includes(user: { image_attachment: :blob }).ransack(country_cont: current_user.current_country)
@@ -9,7 +10,6 @@ class StaticPagesController < ApplicationController
              Recruit.upcoming.includes(user: { image_attachment: :blob }).ransack(params[:q])
            end
       @recruits = @q.result(distinct: true).page(params[:page]).per(6)
-      # binding.pry
       format.html
       format.js
     end

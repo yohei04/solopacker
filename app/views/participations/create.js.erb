@@ -2,7 +2,7 @@ var flash = document.querySelector(".flash")
 
 <% if !(flash[:alert]) %>
   //Ajaxで変更部分
-  document.querySelector(".participate-btn").innerHTML = "<%= escape_javascript(render('participations/unparticipate')) %>"
+  document.querySelector(".recruit_show-inner-bottom-left").innerHTML = "<%= escape_javascript(render('participations/unparticipate')) %>"
   document.querySelector(".participate-names").innerHTML = "<%= escape_javascript(render('participations/participate_members')) %>"
   document.querySelector(".participate-number").innerHTML = "<%= escape_javascript(render('participate_number')) %>"
   // flash
@@ -20,6 +20,6 @@ var flash = document.querySelector(".flash")
 flash.animate([{opacity: '0'}, {opacity: '1'}], 50)
 setTimeout(function(){ 
   flash.style.display = "none"; 
-}, 5000);
+}, 6000);
 
 

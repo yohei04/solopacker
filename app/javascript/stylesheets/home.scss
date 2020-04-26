@@ -35,12 +35,12 @@
   .btn {
     font-size: 1.6rem;
     margin-top: 2rem;
-    background-color: darken($color-main, 5%);
+    background-color: darken($color-main, 2%);
     color: $color-trueWhite;
     border-radius: 5px;
     padding: .4rem 1.2rem;
     &:hover {
-      background-color: darken($color-main, 8%);
+      background-color: darken($color-main, 5%);
     }
   }
 }

@@ -1,2 +1,3 @@
 document.querySelector(".comment_index").innerHTML = "<%= escape_javascript(render partial: 'comments/comment_index', locals: { recruit: @recruit } ) %>"
+document.querySelector(".comment-number").innerHTML = "<%= escape_javascript(render partial: 'comments/comment_number', locals: { recruit: @recruit } ) %>"
 document.querySelector(".comment-area").value = ""

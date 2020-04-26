@@ -1,1 +1,2 @@
 document.querySelector(".comment-<%= @comment.id %>").remove();
+document.querySelector(".comment-number").innerHTML = "<%= escape_javascript(render partial: 'comments/comment_number', locals: { recruit: Recruit.find(params[:recruit_id]) } ) %>"

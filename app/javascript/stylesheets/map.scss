@@ -1,8 +1,16 @@
 #map{
-  height: 500px;
-
-  gm-style img[src='http://localhost:3000//rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96326bd70d4dd05064e4fe7bf3572386d02ccc39/img3.jpg'] { 
-    border-radius:50%;
+  height: 100vh;
+  // gm-style img[src='http://localhost:3000//rails/active_storage/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBDUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--96326bd70d4dd05064e4fe7bf3572386d02ccc39/img3.jpg'] { 
+  //   border-radius:50%;
+  // }
+  .gmnoprint {
+    display: none;
   }
+  .gm-fullscreen-control {
+    top: 40px !important;
+  }
+  // .gm-style-pbc, img {
+  //   border-radius: 50px;
+  // }
 }
 

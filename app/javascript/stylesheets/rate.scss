@@ -1,11 +1,12 @@
 .rate-wrapper {
   position: relative;
-  .currency-img {
+  .currency-image {
     background: url(../images/currency.jpg) no-repeat center center / cover;
     height: 100vh;
   }
   .on-image {
     position: absolute;
+    padding: 0 1.4rem;
     width: 100%;
     top: 50%;
     left: 50%;
@@ -14,7 +15,7 @@
 }
 
 .rate-container {
-  width: 60%;
+  width:  100%;
   max-width: 700px;
   margin: 0rem auto;
   padding: 1.4rem 3rem;

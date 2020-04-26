@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include Scope
   has_one_attached :image
   has_many :recruits, dependent: :destroy
   has_many :comments, dependent: :destroy
@@ -39,7 +40,7 @@ class User < ApplicationRecord
 
   def feature_host_recruits
     feature_host_recruits = []
-    recruits.happen_recent.each do |recruit|
+    recruits.each do |recruit|
       feature_host_recruits.push(recruit) if recruit.date_time > Time.zone.now
     end
     feature_host_recruits
@@ -47,7 +48,7 @@ class User < ApplicationRecord
 
   def feature_participate_recruits
     feature_participate_recruits = []
-    participated_recruits.happen_recent.each do |recruit|
+    participated_recruits.each do |recruit|
       feature_participate_recruits.push(recruit) if recruit.date_time > Time.zone.now
     end
     feature_participate_recruits
@@ -61,22 +62,20 @@ class User < ApplicationRecord
     feature_mix_recruits.uniq { |r| r[:country] }
   end
 
-
   # ゲストサインイン
   def self.guest
     find_or_create_by!(name: 'Guest User',
                        user_name: 'Guest',
                        email: 'guest@example.com',
-                       date_of_birth: "Mon, 17 Apr 1995",
+                       date_of_birth: 'Mon, 17 Apr 1995',
                        gender: '♂',
                        origin: 'JP',
-                       current_country: 'CA',
-                       current_city: 'Vancouver',
+                       current_country: 'US',
+                       current_city: 'NewYork',
                        language_1: 'Japanese',
                        language_2: 'English',
                        language_3: 'Chinese',
-                       introduce: 'Hi, I\'m a Guest User.',
-                       )  do |user|
+                       introduce: 'Hi, I\'m a Guest User.') do |user|
       user.password = SecureRandom.urlsafe_base64
     end
   end

@@ -1,0 +1,3 @@
+document.querySelector(".recruit_index-title").innerHTML = "<%= escape_javascript(render partial: 'static_pages/recruit_title') %>"
+document.querySelector(".recruit_index-inner").innerHTML = "<%= escape_javascript(render partial: 'recruits/index', locals: { recruits: @recruits } ) %>"
+document.querySelector(".home-paginate").innerHTML = "<%= escape_javascript(render partial: 'layouts/pagination', locals: { object: @recruits } ) %>"

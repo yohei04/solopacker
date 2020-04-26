@@ -1,9 +1,13 @@
 @import '~bootstrap/scss/bootstrap';
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
-@import './components/recruit.scss';
+@import './variables.scss';
 @import './reset.scss';
-@import './color.scss';
+@import './components/user_icon.scss';
+@import './components/recruit.scss';
+@import './components/btn.scss';
+@import './components/pagination.scss';
+@import './components/pins.scss';
 @import './flash.scss';
 @import './header.scss';
 @import './home.scss';

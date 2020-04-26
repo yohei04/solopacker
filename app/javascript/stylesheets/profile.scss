@@ -1,16 +1,16 @@
 .profile-wrapper {
-  background-color: $bgc-sign;
-  padding: 3rem 0;
+  padding: 4rem 0;
 }
 
 .profile-container {
-  width: 50%;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
   padding: 2rem 0;
   background-color: $color-trueWhite;
   h2 {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.2rem;
   }
   h4 {
     margin-bottom: 1.2rem;
@@ -21,6 +21,7 @@
     .profile-top-items, .profile-buttom-items  {
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 1rem;
     }
     .field {
       margin-bottom: .6rem;
@@ -51,6 +52,9 @@
         max-width: 100%;
       }
     }
+    .current_place {
+      width: 100%;
+    }
     .current_country, .current_city {
       width: 50%;
       select {
@@ -70,7 +74,8 @@
     .image {
       display: flex;
       align-items: center;
-      margin: 0 auto;
+      justify-content: center;
+      margin-left: 20%;
       img {
         width: 100px;
         height: 100px;
@@ -82,18 +87,19 @@
         display: none;
       }
     }
+    .profile-image-form {
+      display: inline;
+    }
   }
 }
 .profile-btns {
   position: relative;
   .actions {
     margin: 0 auto;
-    width: 40%;
-  }
-  .profile-password-delete {
-    position: absolute;
-    top: 0;
-    left: 25rem;
+    text-align: center;
+    .btn {
+      @extend %btn;
+    }
   }
 }
 

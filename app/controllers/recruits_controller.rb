@@ -49,7 +49,7 @@ class RecruitsController < ApplicationController
   end
 
   def map
-    @recruits_all_json = recruits_all_json
+    @feature_recruits_json = feature_recruits_json
   end
 
   private

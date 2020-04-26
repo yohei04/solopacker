@@ -9,13 +9,14 @@ Rails.application.routes.draw do
   end
   
   root 'static_pages#home'
+  get '/about', to: 'static_pages#about'
   get '/rate', to: 'static_pages#rate'
   namespace :users do
     resources :profiles, only: [:index, :show, :edit, :update]
   end
   resources :recruits, except: :index do
     get 'map', on: :collection
-    resources :comments, only: [:create, :update, :destroy]
-    resources :participations, only: [:index, :create, :destroy]
+    resources :comments, only: [:create, :destroy]
+    resources :participations, only: [:create, :destroy]
   end
 end

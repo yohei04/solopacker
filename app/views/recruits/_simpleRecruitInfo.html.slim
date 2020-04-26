@@ -1,6 +1,5 @@
 .recruit-items
   span.when.recruit-words When:
-  / i.far.fa-calendar-alt
   .when-info.user-info
     span.date_time
       = recruit.date_time.strftime('%Y/%-m/%-d(%a)')
@@ -8,14 +7,8 @@
       = recruit.date_time.strftime('%-H:%M')
 .recruit-items
   span.where.recruit-words Where: 
-  / i.fasfa-map-marked-alt
   .user-info
     span = "#{recruit.city}_"
     span = country_name(recruit.country)
     span.country_flag = country_flag(recruit.country)
-.recruit-items
-  span.how_long.recruit-words How long:
-  / i.fas.fa-hourglass-half
-  .user-info
-    span = "#{recruit.hour}h"
 

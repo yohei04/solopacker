@@ -1,0 +1,19 @@
+%btn {
+  border-radius: 50px;
+  text-align: center;
+  border: 1px solid $color-trueWhite;
+  color: $color-trueWhite;
+  background-color: $color-main;
+  &:hover {
+    border: 1px solid $color-main;
+    color: $color-main;
+    background-color: $color-trueWhite;
+  }
+}
+
+%link {
+  color: $color-main;
+  &:hover {
+    color: darken($color-main, 5%);
+  }
+}

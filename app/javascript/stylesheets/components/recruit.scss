@@ -1,9 +1,8 @@
-
 // 募集のピン
 @mixin recruit-pin($width: 35px, $height: 35px, $top: 10px, $left: 51%) {
   &::before {
     content: "";/* 中身は空でいい */
-    background: url(http://hibana.xii.jp/icon/pin/003/32-2.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
+    background: url(../images/pin_recruit.png) no-repeat;/* 背景画像にピンを、繰り返してほしくないのでno-repeat指定 */
     width: $width;/* 背景画像が全部表示されるようにピン画像より大きめのボックスを作る */
     height: $height;
     position: absolute;
@@ -18,7 +17,7 @@
 }
 
 // 募集の影
-%recruit-shadow {
+@mixin recruit-shadow($left: 5px, $right: 5px, $transform-left: rotate(-5deg), $transform-right: rotate(5deg)) {
   &::before, &::after {
     content:"";
     position: absolute;
@@ -27,71 +26,28 @@
     display: block;
     width: 50%;
     height: 50%;
-    box-shadow: 0 15px 10px #960;
+    box-shadow: $shadow-recruit
   }
   &::before {
-    left: 5px;
-    transform:rotate(-5deg);
+    left: $left;
+    transform: $transform-left;
   }
   &::after {
-    right: 5px;
-    transform:rotate(5deg);
-  }
-}
-
-// ユーザーアイコンと国旗
-@mixin user-image($width: 100px, $height: 100px, $margin-right: 1.4rem,
-                   $top: 65px, $left: -10px, $right: 0, $font-size: 2.6rem) {
-  position: relative;
-  a:hover {
-    opacity: .7;
-  }
-  img {
-    width: $width;
-    height: $height;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: $margin-right;
-  }
-  .orgin_country_flag {
-    position: absolute;
-    top: $top;
-    left: $left;
     right: $right;
-    font-size: $font-size;
-  }
-}
-
-// ページネーション
-@mixin pagination($justify-content: center, $font-size: .01rem) {
-  .pagination {
-    font-size: $font-size;
-    justify-content: $justify-content;
-    .page-item.active .page-link {
-      color: $color-trueWhite;
-      background-color: $color-main; 
-      border-color: $color-main; 
-    }
-    .page-link {
-      color: $color-main;
-      background-color: $color-trueWhite; 
-    }
-    .page-item.disabled {
-      display: none;
-    }
+    transform: $transform-right;
   }
 }
 
 
 
 // 募集の外側
-@mixin recruit-container($position: relative, $background-color: $color-trueWhite, $border: dashed rgba(255, 145, 0, 0.664), $padding: .6rem 1rem) {
+@mixin recruit-container($position: relative, $background-color: $color-trueWhite, $border: $border-recruit, $padding: .6rem 1rem) {
   position: $position;
   background-color: $background-color;
   border: $border;
   padding: $padding;
   transform-origin: top center;
-  @extend %recruit-shadow;
+  @include recruit-shadow();
 }
 
 // 理想
@@ -108,7 +64,7 @@
 
 
 // 一つの募集
-@mixin recruit($width: 32%){
+@mixin recruit($width: 400px){
   .recruit_index-dummy {
     position: relative;
     width: $width;
@@ -116,13 +72,13 @@
     @include recruit-pin();
   }
   .recruit_index-item {
+    font-family: $font-family-recruit;
     position: relative;
-    // width: 30%;
     background-color: $color-trueWhite;
     margin: 1rem;
-    padding: .6rem 1rem;
-    border: dashed rgba(255, 145, 0, 0.664);
-    @extend %recruit-shadow;
+    padding: 1rem .6rem .4rem 1.2rem;
+    border: $border-recruit;
+    @include recruit-shadow();
     &:hover {
       transform: rotate(5deg);
       transform-origin: top center;
@@ -158,15 +114,16 @@
   }
   .recruit_index-item-middle {
     display: flex;
+    align-items: center;
     .image {
       @include user-image($margin-right: 1rem);
-      // &:hover {
-      //   opacity: .7;
-      // }
+    }
+    .recruit-name {
+      margin: .6rem 0 0 .6rem;
     }
     .recruit-items {
       font-size: 1.2rem;
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.4rem;
     }
     .recruit-words {
       margin-bottom: .2rem;
@@ -183,6 +140,7 @@
     text-align: right;
     font-size: 1.2rem;
     color: $color-black;
+    padding-top: .6rem;
     a {
       margin-right: 0.4rem;
     }

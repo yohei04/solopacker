@@ -1,13 +1,10 @@
-h2.mt-5.m-2 Recruits Map 
-
 #map
-
-#hoge data-resource = @recruits_all_json
+#hoge data-resource = @feature_recruits_json
 javascript:
   const recruits_data = JSON.parse(document.getElementById('hoge').dataset.resource);
   function initMap() {
     // 日本の中央を表示する
-    const defaultSettings = {zoom: 2, center: {lat: 0, lng: 0}};
+    const defaultSettings = {zoom: 2.4, center: {lat: 30, lng: 0}};
     const map = new google.maps.Map(
       document.querySelector('#map'),
       defaultSettings

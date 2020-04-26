@@ -21,7 +21,7 @@ User.create!(name: 'foobar',
 json = ActiveSupport::JSON.decode(File.read('db/fixtures/country/cities_countries.json'))
 all_cities = json.map { |hash| hash["city"] }
 
-20.times do |n|
+30.times do |n|
   User.create!(name: Faker::DragonBall.character,
                user_name: Faker::Name.first_name,
                email: "foobar#{n-1}@example.com",
@@ -36,7 +36,7 @@ all_cities = json.map { |hash| hash["city"] }
                language_2: Faker::Nation.language,
                language_3: Faker::Nation.language,
                introduce: [Faker::Matz.quote, Faker::OnePiece.quote].sample,
-              #  image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n+1}.jpg"))
+               image: Rack::Test::UploadedFile.new(Rails.root.join("db/fixtures/images/img#{n+1}.jpg"))
               )
 end
 
@@ -83,7 +83,7 @@ end
 recruits.each do |recruit|
   joinable_user_ids = recruit.comments.map(&:user_id)
   joinable_user_ids.delete(recruit.user_id)
-  5.times do
+  10.times do
     recruit.participations.create(user_id: joinable_user_ids.sample)
   end
 end 

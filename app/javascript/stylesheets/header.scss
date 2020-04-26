@@ -1,3 +1,6 @@
+.fixed-top {
+  z-index: 20;
+}
 .navbar {
   a {
     color: $color-black;
@@ -20,20 +23,34 @@
   }
   .navbar-right {
     font-size: 1.4rem;
+    align-items: center;
     li {
       a {
-        margin-right: 1rem;
+        margin-right: .8rem;
       }
     }
+    .dropdown {
+      img {
+        width: 30px;
+        height: 30px;
+        margin-top: 3px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+      .orgin_country_flag {
+        display: none;
+      }
+    }
+    .dropdown-toggle::after {
+      display: none;
+    }
     .dropdown-menu {
-      background-color: rgba(255, 255, 255, 0.315);
+      background-color: rgba(255, 255, 255, 0.8);
+      min-width: 6rem;
       li {
         margin: 0 0 .5rem 1rem;
         &:last-child {
           margin-bottom: 0;
-        }
-        a {
-          color: $color-black;
         }
       }
     }

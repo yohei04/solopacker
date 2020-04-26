@@ -1,0 +1,17 @@
+section#recruit
+  .recruit_index-wrapper
+    h2.recruit_index-title
+      = render partial: 'static_pages/recruit_title'
+    .recruit_index-container
+      .cork_board-image
+      .on-image
+        .recruit_index-btns
+          = render partial: 'recruits/search'
+        .recruit_index-pins
+          = render partial: 'static_pages/pins'
+        .recruit_index-inner
+          = render partial: 'recruits/index' , locals: { recruits: @recruits }
+        .home-paginate
+          = render partial: 'layouts/pagination', locals: { object: @recruits }
+        .recruit_index-blank
+          = render partial: 'recruits/blank'

@@ -6,13 +6,13 @@
     span.gender = user.gender
 - if user.origin.present?
 .origin_country.profile-items
-  span.from.profile-words from 
+  span.from.profile-words from: 
   .user-info
     span.country_name = country_name(user.origin)
     span.country_flag = country_flag(user.origin)
 - if user.current_city.present?
 .current_country.profile-items
-  span.now_in.profile-words now in 
+  span.now_in.profile-words now in: 
   .user-info
     span.city_name = "#{user.current_city} _ "
     span.country_name = country_name(user.current_country)

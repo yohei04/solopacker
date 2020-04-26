@@ -49,4 +49,9 @@ $(function () {
     var $targetRate = $(`#target_rate-${i}`);
     rating($inputBaseRate, $baseCurrency, $inputTargetRate, $targetCurrency, $baseRate, $targetRate);
   };
+
+  // rate画面のときだけヘッダーにbgcをつける
+  if ($('h2').text() == 'Exchange Rate') {
+    $('.fixed-top').css('background-color', 'rgb(255, 255, 255)');
+  }
 });

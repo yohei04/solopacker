@@ -29,7 +29,7 @@
         .profile-buttom-items
           .field.date_of_birth
             = f.label :date_of_birth, 'Date Of Birth:'
-            = f.date_select :date_of_birth
+            = f.date_select :date_of_birth, order:[:day, :month, :year], start_year: Time.now.year - 15, end_year: Time.now.year - 80, selected: Time.now.year - 25
           .field.gender
             = f.label :gender, 'Gender:' 
             = f.select :gender, ['♂', '♀', 'other'], {include_blank: 'select'}
@@ -41,10 +41,10 @@
             = f.text_field :current_place, placeholder: 'where you are at now', id: :autocomplete_address
           .field.current_country
             = f.label :current_country, 'Current Country:'
-            = f.text_field :current_country, id: :country
+            = f.hidden_field :current_country, id: :country
           .field.current_city
             = f.label :current_city, 'Current City:'
-            = f.text_field :current_city, id: :locality
+            = f.hidden_field :current_city, id: :locality
           .field.language_1
             = f.label :language_1, 'Language①:'
             = f.text_field :language_1
@@ -64,7 +64,7 @@
               = f.file_field :image
         .profile-btns
           .actions
-            = f.submit "Save", class: "btn btn-primary"
+            = f.submit "Save", class: "btn"
           / .profile-password-delete
           /   p
           /     = link_to 'Change password', edit_user_registration_path(current_user)

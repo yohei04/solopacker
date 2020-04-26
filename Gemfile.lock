@@ -126,6 +126,11 @@ GEM
     geocoder (1.6.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    gon (6.3.2)
+      actionpack (>= 3.0.20)
+      i18n (>= 0.7)
+      multi_json
+      request_store (>= 1.0)
     hpricot (0.8.6)
     html2slim (0.2.0)
       hpricot
@@ -169,6 +174,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.14.0)
     msgpack (1.3.2)
+    multi_json (1.14.1)
     nio4r (2.5.2)
     nokogiri (1.10.7)
       mini_portile2 (~> 2.4.0)
@@ -229,6 +235,8 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (1.6.0)
+    request_store (1.5.0)
+      rack (>= 1.4)
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -347,6 +355,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   geocoder
+  gon
   html2slim
   image_processing (~> 1.2)
   jbuilder (~> 2.7)

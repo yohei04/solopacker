@@ -1,3 +1,4 @@
+// ユーザー詳細
 .members_show-wrapper
   .members_show-container
     .members_show-inner
@@ -7,80 +8,93 @@
         .members_show-text
           = render partial: 'simpleInfo', locals: { user: @user }
           .languages.profile-items
-            span.speak.profile-words speak 
+            span.speak.profile-words speak:
             .user-info
               span.language_1 = "#{@user.language_1} / "
               span.language_2 = "#{@user.language_2} / "
               span.language_3 = @user.language_3
           .introduce.profile-items
-            p.about_mw.profile-words About me
+            p.about_mw.profile-words About me:
             .user-info
               p.own-introduce = @user.introduce
-
-.members-recruis
-  .host_recruits
-    h3 Host recruits
-    .host_recruits-inner
-      = render partial: 'recruits/index', locals: { recruits: @recruits }
-  .join_recruits
-    h3 Join recruits
-    .join_recruits-inner
-      = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits }
+      .members_show-inner-bottom
+        - if @user == current_user
+          = link_to "edit profile", edit_users_profile_path(current_user)
 
 
-h2.mt-5.m-2 Recruits Map
-#map
+.members-show-bottom
+  // タブ
+  ul.tab.clearfix
+    li.active Host Recruit
+    li Join Recruit
+    li Map
+  .area
+    ul.show
+      .host_recruits
+        - if @recruits.blank?
+          h2.no-recruits = "#{@user.user_name} hasn't hosted any recruits yet"
+        - else
+          = render partial: 'recruits/index', locals: { recruits: @recruits }
+    ul
+      .join_recruits
+        - if @user.participated_recruits.blank?
+          h2.no-recruits = "#{@user.user_name} hasn't joined any recruits yet"
+        - else
+          = render partial: 'recruits/index', locals: { recruits: @user.participated_recruits.happen_recent }
+    ul
+      #map
+      #hoge data-resource = @hp_recruits_josn
+      javascript:
+        const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
+        function initMap() {
+          // 初期地を表示する
+          const defaultSettings = {zoom: 2.4, center: {lat: 30, lng: 0}};
+          const map = new google.maps.Map(
+            document.querySelector('#map'),
+            defaultSettings
+          );
 
-#hoge data-resource = @hp_recruits_josn
-javascript:
-  const hp_data = JSON.parse(document.getElementById('hoge').dataset.resource);
-  function initMap() {
-    // 初期地を表示する
-    const defaultSettings = {zoom: 2, center: {lat: 0, lng: 0}};
-    const map = new google.maps.Map(
-      document.querySelector('#map'),
-      defaultSettings
-    );
+          // 現在表示されているinfoWindowオブジェクト
+          let currentWindow;
 
-    // 現在表示されているinfoWindowオブジェクト
-    let currentWindow;
+          hp_data.map(d => {
 
-    hp_data.map(d => {
+            // ピンの種類
+            var pins = {
+              host_pin: {
+                url: 'http://hibana.xii.jp/icon/pin/004/c18.png'
+              },
+              participate_pin: {
+                url: 'http://hibana.xii.jp/icon/pin/004/c12.png'
+              },
+            };
 
-      // ピンの種類
-      var pins = {
-        host_pin: {
-          url: 'http://hibana.xii.jp/icon/pin/004/c18.png'
-        },
-        participate_pin: {
-          url: 'http://hibana.xii.jp/icon/pin/004/c12.png'
-        },
-      };
+            // マーカーをつける
+            const marker = new google.maps.Marker({
+              position: {lat: d.lat, lng: d.lng},
+              animation: google.maps.Animation.DROP,
+              map: map,
+            //  icon: image,
+              icon: pins[d.pin].url,
+            });
 
-      // マーカーをつける
-      const marker = new google.maps.Marker({
-        position: {lat: d.lat, lng: d.lng},
-        animation: google.maps.Animation.DROP,
-        map: map,
-      //  icon: image,
-        icon: pins[d.pin].url,
-      });
+            var contentString = 
+            '<div id="content">'+
+              `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
+              `<p>@${d.city}_${d.country}<p>`+
+            //  `<img src=http://localhost:3000/${d.user.image} width="200px">`+
+            '</div>';
 
-      var contentString = 
-      '<div id="content">'+
-        `<p><a href=/recruits/${d.id}>${d.title}</a><p>`+
-        `<p>@${d.city}_${d.country}<p>`+
-      //  `<img src=http://localhost:3000/${d.user.image} width="200px">`+
-      '</div>';
+            // マーカークリックしたら地名をポップアップさせる
+            marker.addListener('click', () => {
+              currentWindow && currentWindow.close();
+              const infoWindow = new google.maps.InfoWindow({content: contentString});
+              infoWindow.open(map, marker);
+              currentWindow = infoWindow;
+            });
+          });
+        }
 
-      // マーカークリックしたら地名をポップアップさせる
-      marker.addListener('click', () => {
-        currentWindow && currentWindow.close();
-        const infoWindow = new google.maps.InfoWindow({content: contentString});
-        infoWindow.open(map, marker);
-        currentWindow = infoWindow;
-      });
-    });
-  }
+      script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap" 
 
-script async="" defer="defer" src="https://maps.googleapis.com/maps/api/js?key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}&callback=initMap" 
+

@@ -1,16 +1,20 @@
 class Users::ProfilesController < ApplicationController
   include Map
   before_action :authenticate_user!
-  before_action :check_guest, only: [:edit, :update]
+  before_action :check_guest, only: %i[edit update]
 
   def index
-    @q = User.with_attached_image.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page]).per(10)
+    respond_to do |format|
+      @q = User.with_attached_image.ransack(params[:q])
+      @users = @q.result(distinct: true).page(params[:page]).per(10).create_recent
+      format.html
+      format.js
+    end
   end
 
   def show
     @user = User.find(params[:id])
-    @recruits = @user.recruits
+    @recruits = @user.recruits.happen_recent
     @hp_recruits_josn = mixed_recruits_json(
       recruits_json(@recruits, 'host_pin'),
       recruits_json(@user.participated_recruits, 'participate_pin')
@@ -40,10 +44,10 @@ class Users::ProfilesController < ApplicationController
                                    :introduce, :image)
     end
 
-  # before action
+    # before action
     def check_guest
       if current_user.email == 'guest@example.com'
-        redirect_to root_path, alert: "Guest user can't edit profile"
+        redirect_to users_profile_path, alert: "Guest user can't edit profile"
       end
     end
 end

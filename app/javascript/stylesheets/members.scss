@@ -1,18 +1,18 @@
 // Members#index
 
 .members_index-wrapper {
-  background-color: $bgc-sign;
-  padding: 3rem;
+  padding: 5rem 3rem;
 }
 
 .members_index-container {
-  width: 60%;
+  width: 100%;
+  max-width: 800px;
   margin: 0 auto;
   background-color: $color-trueWhite;
 }
 
 .members_index-inner {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   padding: 2rem 0;
 }
@@ -33,14 +33,8 @@
     margin-right: .4rem;
   }
   .members_index-text {
-    font-size: 1rem;
+    font-size: 1.2rem;
     color: $color-trueBlack;
-    a {
-      text-decoration: none;
-      &:hover {
-        // text-decoration: none;
-      }
-    }
   }
 }
 .members-paginate {
@@ -50,13 +44,14 @@
 
 // Members#show
 
+// ユーザープロフィール
 .members_show-wrapper {
-  background-color: $bgc-sign;
-  padding: 3rem 0;
+  padding: 4rem 2rem 3rem;
 }
 
 .members_show-container {
-  width: 50%;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
   padding: 1rem;
   background-color: $color-trueWhite;
@@ -65,14 +60,12 @@
 .members_show-inner-top {
   display: flex;
   justify-content: center;
-  // align-items: center;
   .members_show-image {
     @include user-image($width: 200px, $height: 200px, $margin-right: 2rem,
                    $top: 150px, $left: 0px, $font-size: 3rem);
   }
 }
 .members_show-text {
-  // font-size: 1.2rem;
   .user_name_age_gender {
     margin-bottom: 1rem;
     font-size: 2rem;
@@ -87,28 +80,61 @@
   }
   .user-info {
     font-size: 1.2rem;
-    // margin-left: 1rem;
   }
 }
 
-.members-recruis {
-  display: flex;
-  width: 100%;
-  background-color: $bgc-sign;
-  padding: 0 0 3rem 1rem;
+.members_show-inner-bottom {
+  text-align: right;
+  a {
+    @extend %link;
+  }
 }
+
+
+
+
+.members-show-bottom {
+  .no-recruits {
+    padding: 3rem 0;
+  }
+// タブ
+  .tab {
+    border-bottom: 3px solid $color-main;
+  }
+  .tab li {
+    color: $color-trueBlack;
+    background-color: $color-trueWhite;
+    float: left;
+    margin: 0 10px -1px 0;
+    padding: 10px 20px;
+    border: 1px solid $color-main;
+    cursor: pointer;
+    list-style: none;
+    transition: .3s;
+  }
+  .tab li.active {
+    color: $color-trueWhite;
+    background: $color-main;
+    cursor: auto;
+    margin-left: 15rem;
+  }
+  
+  .area ul {
+    display: none;
+  }
+  .area ul.show {
+    display: block;
+  }
+  #map {
+    height: 600px
+  }
+}
+
+// ユーザー募集
 .host_recruits, .join_recruits {
-  width: 50%;
-  h3 {
-    font-size: 2rem;
-    padding: 1rem 0 0 2rem;
-  }
-  .host_recruits-inner, .join_recruits-inner {
-    width: 60%;
-    // height: 500px;
-    // overflow-y: auto;
-    margin: 0 auto;
-    @include recruit($width: 100%);
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 0 2rem;
+  @include recruit;
 }
-

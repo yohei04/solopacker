@@ -1,14 +1,14 @@
 // #form
-
 .recruit_form-wrapper {
-  padding: 3rem 0;
-  background-color: $bgc-sign;
+  padding: 5rem 2rem;
 }
 .recruit_form-container {
-  width: 50%;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
 }
 .recruit_form-title {
+  margin-bottom: .2rem;
   font-size: 2rem;
 }
 
@@ -30,28 +30,18 @@
   #recruit_title {
     width: 100%;
   }
-  // #recruit_country {
-  //   width: 70%;
-  // }
   #autocomplete_address {
     width: 100%;
   }
   #recruit_content {
     width: 100%;
-    height: 150px;
+    height: 200px;
   }
   .recruit_form-btn {
     text-align: center;
     .btn {
       width: 40%;
-      color: $color-trueWhite;
-      border-radius: 50px;
-      background-color: $color-main;border: 1px solid $white;
-      &:hover {
-        border: 1px solid $color-main;
-        color: $color-main;
-        background-color: $color-trueWhite;
-      }
+      @extend %btn;
     }
   }
 }
@@ -59,15 +49,15 @@
 
 // show
 .recruit_show-wrapper {
-  background-color: $bgc-sign;
-  padding: 5rem 0;
+  padding: 5rem 1.4rem 7rem;
 }
 
 .recruit_show-container {
-  width: 50%;
+  width: 100%;
+  max-width: 700px;
   margin: 0 auto;
   background-color: $color-trueWhite;
-  border: dashed rgba(255, 145, 0, 0.664);
+  border: $border-recruit;
   .recruit_show-inner-title {
     margin-bottom: 1rem;
   }
@@ -79,10 +69,10 @@
 }
 
 .recruit_show-inner {
-  font-family: 'Handlee', cursive;
+  font-family: $font-family-recruit;
   position: relative;
   padding: 3rem 1rem 1rem;
-  @extend %recruit-shadow;
+  @include recruit-shadow($left: 6px, $right: 6px, $transform-left: rotate(-3deg), $transform-right: rotate(3deg));
   .recruit_show-inner-title {
     margin-bottom: 1rem;
     word-wrap: break-word;
@@ -92,10 +82,8 @@
   }
   .recruit_show-inner-middle-left {
     width: 30%;
+    margin-right: 0.6rem;
     text-align: center;
-  }
-  .recruit_show-inner-profileInfo {
-    margin-right: 1.6rem;
   }
   .recruit_show-inner-image {
     margin-bottom: 0.6rem;
@@ -107,11 +95,9 @@
   }
   .recruit_show-inner-participate {
     margin: 1rem 0 .3rem;
-    // font-size: 1.4rem;
     p {
       margin: 1rem 0 .4rem;
       font-size: 1.2rem;
-      // border-bottom: 1px solid $color-gray;
     }
     .participate-names {
       display: flex;
@@ -119,7 +105,7 @@
       margin-left: 1rem;
     }
     .member-name {
-      font-size: 1rem;
+      display: inline-block;
       margin-right: auto;
       color: $color-trueBlack;
       margin: 0 1rem .3rem 0;
@@ -139,7 +125,6 @@
     }
     .recruit-words {
       font-size: 1.4rem;
-      // padding-bottom: .6rem;
       color: $color-gray;
     }
     .user-info {
@@ -147,55 +132,50 @@
       margin-top: .2rem;
       word-wrap: break-word;
     }
-    .when-info {
-      // font-size: 2rem;
-      // margin-bottom: 2rem;
-    }
   }
 
   .recruit_show-inner-bottom {
-    font-size: 1.2rem;
-    text-align: right;
+    display: flex;
+    align-items: center;
     color: $color-black;
-    .fa-edit, .fa-trash-alt, .comment-number, .participate-number {
-      margin-right: 0.2rem;
+    .recruit_show-inner-bottom-left {
+      font-size: 1.2rem;
+      width: 150px;
+      margin-left: 1.5rem;
+      a {
+        display: block;
+        padding: .2rem 0 .1rem 0;
+        @extend %btn;
+      }
     }
-    a {
-      color: $color-black;
-      &:hover {
+    .recruit_show-inner-bottom-right {
+      margin-left: auto;
+      .fa-edit, .fa-trash-alt, .comment-number, .participate-number {
+        margin-right: 0.2rem;
+        font-size: 1.4rem;
+      }
+      a {
         color: $color-black;
+        &:hover {
+          color: $color-black;
+        }
       }
     }
   }
 }
 
-// join#new
-.participate-btn {
-  a {
-    display: block;
-    width: 80%;
-    text-align: center;
-    margin: 1rem auto 0;
-    padding: .2rem;
-    border-radius: 50px;
-    border: 1px solid $color-trueWhite;
-    color: $color-trueWhite;
-    background-color: $color-main;
-    &:hover {
-      border: 1px solid $color-main;
-      color: $color-main;
-      background-color: $color-trueWhite;
-    }
-  }
-}
 
+// comment
+.comment-container {
+  width: 100%;
+  max-width: 650px;
+  margin: 6rem auto 0;
+}
 
 // comment#new
-.comment_new {
-}
 .comment_new-inner {
-  width: 70%;
-  margin: 1rem auto 2rem;
+  width: 100%;
+  margin: 0rem auto 2rem;
   text-align: center;
   .comment_new_content {
     text-align: center;
@@ -209,34 +189,13 @@
   }
   .comment_new-btn {
     text-align: right;
-  }
-  .btn {
-    color: $color-trueWhite;
-    border-radius: 50px;
-    background-color: $color-main;
+    .btn {
+      @extend %btn;
+    }
   }
 }
-
-
 
 // comment#index
-.comment-wrapper {
-  padding: 1rem 0;
-  background-color: rgba(141, 65, 65, 0.384);
-}
-
-.comment-container {
-  width: 60%;
-  margin: 0 auto;
-}
-
-.comment_index {
-  height: 600px;
-  padding: 2rem;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-
 .comment_index-item {
   margin-top: 1rem;
   align-items: center;
@@ -248,8 +207,8 @@
     width: 20%;
     text-align: right;
     padding-right: 1.5rem;
-    @include user-image($width: 50px, $height: 50px, $margin-right: 0,
-                    $top: 28px, $left: 0px, $right: 55px, $font-size: 1.6rem);
+    @include user-image($width: 60px, $height: 60px, $margin-right: 0,
+                    $top: 38px, $left: 0px, $right: 66px, $font-size: 1.6rem);
   }
   .comment_index-comment {
     position: relative;
@@ -276,8 +235,8 @@
     width: 20%;
     text-align: left;
     padding-left: 1.5rem;
-    @include user-image($width: 50px, $height: 50px, $margin-right: 0,
-                    $top: 28px, $left: 15px, $font-size: 1.6rem);
+    @include user-image($width: 60px, $height: 60px, $margin-right: 0,
+                    $top: 38px, $left: 17px, $font-size: 1.6rem);
   }
   .comment_index-comment {
     position: relative;
@@ -301,6 +260,7 @@
   text-align: right;
   margin-top: 1rem;
   a {
+    @extend %link
   }
 }
 

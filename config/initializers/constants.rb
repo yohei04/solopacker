@@ -1,5 +1,5 @@
 RATE_API_URL = "https://api.exchangeratesapi.io/latest?base="
-DEFAULT_IMAGE_PATH = "/packs/media/images/default_other-c1f1adec8f43fef3927559d1394e0e4c.png"
+DEFAULT_IMAGE_PATH = "/packs/media/images/default_icon_img-607ca67ea875a2b25650c0f264628a84.png"
 
 
 # ↓回数制限かかったRate API

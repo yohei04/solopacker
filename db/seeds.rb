@@ -83,7 +83,7 @@ end
 recruits.each do |recruit|
   joinable_user_ids = recruit.comments.map(&:user_id)
   joinable_user_ids.delete(recruit.user_id)
-  5.times do
+  10.times do
     recruit.participations.create(user_id: joinable_user_ids.sample)
   end
 end 

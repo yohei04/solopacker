@@ -68,7 +68,7 @@ class User < ApplicationRecord
                        user_name: 'Guest',
                        email: 'guest@example.com',
                        date_of_birth: 'Mon, 17 Apr 1995',
-                       gender: '♂',
+                       gender: 'other',
                        origin: 'JP',
                        current_country: 'US',
                        current_city: 'NewYork',

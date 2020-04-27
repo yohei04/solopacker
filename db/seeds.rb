@@ -47,7 +47,7 @@ users.each do |user|
   user.save!
 end
 
-sample_users = User.all.sample(21)
+sample_users = User.all.sample(25)
 1.times do |n|
   sample_users.each { |user| 
     # ユーザーの現在の国と同じ国内で募集する都市の配列を作成
@@ -62,7 +62,7 @@ sample_users = User.all.sample(21)
       recruit_cities.push("kyoto")
     end
     user.recruits.create!(
-      date_time: Faker::Time.between(Time.now - 3.days, Time.now + 10.days),
+      date_time: Faker::Time.between(Time.now, Time.now + 30.days),
       hour: ((0.5..6).step(0.5).map(&:itself)).sample,
       country: user.current_country,
       city: recruit_cities.sample,

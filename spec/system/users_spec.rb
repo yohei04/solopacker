@@ -54,15 +54,14 @@ describe 'sign, profile page', type: :system do
       end
     end
   end
-  describe 'プロフィール登録' do
-    before do
-      login_as user_a
-      visit root_path
-      find('.dropdown-toggle').click
-      click_on 'Profile'
-    end
-    context 'ユーザーがプロフィールを更新したとき' do
-      it 'Saveするとデータが更新されてホームに遷移する' do
+
+
+  describe 'User/Profile' do
+    let!(:users) { FactoryBot.create_list(:user, 11) }
+    context 'when visit #edit page' do
+      it 'can update user info and redirect to home page adter saving' do
+        login_as user_a
+        visit edit_users_profile_path(user_a)
         expect(page).to have_content 'Date Of Birth'
         expect(page).to have_content 'Language①'
         select 'China', from: 'Home Country:'
@@ -76,7 +75,9 @@ describe 'sign, profile page', type: :system do
         expect(user_a.name).to eq 'hogehoge'
         expect(user_a.language_1).to eq 'Chinese'
       end
-      it 'サインアップ時と同じようにバリデーションが働く' do
+      it 'validates info' do
+        login_as user_a
+        visit edit_users_profile_path(user_a)
         fill_in 'Name:', with: ''
         fill_in 'User Name:', with: 'a' * 16
         click_on 'Save'
@@ -84,17 +85,13 @@ describe 'sign, profile page', type: :system do
         expect(page).to have_content 'too long'
       end
     end
-  end
-  describe 'User/Profile' do
-    let!(:users) { FactoryBot.create_list(:user, 11) }
-    context 'when visit User/Profile#index page' do
-      it 'has user list and pagination' do
+    context 'when visit #index page' do
+      it 'has users list and pagination' do
         login_as user_a
         visit users_profiles_path
         expect(page).to have_content 'Members'
         expect(page).to have_selector 'img'
-        expect(page).to have_selector '.user_name', text: user_a.user_name
-        expect(page).to have_selector '.user_name', text: users[1].user_name
+        expect(page).to have_selector '.user_name', text: users.last.user_name
         expect(page).to have_selector '.age'
         expect(page).to have_selector '.gender'
         expect(page).to have_selector '.origin_country'
@@ -102,10 +99,10 @@ describe 'sign, profile page', type: :system do
         expect(page).to have_selector '.pagination'
         expect(page).to have_selector('.user_name', count: 10)
         click_on '2'
-        expect(page).to have_selector '.user_name', text: users[10].user_name
+        expect(page).to have_selector '.user_name', text: users.first.user_name
       end
     end
-    context 'when visit User/Profile#show page' do
+    context 'when visit #show page' do
       it 'has user detail' do
         login_as user_a
         visit users_profile_path(user_a)
@@ -114,9 +111,10 @@ describe 'sign, profile page', type: :system do
         expect(page).to have_selector('.country_flag', count: 2)
         expect(page).to have_selector '.language_1', text: user_a.language_1
         expect(page).to have_selector '.introduce', text: user_a.introduce
+        expect(page).to have_link href: edit_users_profile_path(user_a)
       end
     end
-    context 'when visit User/Profile#index & #show page without sign in' do
+    context 'when visit #index & #show page without sign in' do
       it 'is returned to Sign in page' do
         visit users_profiles_path
         expect(page).to have_link 'Sign in', href: new_user_session_path

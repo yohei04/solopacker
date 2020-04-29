@@ -11,7 +11,7 @@
   .recruit_new-where
     .field.recruit_new_place
       = f.label :address, 'Meeting City:'
-      = f.text_field :address, value: city, id: :autocomplete_address
+      = f.text_field :address, value: city, placeholder: "Tokyo", id: :autocomplete_address
     .field.recruit_new_country
       / = f.label :country, 'Meeting Country:'
       = f.hidden_field :country, id: :country
@@ -20,7 +20,7 @@
       = f.hidden_field :city, id: :locality
   .field.recruit_new_content
     = f.label :content, 'About your plan:'
-    = f.text_area :content, placeholder: "Write your plan"
+    = f.text_area :content, placeholder: "I wanna try Japanese Sake at an Izakaya! Shall we?"
   .field.recruit_form-btn
     .actions
       = f.submit "Save", class: "btn"

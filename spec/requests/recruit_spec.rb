@@ -125,9 +125,9 @@ describe 'Recruit pages', type: :request do
       it 'returns http success' do
         expect(response).to have_http_status '200'
       end
-      it "shows 'when' and 'where'" do
-        expect(response.body).to include 'when'
-        expect(response.body).to include 'where'
+      it "shows 'When' and 'Where'" do
+        expect(response.body).to include 'When'
+        expect(response.body).to include 'Where'
       end
     end
     context 'when user not signed in' do

@@ -72,7 +72,7 @@ describe 'Participation', type: :request do
     let!(:user_b) { FactoryBot.create(:user) }
     let!(:participation_a) { FactoryBot.create(:participation, user: user_a, recruit: recruit_a) }
     context 'when already joined' do
-      it 'is successfully deleted' do
+      it 'is successfully deleted by joined user' do
         login_as user_a
         get recruit_path(recruit_a)
         expect(response.body).to include "changed my mind"
@@ -82,10 +82,11 @@ describe 'Participation', type: :request do
         expect(response.status).to eq 200
         expect(response.body).to include "I will Join"
       end
-      it "can't be deleted by other user" do
+      it "can't be deleted by not joined user" do
         login_as user_b
-        get recruit_path(recruit_a)
-        expect(response.body).not_to include "changed my mind"
+        expect do
+          delete recruit_participation_path(recruit_id: recruit_a, id: participation_a), xhr: true
+        end.to raise_error ActiveRecord::RecordNotFound
       end
     end
   end

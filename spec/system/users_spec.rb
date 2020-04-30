@@ -59,7 +59,7 @@ describe 'sign, profile page', type: :system do
   describe 'User/Profile' do
     let!(:users) { FactoryBot.create_list(:user, 11) }
     context 'when visit #edit page' do
-      it 'can update user info and redirect to home page adter saving' do
+      it 'can update user info and redirect to home page after saving' do
         login_as user_a
         visit edit_users_profile_path(user_a)
         expect(page).to have_content 'Date Of Birth'

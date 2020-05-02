@@ -14,8 +14,5 @@ $(function () {
   searchCountry('.current_country', gon.current_country);
   searchCountry('.next_country', gon.next_country);
   searchCountry('.origin', gon.origin);
-  // searchCountry('.first_popular_country', gon.popular_countries[0]);
-  // searchCountry('.second_popular_country', gon.popular_countries[1]);
-  // searchCountry('.third_popular_country', gon.popular_countries[2]);
 });
 

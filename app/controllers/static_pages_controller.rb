@@ -16,7 +16,6 @@ class StaticPagesController < ApplicationController
     gon.current_country = current_user.current_country
     gon.next_country = current_user.uniq_feature_mix_recruits[0]&.country
     gon.origin = current_user.origin
-    # gon.popular_countries = Recruit.popular_countries.first(3)
   end
 
   def about; end

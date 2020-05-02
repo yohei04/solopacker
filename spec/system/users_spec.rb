@@ -54,15 +54,14 @@ describe 'sign, profile page', type: :system do
       end
     end
   end
-  describe 'プロフィール登録' do
-    before do
-      login_as user_a
-      visit root_path
-      find('.dropdown-toggle').click
-      click_on 'Profile'
-    end
-    context 'ユーザーがプロフィールを更新したとき' do
-      it 'Saveするとデータが更新されてホームに遷移する' do
+
+
+  describe 'User/Profile' do
+    let!(:users) { FactoryBot.create_list(:user, 11) }
+    context 'when visit #edit page' do
+      it 'can update user info and redirect to home page after saving' do
+        login_as user_a
+        visit edit_users_profile_path(user_a)
         expect(page).to have_content 'Date Of Birth'
         expect(page).to have_content 'Language①'
         select 'China', from: 'Home Country:'
@@ -76,7 +75,9 @@ describe 'sign, profile page', type: :system do
         expect(user_a.name).to eq 'hogehoge'
         expect(user_a.language_1).to eq 'Chinese'
       end
-      it 'サインアップ時と同じようにバリデーションが働く' do
+      it 'validates info' do
+        login_as user_a
+        visit edit_users_profile_path(user_a)
         fill_in 'Name:', with: ''
         fill_in 'User Name:', with: 'a' * 16
         click_on 'Save'
@@ -84,17 +85,13 @@ describe 'sign, profile page', type: :system do
         expect(page).to have_content 'too long'
       end
     end
-  end
-  describe 'User/Profile' do
-    let!(:users) { FactoryBot.create_list(:user, 11) }
-    context 'when visit User/Profile#index page' do
-      it 'has user list and pagination' do
+    context 'when visit #index page' do
+      it 'has users list and pagination' do
         login_as user_a
         visit users_profiles_path
         expect(page).to have_content 'Members'
         expect(page).to have_selector 'img'
-        expect(page).to have_selector '.user_name', text: user_a.user_name
-        expect(page).to have_selector '.user_name', text: users[1].user_name
+        expect(page).to have_selector '.user_name', text: users.last.user_name
         expect(page).to have_selector '.age'
         expect(page).to have_selector '.gender'
         expect(page).to have_selector '.origin_country'
@@ -102,10 +99,10 @@ describe 'sign, profile page', type: :system do
         expect(page).to have_selector '.pagination'
         expect(page).to have_selector('.user_name', count: 10)
         click_on '2'
-        expect(page).to have_selector '.user_name', text: users[10].user_name
+        expect(page).to have_selector '.user_name', text: users.first.user_name
       end
     end
-    context 'when visit User/Profile#show page' do
+    context 'when visit #show page' do
       it 'has user detail' do
         login_as user_a
         visit users_profile_path(user_a)
@@ -114,73 +111,15 @@ describe 'sign, profile page', type: :system do
         expect(page).to have_selector('.country_flag', count: 2)
         expect(page).to have_selector '.language_1', text: user_a.language_1
         expect(page).to have_selector '.introduce', text: user_a.introduce
+        expect(page).to have_link href: edit_users_profile_path(user_a)
       end
     end
-    context 'when visit User/Profile#index & #show page without sign in' do
+    context 'when visit #index & #show page without sign in' do
       it 'is returned to Sign in page' do
         visit users_profiles_path
         expect(page).to have_link 'Sign in', href: new_user_session_path
         visit users_profile_path(user_a)
         expect(page).to have_link 'Sign in', href: new_user_session_path
-      end
-    end
-  end
-end
-
-describe 'Recruit page' do
-  let!(:user) { FactoryBot.create(:user) }
-  let!(:recruit) { FactoryBot.create(:recruit) }
-  include ProfilesHelper
-  before do
-    login_as user
-  end
-  describe '#new page' do
-    before do
-      visit new_recruit_path
-    end
-    context 'visit new page' do
-      it 'shows default date' do
-        expect(page).to have_select('Meeting Country:', selected: country_name(user.current_country))
-        expect(page).to have_field 'Meeting City:', with: user.current_city
-      end
-    end
-    context 'with not full information' do
-      it 'shows error messages' do
-        fill_in 'Meeting City', with: 'China'
-        click_on 'Save'
-        expect(page).to have_content 'errors'
-      end
-    end
-    context 'with full information' do
-      it 'shows success flash' do
-        fill_in 'Title:', with: 'title'
-        fill_in 'About your plan:', with: 'Write your plan'
-        click_on 'Save'
-        expect(page).to have_content 'Recruit created!'
-      end
-    end
-    describe '#edit page' do
-      before do
-        visit edit_recruit_path(recruit)
-      end
-      context 'visit eddit page' do
-        it 'shows filled in date' do
-          expect(page).to have_select('Meeting Country:', selected: country_name(recruit.country))
-          expect(page).to have_field 'Meeting City:', with: recruit.city
-        end
-      end
-      context 'with not full information' do
-        it 'shows error messages' do
-          fill_in 'Meeting City', with: nil
-          click_on 'Save'
-          expect(page).to have_content 'error'
-        end
-      end
-      context 'with full information' do
-        it 'shows success flash' do
-          click_on 'Save'
-          expect(page).to have_content 'Recruit updated!'
-        end
       end
     end
   end

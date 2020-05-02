@@ -10,7 +10,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   validates :name, presence: true, length: { maximum: 50 }
-  validates :user_name, presence: true, uniqueness: true, length: { maximum: 15 }
+  validates :user_name, presence: true, uniqueness: {case_sensitive: true}, length: { maximum: 15 }
 
   def age
     return if date_of_birth.nil?

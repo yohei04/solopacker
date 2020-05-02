@@ -1,4 +1,4 @@
 = simple_format(h(comment.content), {}, sanitize: false, wrapper_tag: "p") 
 .comment_index_delete
-  - if current_user == comment.user
+  - if comment.content.present? && current_user == comment.user
     = link_to 'delete', recruit_comment_path(recruit_id: recruit, id: comment), method: :delete, data: { confirm: "Are you sure you want to delete this comment?" }, remote: true

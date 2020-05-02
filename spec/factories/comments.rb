@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :comment do
-    sequence(:content) { |i| "content_#{i}" }
+    content { "test comment content" }
     user
     recruit
   end

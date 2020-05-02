@@ -11,7 +11,7 @@ require("@rails/ujs").start()
 require("@rails/activestorage").start()
 require("channels")
 
-require("packs/autocomplete");
+// require("packs/autocomplete");
 require("packs/rate");
 require("packs/flash");
 require("packs/recruit_serch");

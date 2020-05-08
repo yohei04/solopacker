@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: Solopacker_production
-  username: Solopacker
-  password: <%= ENV['SOLOPACKER_DATABASE_PASSWORD'] %>
+  username: root
+  password:

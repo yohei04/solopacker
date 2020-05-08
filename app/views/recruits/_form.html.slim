@@ -24,3 +24,8 @@
   .field.recruit_form-btn
     .actions
       = f.submit "Save", class: "btn"
+
+= javascript_include_tag "https://maps.googleapis.com/maps/api/js?libraries=places&key=#{Rails.application.credentials.dig(:GOOGLE_API_SERVER_KEY)}"
+= javascript_pack_tag 'autocomplete'
+
+

@@ -13,9 +13,9 @@ class StaticPagesController < ApplicationController
       format.html
       format.js
     end
-    gon.popular_countries = Recruit.popular_countries.first(3)
+    gon.current_country = current_user.current_country
     gon.next_country = current_user.uniq_feature_mix_recruits[0]&.country
-    gon.current_user_origin = current_user.origin
+    gon.origin = current_user.origin
   end
 
   def about; end

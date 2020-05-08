@@ -88,7 +88,7 @@
     font-size: 1.6rem;
   }
   .how_to-or {
-    text-align: center;
+    margin-right: 2.4rem;
     font-size: 2.5rem;
   }
 }
@@ -159,11 +159,11 @@
   margin: 3rem 0 0 5rem;
   @include recruit-pin($top: -5, $left: 45%);
   a {
-    background-color: $color-main;
     color: $color-trueBlack;
-    // text-shadow: .1rem .1rem .3rem $color-trueBlack;
-    &:hover {
-      color: $color-main;
+  }
+  &:hover {
+    .recruit-blank, .recruit_index-blank-1, .recruit_index-blank-2, .recruit_index-blank-3, .recruit_index-blank-4 {
+      border: $border-recruit
     }
   }
 }
@@ -172,8 +172,10 @@
   height: 230px;
   top: 0;
   left: 0;
-  @include recruit-container($position: absolute, $padding: 2.4rem 1rem 0);
+  margin-bottom: 3rem;
   box-shadow: $shadow-recruit-dummy;
+  @include recruit-container($position: absolute, $padding: 2.4rem 1rem 0);
+  border: double 3px $color-trueBlack;
   &::before, &::after {
     display: none;
   }
@@ -187,6 +189,7 @@
   }
   p {
     margin-bottom: 0.3rem;
+    border-bottom: dotted 1px black;
   }
 }
 .recruit_index-blank-1 {

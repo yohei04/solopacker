@@ -11,10 +11,8 @@ $(function () {
     $("form").find("button[type='submit']").click();
   });
   searchCountry('.all_countries', '');
-  searchCountry('.first_popular_country', gon.popular_countries[0]);
-  searchCountry('.second_popular_country', gon.popular_countries[1]);
-  searchCountry('.third_popular_country', gon.popular_countries[2]);
+  searchCountry('.current_country', gon.current_country);
   searchCountry('.next_country', gon.next_country);
-  searchCountry('.origin', gon.current_user_origin);
+  searchCountry('.origin', gon.origin);
 });
 

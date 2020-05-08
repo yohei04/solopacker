@@ -1,49 +1,73 @@
 %pins {
+  .pin {
+    height: 40px;
+  }
   .top {
     display: flex;
     justify-content: space-between;
+    margin-top: 1.4rem;
     .left {
       margin-left: 5rem;
     }
     .right {
-      margin-right: 3rem;
+      display: flex;
+      margin: 0 4rem 0 0;
     } 
   }
   .bottom {
     text-align: right;
-    margin-right: 3rem;
-  }
-  .pin {
-    height: 40px;
-  }
-  .first_popular_country, .second_popular_country, .third_popular_country {
-    margin: 1rem 0 0 2rem;
-    cursor : pointer;
-  }
-  .all_countries {
-    cursor : pointer;
+    margin-right: 5rem;
   }
   .pin1 {
-    margin-right: 1rem;
+    margin: 0rem .2rem 0rem 0rem;
   }
   .pin2 {
-    margin-top: .4rem;
+    margin: 0rem 1rem .4rem .2rem;
   }
   .pin3 {
-    margin-bottom: -.2rem;
+    margin: 0rem 0rem .4rem 0rem;
   }
-  .pin4 {
-    margin-top: 1rem;
+  .all_countries {
+    margin: 0rem 2rem .4rem 0rem;
+  }
+  .current_country {
+    margin: 0rem .6rem .4rem 0rem;
   }
   .next_country {
-    margin-bottom: .8rem;
-    cursor : pointer;
+    margin: .3rem .8rem 0rem .3rem;
   }
   .origin {
-    margin-bottom: .5rem;
-    cursor : pointer;
+    margin: .5rem 0rem 0rem 0rem;
   }
-  .pin7 {
-    margin-left: 1rem;
+  .pin8 {
+    margin: 0rem .2rem .3rem .3rem;
+  }
+  .pin9 {
+    margin: 0rem .1rem .5rem 0rem;
+  }
+  .pin10 {
+    margin: 0rem;
+  }
+  .special-pin {
+    position: relative;
+    cursor : pointer;
+    &:hover .text {
+      display: block;
+    }
+  }
+  .text {
+    position:absolute;
+    display: none;
+    width: 130px;
+    height: 30px;
+    line-height: 30px;
+    top: 40px;
+    left: -45px;
+    border-radius: 10px 10px 10px 10px;
+    background-color: rgba($color-trueWhite, .8);
+    border: solid 1px $color-trueBlack;
+    text-align: center;
+    color: $color-trueBlack;
+    z-index: 10;
   }
 }

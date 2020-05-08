@@ -7,7 +7,6 @@ class Recruit < ApplicationRecord
   scope :happen_recent, -> { order(date_time: :desc) }
   scope :feature, -> { where('date_time >= ?', Time.zone.now.beginning_of_day) }
   scope :upcoming, -> { order(date_time: :asc).feature }
-  scope :popular_countries, -> { group('country').feature.order('count_country desc').count('country').keys }
   validates :user_id, presence: true
   validates :date_time, presence: true
   validates :hour, presence: true, numericality: { less_than_or_equal_to: 24 }

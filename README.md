@@ -1,5 +1,5 @@
 # Solopacker
-<img width="1423" alt="Screen Shot 2020-05-23 at 18 18 51" src="https://user-images.githubusercontent.com/54460011/82726875-f5b54280-9d21-11ea-85bc-a1515ee5569c.png">
+![Screen Shot 2020-05-23 at 18 18 51](https://user-images.githubusercontent.com/54460011/83119511-c67c4800-a10a-11ea-9785-a146e414883b.png)
 
 ## URL
 https://solopacker.work/

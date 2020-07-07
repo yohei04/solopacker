@@ -62,7 +62,6 @@ https://solopacker.work/
 - RSpec
 - Slim
 - JavaScript
-- Bootstrap4
 - MySQL
 - AWS(VPC, EC2, S3, ALB, Route53, ACM)
 

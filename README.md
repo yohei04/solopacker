@@ -1,4 +1,4 @@
-# Solopacker
+# Solopacker(現在サーバー停止中です)
 
 ## 使用画面
 
